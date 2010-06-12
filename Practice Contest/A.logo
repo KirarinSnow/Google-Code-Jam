@@ -1,0 +1,16 @@
+#!/usr/bin/env ucblogo
+
+; Problem: Old Magician
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+
+
+to compute
+make "b item 2 readlist
+output ifelse (equalp modulo :b 2 1) ["BLACK] ["WHITE]
+end
+
+for [case 1 readword] [print (word "|Case #| :case "|: | compute)]
+
+bye

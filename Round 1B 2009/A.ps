@@ -1,0 +1,145 @@
+%!PS
+%
+% Problem: Decision Tree
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+
+
+% Convert input file into PostScript notation; produces nested array
+% representation of decision trees
+
+% Create buffer of filtered file characters
+/infile (%stdin) (r) file def
+/buffer
+[
+    {
+	infile read not
+	{ exit } if
+	
+	dup 40 eq % ( -> [
+	{
+	    pop 91
+	} if
+	dup 41 eq % ) -> ]
+	{
+	    pop 93
+	} if
+	
+	dup dup 97 ge exch 122 le and
+	{
+	    1 index dup 97 lt exch 122 gt or
+	    {
+		% prefix labels with a slash
+		47 exch
+	    } if
+	} if
+    } loop
+] def
+
+% Convert into string
+/stringbuffer buffer length string def
+0 1 buffer length 1 sub
+{
+    << >> begin
+    /i exch def
+    stringbuffer i
+	buffer i get put
+    end
+} for
+
+
+% Execute string as PostScript code
+[
+    stringbuffer 
+    {
+	token { exch } { exit } ifelse
+    } loop
+] cvx exec
+
+%% The above could probably be handled more easily by preprocessing with
+%% sed and then just running the resulting file as PostScript:
+%%
+%%   (post-sed.in) (r) file run
+%%
+
+
+
+%% Solve case
+/compute
+{
+    count -2 roll exch pop  % Ignore number of lines
+    /dt exch def
+
+    % Array of dictionaries of features of each animal
+    [
+	count -1 roll  % For number of animals
+	{
+	    << >>  % Create feature dictionary
+	    
+	    % Ignore animal name; move features to front of stack
+	    count -2 roll exch pop 
+	    {
+		dup count -1 roll 0 put % Add each feature to dictionary
+	    } repeat
+	} repeat
+    ]
+    {
+	% Print probability of cuteness
+	dt 1 probability  ==
+
+    } forall % For all animals
+} def
+
+
+%% Finds probability of cuteness, given features
+%% feature_dictionary decision_tree initial_probability
+%% -> final_probability
+/probability
+{
+    << >> begin
+    /p exch def
+    /dt exch def
+
+    /p p dt 0 get mul store
+    
+    dt length 1 eq
+    {
+	% Leaf - pop dictionary, return final prob
+	pop p
+    }
+    {
+	% Not leaf
+	dup dt 1 get known
+	{
+	    % Feature in dictionary
+	    dt 2 get p probability
+	}
+	{
+	    % Feature not in dictionary
+	    dt 3 get p probability
+	} ifelse
+	
+    } ifelse
+
+    end
+} def
+
+
+
+/case 0 def
+
+count -1 roll % case counter
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case
+    () =
+    compute
+} repeat
+
+quit

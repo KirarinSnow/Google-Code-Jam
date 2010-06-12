@@ -1,0 +1,34 @@
+%!PS
+% Problem: Decision Tree
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+
+(%stdin) (r) file (temp.ps) (w) file {
+    1 index read not { exit } if
+    dup 40 eq { pop 123 } if
+    dup 41 eq {	pop 125 } if
+    1 index exch write
+} loop closefile closefile
+
+(temp.ps) (r) file
+dup token pop 1 exch 1 exch {
+    (Case #) print 5 string cvs print (: ) =
+    dup token pop pop dup token pop
+    [
+	2 index token pop {
+	    << >>
+	    count 1 sub index dup token pop pop token pop {
+		dup count 1 sub index token pop 0 put
+	    } repeat
+	} repeat
+    ] {
+	1 index exch 1.0 {
+	    2 index 0 get mul
+	    2 index length 1 eq { exit } {
+		3 2 roll 2 index 1 index 1 get known
+		3 exch { 1 sub } if get 3 1 roll
+	    } ifelse
+	} loop == pop pop
+    } forall pop
+} for closefile quit

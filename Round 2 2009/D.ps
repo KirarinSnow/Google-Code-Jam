@@ -1,0 +1,91 @@
+%!PS
+%
+% Problem: Watering Plants
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+% Comments: Works only on small input.
+
+
+/infile (%stdin) (r) file def
+
+/rd { infile token pop } def
+
+/dist % radius to cover two plants
+%x1 y1 r1 x2 y2 r2 -> rad
+{
+    << >> begin
+    [ /r2 /y2 /x2 /r1 /y1 /x1 ] { exch def } forall
+
+    x1 x2 sub dup mul y1 y2 sub dup mul add sqrt r1 add r2 add 2 div
+    
+    end
+} def
+
+/max % x y -> max(x,y)
+{
+    2 copy lt { exch } if pop
+} def
+
+/min % x y -> min(x,y)
+{
+    2 copy gt { exch } if pop
+} def
+
+/compute
+{
+    /np rd def
+
+    /plants [ np 3 mul { rd } repeat ] def
+
+    % fails for N > 3
+    np 3 gt
+    {
+	(ERROR) =
+    }
+    {
+	np 3 eq
+	{
+	    /x1 plants 0 get def
+	    /y1 plants 1 get def
+	    /r1 plants 2 get def
+	    /x2 plants 3 get def
+	    /y2 plants 4 get def
+	    /r2 plants 5 get def
+	    /x3 plants 6 get def
+	    /y3 plants 7 get def
+	    /r3 plants 8 get def
+	    
+	    /d12 x1 y1 r1 x2 y2 r2 dist def
+	    /d23 x2 y2 r2 x3 y3 r3 dist def
+	    /d13 x1 y1 r1 x3 y3 r3 dist def
+	    
+	    d12 r3 max d23 r1 max d13 r2 max min min =
+	} if
+
+	np 2 eq
+	{
+	    /r1 plants 2 get def
+	    /r2 plants 5 get def
+	    
+	    r1 r2 max =
+	} if
+
+	np 1 eq
+	{
+	    /r1 plants 2 get def
+	    
+	    r1 =
+	} if
+	
+    } ifelse
+    
+} def
+
+1 1 rd
+{
+   (Case #) print
+   5 string cvs print
+   (: ) print
+   compute
+} for

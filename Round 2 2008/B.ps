@@ -1,0 +1,49 @@
+%!PS
+%
+% Problem: Triangle Areas
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+
+
+(%stdin) (r) file run		% add input file to stack
+
+1 1 count -1 roll		% for i = 1 to case number, inclusive
+{
+    (Case #) print		% print "Case #n: "
+    8 string cvs print	
+    (: ) print
+
+    count -3 roll		% Stack: N M A
+
+    dup				% N M A A
+    4 2 roll			% A A N M
+    2 copy			% A A N M N M
+    mul				% A A N M N*M
+    5 -1 roll			% A N M N*M A
+    lt				% A N M (N*M < A)
+    {
+	(IMPOSSIBLE) =		% Impossible: desired triangle too large to fit
+	pop pop pop		% clear stack
+    }
+    {
+	(0 1 ) print		% First coordinate: (0, 1)
+	exch dup		% A M N N
+	5 string cvs print
+	( 0 ) print		% Second coordinate: (N, 0)
+	    
+	3 -1 roll		% M N A
+	2 copy			% M N A N A
+	    
+	1 sub exch mod 1 add	% M N A ((A-1)%N+1)
+	5 string cvs print
+	( ) print		% Third coordinate: ((A-1)%N+1,(A-1)/N+1)
+	1 sub exch idiv 1 add	% M ((A-1)/N+1)
+	5 string cvs print
+	pop			% clear M
+
+	( ) =			% newline
+    } ifelse
+} for
+
+quit

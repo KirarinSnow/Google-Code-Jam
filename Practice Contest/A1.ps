@@ -1,0 +1,120 @@
+%!PS
+%
+% Problem: Old Magician
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT -dBATCH thisfile.ps <input.in >output.out
+% Comments: This program is a quine. It prints the solution to stdout and its
+%           own source code to stderr.
+
+
+% Compute case
+/compute
+{
+    count -2 roll
+    exch pop
+    2 mod 1 eq
+    {
+	(BLACK)
+    }
+    {
+	(WHITE)
+    } ifelse
+} def
+
+% Main loop
+
+/case 0 def % case counter
+
+(%stdin) (r) file run % adds input file to stack
+
+count -1 roll % moves first arg to front
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case and prints
+    compute =
+
+} repeat
+
+%%% Print program source code to stderr...
+
+% Print to stderr
+/err=
+{
+    (%stderr) (w) file exch writestring
+    (%stderr) (w) file 10 write
+} def
+
+/err==
+{
+    (%stderr) (w) file dup 40 write exch writestring
+    (%stderr) (w) file dup 41 write 10 write
+} def
+
+
+(%!PS
+%
+% Problem: Old Magician
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT -dBATCH thisfile.ps <input.in >output.out
+% Comments: This program is a quine. It prints the solution to stdout and its
+%           own source code to stderr.
+
+
+% Compute case
+/compute
+{
+    count -2 roll
+    exch pop
+    2 mod 1 eq
+    {
+	(BLACK)
+    }
+    {
+	(WHITE)
+    } ifelse
+} def
+
+% Main loop
+
+/case 0 def % case counter
+
+(%stdin) (r) file run % adds input file to stack
+
+count -1 roll % moves first arg to front
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case and prints
+    compute =
+
+} repeat
+
+%%% Print program source code to stderr...
+
+% Print to stderr
+/err=
+{
+    (%stderr) (w) file exch writestring
+    (%stderr) (w) file 10 write
+} def
+
+/err==
+{
+    (%stderr) (w) file dup 40 write exch writestring
+    (%stderr) (w) file dup 41 write 10 write
+} def
+
+)
+(exch dup err= err== dup err== err=)
+exch dup err= err== dup err== err=

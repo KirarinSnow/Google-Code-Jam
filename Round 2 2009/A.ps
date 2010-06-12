@@ -1,0 +1,58 @@
+%!PS
+%
+% Problem: Crazy Rows
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+
+
+/in (%stdin) (r) file def
+
+/compute
+{
+    [in token pop
+    {
+	in 100 string readline pop    
+    } repeat]
+
+    [exch
+    {
+	0 exch
+	{
+	    48 eq {1 add} {pop 0} ifelse
+	} forall
+    } forall]
+
+    /a exch def
+
+    /c 0 def
+
+    a length 1 sub -1 0
+    {
+	/b exch def
+	
+	0 1 a length 1 sub
+	{
+	    /d exch def
+	    a d get b ge
+	    {
+		exit
+	    } if
+	} for
+
+	/c c d add def
+	/a [ a 0 d getinterval aload pop
+	     a d 1 add a length d sub 1 sub getinterval aload pop ] def
+    } for
+
+    c
+} def
+
+
+1 1 in token pop
+{
+    (Case #) print 5 string cvs print (: ) print
+    compute ==
+} for
+
+quit

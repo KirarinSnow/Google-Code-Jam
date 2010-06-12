@@ -1,0 +1,8 @@
+#!/usr/bin/dc
+#
+# Problem: Snapper Chain
+# Language: dc
+# Author: KirarinSnow
+# Usage: dc thisfile.dc <input.in >output.out 
+
+[r]sf?st1[[Case #]Pdn[: ]P[ON][OFF]?1+r2r^%0=fPr10P1+dlt!<F]dsFx

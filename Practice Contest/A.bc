@@ -1,0 +1,23 @@
+#!/usr/bin/bc
+#
+# Problem: Old Magician
+# Language: bc
+# Author: KirarinSnow
+# Usage: bc thisfile.bc <input.in >output.out 
+
+
+cases = read()
+
+define compute ()
+{
+    w = read()
+    b = read()
+    if (b % 2 == 1) print "BLACK" else print "WHITE"
+}
+
+for (i = 1; i <= cases; i++)
+{
+    print "Case #", i, ": "
+    x = compute()
+    print "\n"
+}

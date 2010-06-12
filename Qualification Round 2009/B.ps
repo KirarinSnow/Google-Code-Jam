@@ -1,0 +1,259 @@
+%!PS
+%
+% Problem: Watersheds
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in
+
+/getint
+{
+    infile token
+    {
+	
+    }
+    {
+	(I/O Error.) = quit
+    } ifelse
+} def
+
+/getstring
+{
+    infile token
+    {
+	200 string cvs
+    }
+    {
+	(I/O Error.) = quit
+    } ifelse
+} def
+
+/pmod
+{
+    2 copy
+    exch abs exch
+    mul
+    3 -1 roll
+    add
+    exch mod
+} bind def
+
+/clog % correct base-2 log
+{
+    0 1
+    {
+	3 copy exch pop
+	lt
+	{
+	    pop exch pop 1 sub
+	    exit
+	} if
+
+	2 mul exch 1 add exch
+    } loop
+} bind def
+
+/ind % r c -> index
+{
+    exch w mul add
+} def
+
+/next % r c -> r c
+{
+    
+    << >> begin
+    /c exch def
+    /r exch def
+
+    /mn mp r c ind get def
+    /dest [ r c ] def
+    
+    r 0 gt
+    {
+	mp r 1 sub c ind get mn lt
+	{
+	    /mn mp r 1 sub c ind get def
+	    /dest [ r 1 sub c ] def
+	} if
+    } if
+
+    c 0 gt
+    {
+	mp r c 1 sub ind get mn lt
+	{
+	    /mn mp r c 1 sub ind get def
+	    /dest [ r c 1 sub ] def
+	} if
+    } if
+    c w 1 sub lt
+    {
+	mp r c 1 add ind get mn lt
+	{
+	    /mn mp r c 1 add ind get def
+	    /dest [ r c 1 add ] def
+	} if
+    } if
+    r h 1 sub lt
+    {
+	mp r 1 add c ind get mn lt
+	{
+	    /mn mp r 1 add c ind get def
+	    /dest [ r 1 add c ] def
+	} if
+    } if
+
+    dest aload pop
+    end
+} def
+
+/pairequal % a b c d -> a=c&&b=d
+{
+    3 2 roll eq 3 1 roll eq and
+} def
+
+/label % r c -> -
+{
+    << >> begin
+    /c exch def
+    /r exch def
+
+    mark
+
+    r c 
+
+    {	
+	counttomark 0 eq
+	{
+	    pop exit
+	} if
+
+	/c exch store
+	/r exch store
+
+	out r c ind get 0 eq
+	{
+	    out r c ind letter put
+	    r 0 gt
+	    {
+		r 1 sub c next r c pairequal
+		{
+		    r 1 sub c counttomark 2 roll
+		} if
+	    } if
+	    c 0 gt
+	    {
+		r c 1 sub next r c pairequal
+		{
+		    r c 1 sub counttomark 2 roll
+		} if
+	    } if
+	    c w 1 sub lt
+	    {
+		r c 1 add next r c pairequal
+		{
+		    r c 1 add counttomark 2 roll
+		} if
+	    } if
+	    r h 1 sub lt
+	    {
+		r 1 add c next r c pairequal
+		{
+		    r 1 add c counttomark 2 roll
+		} if
+	    } if
+	} if
+    } loop
+    
+    end
+} def
+
+/compute 
+{
+    /h getint def
+    /w getint def
+    /out [ h w mul { 0 } repeat ] def
+
+    /mp [ h w mul { getint } repeat ] def
+
+    /letter 97 def
+
+    << >> begin
+    
+    0 1 h 1 sub
+    {
+	/row exch def
+	0 1 w 1 sub
+	{
+	  /col exch def
+	  out row col ind get 0 eq
+	  {
+
+	      /sr row def
+	      /sc col def
+
+	      {	
+		  sr sc next
+		  sc eq exch sr eq and
+		  {
+		      exit
+		  }
+		  {
+		      sr sc next
+		      /sc exch store
+		      /sr exch store
+		  } ifelse
+	      } loop
+
+	      sr sc label
+
+	      /letter letter 1 add def
+	  } if
+	} for
+    } for
+
+    
+    ( ) =
+    
+    0 1 h 1 sub
+    {
+	/row exch def
+	0 1 w 1 sub
+	{
+	  /col exch def
+	  /z out row col ind get def
+	  z 122 gt
+	  {
+	      /z 122 def
+	  } if
+	  /az 1 string def
+	  az 0 z put
+	  az print
+	  ( ) print
+	} for
+	( ) = 
+    } for
+
+    end
+
+} def
+
+
+
+%%% Main case loop
+
+/case 0 def % case counter
+/infile (%stdin) (r) file def
+
+getint % number of cases
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case
+    compute 
+
+} repeat
+
+quit % exit

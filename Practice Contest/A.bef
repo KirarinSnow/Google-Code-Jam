@@ -1,0 +1,21 @@
+v  Problem: Old Magician
+v  Language: Befunge
+v  Author: KirarinSnow
+&  Usage: befunge thisfile.bef <input.in >output.out
+0   
+>\:!#@_1-\1+          v
+  v     ,,,,,,"Case #"< (Print case number)
+  > : 52*::**   /:!#v_ 52*%68*+,v   (Case number: thousands digit)
+  v                $<          0<
+  > : 52*:*     /:!#v_ 52*%68*+,v   (Case number: hundreds digit)
+  v                $<          0<
+  > : 52*       /:!#v_ 52*%68*+,v   (Case number: tens digit)
+  v                $<          0<
+  > : 52*%68*+,       v             (Case number: ones digit)
+  v             ,,": "<
+  > &&\$ 2%#v_        v (Mod)
+             v "WHITE"<
+            >         v
+             v "BLACK"<
+             >,,,,,   v
+^,*52                 <

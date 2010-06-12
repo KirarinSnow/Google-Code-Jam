@@ -1,0 +1,48 @@
+% Problem: T9 Spelling
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNOPROMPT -dNODISPLAY -dBATCH thisfile.ps <input.in >output.out 
+
+
+/digits (22233344455566677778889999) def
+/times [6 {1 2 3} repeat 4 2 {1 2 3} repeat 4] def
+
+/compute {
+    input 1000 string readline {
+	[ exch
+	    {
+		dup 32 eq {
+		    pop (0)
+		} {
+		    [ exch
+			(a) 0 get sub dup times exch get
+			{
+			    dup digits exch get exch
+			} repeat pop
+		    ]
+		} ifelse
+	    } forall
+	]
+	[ exch ( ) exch
+	    {
+		2 copy 0 get exch 0 get eq {( ) exch} if
+	    } forall
+	] {
+	    {
+		(%stdout) (w) file exch write
+	    } forall
+	} forall
+	/ =
+    } if
+} def
+
+
+/input (%stdin) (r) file def
+input token {
+    1 exch 1 exch {
+	(Case #) print
+	5 string cvs print
+	(:) print
+	compute
+    } for
+} if

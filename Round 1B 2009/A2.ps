@@ -1,0 +1,131 @@
+%!PS
+%
+% Problem: Decision Tree
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% This part simply converts parentheses into braces
+%%% and puts it in a temporary file.
+
+(%stdin) (r) file
+(temp.ps) (w) file
+{
+    1 index read not
+    { exit } if
+	
+    dup 40 eq % ( -> {
+    {
+	pop 123
+    } if
+    dup 41 eq % ) -> }
+    {
+	pop 125
+    } if
+
+    1 index exch write
+} loop
+closefile
+closefile
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+/infile (temp.ps) (r) file def
+
+% Read a token
+/readtoken
+{
+    infile token pop
+} def
+
+%% Solve case
+/compute
+{
+    % Ignore number of lines; read decision tree
+    readtoken pop readtoken
+
+    % Array of dictionaries of features of each animal
+    [
+	% For number of animals
+	readtoken
+	{
+	    << >>  % Create feature dictionary
+	    
+	    % Ignore animal name; read features
+	    readtoken pop readtoken
+	    {
+		% Add each feature to dictionary
+		dup readtoken 0 put
+	    } repeat
+	} repeat
+    ]
+    
+    {
+	% Copy decision tree; compute and print probability of cuteness
+	1 index exch 1.0
+	probability
+	==
+	
+	% Pop copy of decision tree and feature dictionary
+	pop pop
+    } forall % For all animals
+
+    % Pop decision tree
+    pop
+} def
+
+
+%% Finds probability of cuteness, given features
+%% decision_tree feature_dictionary initial_probability
+%% -> decision_tree feature_dictionary final_probability
+/probability
+{
+    {
+	% Update probability
+	2 index 0 get mul
+	
+	2 index length 1 eq
+	{
+	    % Leaf - pop dictionary, return final prob
+	    exit
+	}
+	{
+	    % Not leaf
+	    1 index 3 index 1 get known
+	    {
+		% Feature in dictionary
+		3 2 roll 2 get
+		3 1 roll
+		
+	    }
+	    {
+		% Feature not in dictionary
+		3 2 roll 3 get
+		3 1 roll
+	    } ifelse
+	} ifelse
+    } loop
+} def
+
+/case 0 def
+
+% Get number of cases
+readtoken
+{
+    % Print "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % Compute result for current case
+    () =
+    compute
+} repeat
+
+quit

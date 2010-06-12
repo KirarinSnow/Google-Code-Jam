@@ -1,0 +1,40 @@
+%!PS
+%
+% Problem: File Fix-it
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+
+
+/rd {(%stdin)(r)file token pop} def
+/rl {(%stdin)(r)file 100 string readline pop} def
+
+1 1 rd
+{
+    (Case #) print 5 string cvs print (: ) print
+    << >>
+    rd rd exch {
+	[rl cvx exec] dup length 1 exch 1 exch
+	{
+	    1 index exch 0 exch getinterval () exch
+	    {
+		100 string cvs concatstrings (_) concatstrings
+	    } forall
+	    3 index exch / put
+	} for
+	pop
+    } repeat
+    1 index << >> copy
+    exch
+    { [rl cvx exec] dup length 1 exch 1 exch
+	{
+	    1 index exch 0 exch getinterval () exch
+	    {
+		100 string cvs concatstrings (_) concatstrings
+	    } forall
+	    3 index exch / put
+	} for
+	pop
+    } repeat
+    length exch length sub abs =
+} for

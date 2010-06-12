@@ -1,0 +1,81 @@
+%!PS
+%
+% Problem: Center of Mass
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in |
+%            sed '/Case/ {N; s/\n/ /}' > output.out
+% Comments: Output is piped through sed to produce each case on one line.
+
+
+(%stdin) (r) file
+1 1 2 index token pop
+{
+    % Print "Case #n: "
+    (Case #) print
+    5 string cvs print 
+    (: ) print
+
+    % Sum up x y z vx vy vz
+    0 0 0 0 0 0
+    count 1 sub index token pop dup 8 1 roll
+    {
+	6
+	{
+	    count 1 sub index token pop
+	    7 -1 roll
+	    add
+	} repeat
+    } repeat
+
+    % Average x y z vx vy vz
+    6
+    {
+	6 -1 roll
+	6 index
+	div	
+    } repeat
+    7 -1 roll pop
+
+    % -<x,y,z>.<vx,vy,vz>
+    5 index 3 index mul
+    5 index 3 index mul
+    5 index 3 index mul
+    add add -1 mul
+
+    % <vx,vy,vz>^2
+    4 copy pop
+    dup mul exch dup mul add exch dup mul add
+
+    % If 0, don't divide by 0, let t = 0.0. Otherwise divide to get t.
+    dup 0.0 eq
+    {
+	pop pop 0.0
+    }
+    {
+	div
+    } ifelse
+
+    % If t < 0, let t = 0.0.
+    dup 0.0 lt
+    {
+	pop 0.0
+    } if
+
+    % d = |<x,y,z> + <vx,vy,vz>*t|
+    7 1 roll
+    6 index 3 index mul 6 index add  
+    7 index 3 index mul 6 index add
+    8 index 3 index mul 6 index add
+    dup mul exch dup mul add exch dup mul add sqrt
+
+    % Fix precision problem?
+    dup 1e-3 lt
+    {
+	pop 0.0
+    } if
+
+    % Print d, t
+    == pop pop pop pop pop pop ==
+    
+} for closefile quit

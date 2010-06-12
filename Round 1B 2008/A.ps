@@ -1,0 +1,117 @@
+%!PS
+%
+% Problem: Crop Triangles
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Comments: Fails on Mac OS X for type conversion issues.
+
+
+/compute
+{
+        
+    count -8 roll   % n, a, b, c, d, x0, y0, m
+    /m exch def
+    /y0 exch def
+    /x0 exch def
+    /d exch def
+    /c exch def
+    /b exch def
+    /a exch def
+    /n exch def
+
+    /sq 0 0 0 0 0 0 0 0 0 9 array astore def
+
+    
+    /x x0 def
+    /y y0 def
+    n
+    {
+	sq x 3 mod 3 mul y 3 mod add
+	    sq x 3 mod 3 mul y 3 mod add get 1 add 
+	put
+
+	/x a x mul b add m mod store
+	/y c y mul d add m mod store
+    } repeat
+    
+    
+    %initialize sum
+    /sum 0 def
+    
+    0 1 8
+    {
+	sq exch get
+	dup 1 sub dup 1 sub mul mul 6 idiv
+	sum add
+	/sum exch store
+    
+    } for
+
+    0 1 2
+    {
+	3 mul dup 1 add dup 1 add
+	    sq exch get
+	    exch sq exch get mul
+	    exch sq exch get mul
+	    sum add
+	    /sum exch store
+    } for
+
+    0 1 2
+    {
+	dup 3 add dup 3 add
+	    sq exch get
+	    exch sq exch get mul
+	    exch sq exch get mul
+	    sum add
+	    /sum exch store
+    } for
+
+    0 1 2
+    {
+	dup dup
+	    sq exch 3 mul get
+ 	    exch sq exch 1 add 3 mod 3 mul 1 add get mul
+	    exch sq exch 2 add 3 mod 3 mul 2 add get mul
+	    sum add
+	    /sum exch store
+    } for
+
+    0 1 2
+    {
+	dup dup
+	    sq exch 3 mul get
+	    exch sq exch 2 add 3 mod 3 mul 1 add get mul
+	    exch sq exch 1 add 3 mod 3 mul 2 add get mul
+	    sum add
+	    /sum exch store
+    } for
+
+    sum
+
+} def
+
+
+
+
+%%% Main case loop
+
+/case 0 def % case counter
+
+(%stdin) (r) file run % adds input file to stack
+
+count -1 roll % moves first arg to front
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case and prints
+    compute =
+    
+} repeat
+
+quit % exit

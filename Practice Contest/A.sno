@@ -1,0 +1,36 @@
+* Problem: Old Magician
+* Language: SNOBOL
+* Author: KirarinSnow
+* Usage: snobol4 thisfile.sno <input.in >output.out
+
+
+
+main	
+	cases = INPUT
+	i = 1
+
+loop	
+	GT(i,cases) :S(END)
+	:(compute)
+
+resume	
+	OUTPUT = 'Case #' i ': ' result
+	i = i + 1
+	:(loop)
+
+
+compute	
+	line = INPUT
+	line ' ' = ''
+	mod = line - (line / 2) * 2
+	EQ(mod,1) :S(black)F(white)
+
+black
+	result = 'BLACK'
+	:(resume)
+
+white
+	result = 'WHITE'
+	:(resume)
+
+END

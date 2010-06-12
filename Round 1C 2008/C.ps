@@ -1,0 +1,472 @@
+%!PS
+%
+% Problem: Increasing Speed Limits
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Comments: Fails on large.
+
+/getint
+{
+    infile token
+    {
+	
+    }
+    {
+	(I/O Error.) = quit
+    } ifelse
+} def
+
+/getstring
+{
+    infile token
+    {
+	200 string cvs
+    }
+    {
+	(I/O Error.) = quit
+    } ifelse
+} def
+
+/pmod
+{
+    2 copy
+    exch abs exch
+    mul
+    3 -1 roll
+    add
+    exch mod
+} bind def
+
+/clog % correct base-2 log
+{
+    0 1
+    {
+	3 copy exch pop
+	lt
+	{
+	    pop exch pop 1 sub
+	    exit
+	} if
+
+	2 mul exch 1 add exch
+    } loop
+} bind def
+
+% auxiliary array access
+
+/arraysize 1000 def
+
+/aarray % int -> array
+{
+    arraysize idiv 1 add [ exch
+
+    {
+	arraysize array 
+    } repeat % populate array
+    ] 
+} bind def
+
+/aget % aarray index -> any
+{
+    dup arraysize idiv 
+    3 2 roll
+    exch
+    get
+    exch arraysize mod
+    get
+} bind def
+
+/aput % aarray index any -> -
+{
+    exch
+    dup arraysize idiv
+    4 3 roll
+    exch
+    get
+    exch arraysize mod
+    3 2 roll put
+} bind def
+
+% BST (key, left, right, parent, aux)
+
+/bst % - -> []
+{
+    null
+} bind def
+
+/bstnode % key val -> node
+{
+    [ 3 1 roll null exch null exch null exch ]
+} bind def
+
+/bstkey % tree -> key
+{
+    0 get
+} bind def
+
+/bstleft % tree -> left child
+{
+    1 get
+} bind def
+
+/bstright % tree -> right child
+{
+    2 get
+} bind def
+
+/bstparent % tree -> parent
+{
+    3 get
+} bind def
+
+/bstvalue % tree -> value
+{
+    4 get
+} bind def
+
+/setbstkey % tree any -> -
+{
+    0 exch put
+} bind def
+
+/setbstleft % tree tree -> -
+{
+    1 exch put
+} bind def
+
+/setbstright % tree tree -> -
+{
+    2 exch put
+} bind def
+
+/setbstparent % tree tree -> -
+{
+    3 exch put
+} bind def
+
+/setbstvalue % tree any -> -
+{
+    4 exch put
+} bind def
+
+/bstsearch % tree z
+{
+    << >> begin
+    /z exch def
+    /tree exch def
+
+    
+    {
+	tree null eq % if null, tree is empty; return null
+	{
+	    exit
+	}
+	{
+	    tree bstkey z eq
+	    {
+		exit
+	    }
+	    {
+		z tree bstkey lt
+		{
+		    /tree tree bstleft def
+		}
+		{
+		    /tree tree bstright def
+		} ifelse
+	    } ifelse
+	} ifelse
+
+    } loop
+
+    tree
+    end
+} def
+
+/bstinsert % tree z
+{
+    << >> begin
+    /z exch def
+    /tree exch def
+    /y null def
+    /x tree def
+
+    {
+	x null eq
+	{
+	    exit
+	}
+	{
+
+	    /y x def
+	    z bstkey x bstkey lt
+	    {
+		/x x bstleft def
+	    }
+	    {
+		/x x bstright def
+	    } ifelse
+	} ifelse
+
+    } loop
+
+    z y setbstparent
+
+    y null eq
+    {
+	% create root
+	/tree z def
+    }
+    {
+	z bstkey y bstkey lt
+	{
+	    y z setbstleft
+	}
+	{
+	    y z setbstright
+	} ifelse
+    } ifelse
+
+    tree
+    end
+} def
+
+/bstsum % tree key
+{
+    << >> begin
+    /z exch def
+    /tree exch def
+    /sum 0 def
+
+    {
+	tree null eq % if null, tree is empty; return null
+	{
+	    exit
+	}
+	{
+	    tree bstkey z eq
+	    {
+		exit
+	    }
+	    {
+		z tree bstkey lt
+		{
+		    /tree tree bstleft def
+		    
+		}
+		{
+		    /sum sum tree bstvalue 0 get add modulus mod def
+		    /sum sum tree bstvalue 1 get add modulus mod def
+		    /tree tree bstright def
+		} ifelse
+	    } ifelse
+	} ifelse
+
+    } loop
+
+    /sum sum tree bstvalue 1 get add modulus mod def
+    sum
+    end
+} def
+
+/bstadd % tree key new
+{
+    << >> begin
+    /new exch def
+    /z exch def
+    /tree exch def
+
+
+    
+    {
+	tree null eq % if null, tree is empty; return null
+	{
+	    exit
+	}
+	{
+
+	    tree bstkey z eq
+	    {
+		
+		exit
+	    }
+	    {
+		z tree bstkey lt
+		{
+	    
+		    tree [ tree bstvalue 0 get
+			   tree bstvalue 1 get new add modulus mod ] setbstvalue
+		    /tree tree bstleft def
+		    
+		}
+		{
+		
+		    /tree tree bstright def
+		} ifelse
+	    } ifelse
+	} ifelse
+
+    } loop
+
+    
+    tree [ tree bstvalue 0 get new add modulus mod
+           tree bstvalue 1 get ] setbstvalue
+    
+    end
+} def
+
+/compute2 % original solution
+{
+
+    /n getint def
+    /m getint def
+    /ix getint def
+    /y getint def
+    /z getint def
+
+    /a [ m { getint } repeat ] def
+
+    /d n 1 add aarray def
+    d 0 0 aput
+
+    
+    % generate values
+    /x n aarray def
+
+    
+    0 1 n 1 sub
+    {
+	/i exch def
+	a i m mod get % A[i mod m]
+    
+	a i m mod
+	ix a i m mod get mul
+	y i 1 add mul add z mod
+	put
+
+	x exch i exch aput
+    } for
+
+        
+    % solve
+    1 1 n
+    {
+	/i exch def
+	
+	1 % initial sum
+
+	1 1 i 1 sub
+	{
+	    /j exch def
+	    x j 1 sub aget
+	    x i 1 sub aget lt
+	    {
+		d j aget add modulus mod
+	    } if
+	} for
+	
+	d exch i exch aput
+    } for
+
+
+    % sum
+    0
+    1 1 n
+    {
+	d exch aget add modulus mod
+    } for
+
+} def
+
+/modulus 1000000007 def
+
+/compute % BST solution
+{
+    /n getint def
+    /m getint def
+    /ix getint def
+    /y getint def
+    /z getint def
+
+    /a [ m { getint } repeat ] def
+
+
+    % init bst
+
+    /b bst def
+    
+    % solve
+
+    /sum 0 def
+
+    
+    1 1 n
+    {
+
+	/i exch def
+
+	/key
+	
+	a i 1 sub m mod get % A[i mod m]
+
+	a i 1 sub m mod 
+	
+	ix z mod a i 1 sub m mod
+	
+	get z mod mul z mod
+	y i mul z mod add z mod
+
+	put
+
+	def
+
+	/node b key bstsearch def
+
+
+    
+	node null eq
+	{
+	    % not found, must insert
+	    
+	    b key [ 0 0 ] bstnode
+
+	    bstinsert
+
+	    /b exch def
+	} if
+
+	/newval b key bstsum 1 add modulus mod def
+
+	/sum sum newval add modulus mod def
+	
+	b key newval bstadd
+	
+    } for
+
+    sum
+    
+} def
+
+
+
+%%% Main case loop
+
+/case 0 def % case counter
+
+/infile (%stdin) (r) file def
+
+getint % number of cases
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case and prints
+    compute =
+
+} repeat
+
+quit % exit

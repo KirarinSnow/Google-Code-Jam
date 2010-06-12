@@ -1,0 +1,140 @@
+%!PS
+%
+% Problem: Welcome to Code Jam
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+
+/in
+{
+    infile token not { (I/O Error.) = quit } if
+} def
+
+/out
+{
+    (888888888) cvs print
+} def
+
+/inc
+{
+    infile read not { (I/O Error.) = quit } if
+} def
+
+/outc
+{
+    (a) 0 3 2 roll put print
+} def
+
+/infile (%stdin) (r) file def
+
+/pq
+{
+    (STACK: ) = pstack quit
+} def
+
+/pqc 0 def
+
+/pqi
+{
+    /pqc pqc 1 add def
+    (PQI=) = pqc = 
+    pqc exch gt
+    {
+	(STACK: ) = pstack quit
+    } if
+} def
+
+in 1
+
+{
+    dup 3 2 roll dup 4 1 roll gt
+    {
+	pop pop quit
+    } if
+
+    (Case #) print
+    dup out
+    (: ) print
+
+    % compute
+
+    [ (maj edoc ot emoclew) {} forall ] aload pop
+
+    0 0 0 0 0
+    0 0 0 0 0
+    0 0 0 0 0
+    0 0 0 0 1
+    19
+
+    % read loop
+    {
+	inc dup 10 gt not
+	{
+	    exit
+	} if
+
+	2 1 roll
+	1
+
+	% check loop
+	{
+	    dup 3 2 roll dup 4 1 roll gt 
+	    {
+		exit
+	    } if
+
+	    
+	    dup 23 add
+	    dup 1 sub roll
+	    dup 3 2 roll dup 4 1 roll
+	    24 add 1 roll
+	    4 3 roll dup 5 1 roll
+	    dup 3 2 roll dup
+	    4 1 roll gt
+	    {
+		pop pop
+	    }
+	    {
+		gt not
+		{
+		    dup 4 add 
+		    dup 2 sub roll
+		    dup 3 2 roll 
+		    add 10 dup mul dup mul mod
+		    2 1 roll
+		    3 2 roll dup
+		    4 1 roll
+		    4 add 2 roll
+		} if
+		
+	    } ifelse
+
+	    1 add
+	} loop
+
+	3 2 roll
+	pop pop
+    } loop
+    
+    pop dup 2 add dup
+    1 sub roll
+
+    dup 10 dup dup mul mul idiv 1 1 sub gt not { 1 1 sub out } if
+    dup 10 dup mul idiv 1 1 sub gt not { 1 1 sub out } if
+    dup 10 idiv 1 1 sub gt not { 1 1 sub out } if
+    
+    out
+
+    pop pop pop pop pop
+    pop pop pop pop pop
+    pop pop pop pop pop
+    pop pop pop pop pop
+    pop pop pop pop pop
+    pop pop pop pop pop
+    pop pop pop pop pop
+    pop pop pop pop
+    
+    
+    () =
+    1 add
+} loop

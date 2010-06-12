@@ -1,0 +1,32 @@
+%!PS
+%
+% Problem: Snapper Chain
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+
+
+/rd {(%stdin) (r) file token pop} def
+
+1 1 rd
+{
+    (Case #) print 5 string cvs print (: ) print
+
+    1 rd rd
+    {
+	% RESULT  N  K
+	2 1 roll dup 0 gt not { exit } if 1 sub 2 1 roll
+	dup 2 mod 4 3 roll mul 3 1 roll
+	2 idiv
+    } loop
+    
+    pop pop
+
+    0 gt
+    {
+	(ON) =
+    }
+    {
+	(OFF) =
+    } ifelse
+} for

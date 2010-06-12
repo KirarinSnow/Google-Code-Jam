@@ -1,0 +1,47 @@
+%!PS
+%
+% Problem: Old Magician
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+
+
+/compute
+{
+
+    count -2 roll
+
+    exch pop
+
+    2 mod 1 eq
+    {
+	(BLACK)
+    }
+    {
+	(WHITE)
+    } ifelse
+
+} def
+
+
+
+%%% Main case loop
+
+/case 0 def % case counter
+
+(%stdin) (r) file run % adds input file to stack
+
+count -1 roll % moves first arg to front
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case and prints
+    compute =
+
+} repeat
+
+quit % exit

@@ -1,0 +1,160 @@
+%!PS
+%
+% Problem: Minimum Scalar Product
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Comments: May fail on large set due to large integers. 
+
+/sort % quicksort
+{
+    /part
+    {
+	% partition size
+	counttomark /partition exch def
+   
+	remain 0 eq
+	{
+	    
+	}	
+	{
+	    %until no remaining unsorted items...
+	    partition 0 eq
+	    {
+		pop
+		/totalsize totalsize 1 sub store
+		part
+		% pop mark and repeat on next partition
+	    }
+	    {
+		% assign first element as pivot
+		/pivot exch def
+		mark partition 1 roll
+		% add separator mark
+
+		% repeat for remaining items in current partition
+		partition 1 sub
+		{
+		    dup pivot comp % compare with pivot
+		    {
+			% "greater than": move to left partition
+			partition 1 roll
+		    }
+		    {
+			% "less than": move to right partition
+			counttomark 1 roll
+		    } ifelse
+		} repeat
+	    
+		counttomark 0 eq
+		{
+		    % if current partition contains only the index
+		    % move pivot to sorted list
+		    pivot totalsize 1 add 1 roll
+		    /remain remain 1 sub store
+		    pop
+		    part % repeat with next partition
+		}
+		{
+		    % else, move pivot to between left and right partitions
+		    counttomark 2 add
+		    pivot exch
+		    mark exch
+		    2 roll
+		    /totalsize totalsize 2 add store
+		 
+		    part % repeat with right partition
+		} ifelse
+	    } ifelse
+	} ifelse
+    } bind def
+
+    /comp exch def % define comparison operator
+    mark exch 
+    aload pop % load array to stack, preceded by mark
+
+    counttomark
+    /totalsize exch def % total size of sort stack, including marks
+     
+    /remain totalsize def % remaining unsorted items
+
+
+    mark
+    /totalsize totalsize 1 add store
+    totalsize 1 roll % add partition-header mark to front
+    
+    part % recursive partition
+   
+    totalsize array astore % store sorted elements to array
+    exch pop % remove mark
+} bind def
+
+
+
+/compute
+{
+    count -1 roll   % get array size
+    /size exch def
+    count size neg roll
+    size array astore
+    /a exch def % store elements to first array
+    count size neg roll
+    size array astore
+    /b exch def % store elements to second array
+
+
+    a { lt } sort % sort a in increasing order
+    /a exch store
+        
+    b { gt } sort % sort b in decreasing order
+    /b exch store
+    
+
+    %initialize sum
+    /sum 0 def
+
+    % over all indices
+    1 1 size 
+    {
+	1 sub dup % get index
+	
+	a exch get % extract element from a
+	/aval exch def
+	
+	b exch get % extract element from b
+
+	aval
+
+	mul % multiply together
+	
+	sum add % add to sum
+
+	/sum exch store % store in sum
+	
+    } for
+
+    sum
+} def
+
+
+
+%%% Main case loop
+
+/case 0 def % case counter
+
+(%stdin) (r) file run % adds input file to stack
+
+count -1 roll % moves first arg to front
+{
+    % prints "Case #n: "
+    /case case 1 add store
+    (Case #) print
+    case 5 string cvs print 
+    (: ) print
+
+    % computes result for current case and prints
+    compute =
+    
+} repeat
+
+quit % exit

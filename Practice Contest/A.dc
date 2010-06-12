@@ -1,0 +1,17 @@
+#!/usr/bin/dc
+#
+# Problem: Old Magician
+# Language: dc
+# Author: KirarinSnow
+# Usage: dc thisfile.dc <input.in >output.out 
+
+
+[[BLACK]P]sb
+[[WHITE]P]sw
+?st
+1 [
+    [Case #]P dn [: ]P
+    ? 2% d0=w 1=b s_
+    []p s_
+    1+dlt!<F
+]dsFx
