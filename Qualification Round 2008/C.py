@@ -4,16 +4,13 @@
 # Language: Python
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
-# Comments: Inefficient O(n^2)-time algorithm. Can be done in O(n) time.
-#           Large set: 11m51.719s
 
 
-import sys
+
 import math
 
 MAX = 1000000000
 
-file = sys.stdin
 
 def ar(x1,x2,y,r):
     def integ(x):
@@ -23,10 +20,10 @@ def ar(x1,x2,y,r):
     return r*r * (integ((x2+0.0)/r) - integ((x1+0.0)/r)) - y * (x2-x1)
 
 def prob():
-    f, rr, t, r, g = map(float,file.readline().split())
+    f, rr, t, r, g = map(float, raw_input().split())
 
     if 2*f > g:
-	return "1"
+	return 1.0
 
     total = math.pi * rr**2 / 4.0
 
@@ -70,13 +67,9 @@ def prob():
 	    y += g + 2*r
 	x +=  g + 2*r
 
-    qqq = (total-count)/total
-    return str(qqq)
+    return (total-count)/total
 
 
-n = int(file.readline())
 
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s += prob()
-    print s
+for i in range(input()):
+    print "Case #%d: %0.7f" % (i+1, prob())
