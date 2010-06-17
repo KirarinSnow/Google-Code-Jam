@@ -1,0 +1,133 @@
+%!PS
+%
+% Problem: Numbers
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Comments: Seems not to work on Ghostscript 8.71 for unknown reasons.
+%           Does work on Ghostscript 8.64.
+
+
+/rd
+{
+    (%stdin) (r) file token pop
+} bind def
+
+/pmod
+{
+    2 copy
+    exch abs exch
+    mul
+    3 -1 roll
+    add
+    exch mod
+} bind def
+
+/clog % correct base-2 log
+{
+    0 1
+    {
+	3 copy exch pop
+	lt
+	{
+	    pop exch pop 1 sub
+	    exit
+	} if
+
+	2 mul exch 1 add exch
+    } loop
+} bind def
+
+
+/matmul %a1 b1 c1 d1 a2 b2 c2 d2
+{
+    << >> begin
+    /d2 exch def
+    /c2 exch def
+    /b2 exch def
+    /a2 exch def
+    /d1 exch def
+    /c1 exch def
+    /b1 exch def
+    /a1 exch def
+    
+    a1 a2 mul b1 c2 mul add 1000 pmod
+    a1 b2 mul b1 d2 mul add 1000 pmod
+    c1 a2 mul d1 c2 mul add 1000 pmod
+    c1 b2 mul d1 d2 mul add 1000 pmod
+    
+    end
+} bind def
+
+
+%%% Main case loop
+
+1 1 rd
+{
+    (Case #) print 5 string cvs print (: ) print
+
+    /n rd def
+    n clog /m exch def
+    /a m 1 add array def
+    /b m 1 add array def
+    /c m 1 add array def
+    /d m 1 add array def
+
+    a 0 6 put
+    b 0 -4 put
+    c 0 1 put
+    d 0 0 put
+    
+    
+    1 1 m
+    {
+	/i exch def
+	/ap a i 1 sub get def
+	/bp b i 1 sub get def
+	/cp c i 1 sub get def
+	/dp d i 1 sub get def
+	ap bp cp dp ap bp cp dp matmul
+	d exch i exch put
+	c exch i exch put
+	b exch i exch put
+	a exch i exch put
+	
+    } for
+
+    /nn 0 def
+    /j m def
+    /ar 1 def
+    /br 0 def
+    /cr 0 def
+    /dr 1 def
+ 
+    {
+	j 0 ge
+	{
+	    nn 1 j bitshift cvi add n le
+	    {
+		ar br cr dr
+		a j get b j get c j get d j get
+		matmul
+		
+		/dr exch store
+		/cr exch store
+		/br exch store
+		/ar exch store
+
+		/nn nn 1 j bitshift cvi add store
+	    } if
+
+	    /j j 1 sub store
+	   
+	}
+	{
+	    exit
+	} ifelse
+    } loop
+
+    6 cr mul 2 dr mul add 1 sub 1000 pmod
+    1000 add 4 string cvs 1 3 getinterval
+
+    = flush
+} for
