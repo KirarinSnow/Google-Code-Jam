@@ -4,6 +4,9 @@
 % Language: PostScript
 % Author: KirarinSnow
 % Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Comments: Seems not to work on Ghostscript 8.71 for unknown reasons.
+%           Does work on Ghostscript 8.64.
+
 
 /pmod
 {
@@ -31,6 +34,25 @@
 } bind def
 
 
+/matmul %a1 b1 c1 d1 a2 b2 c2 d2
+{
+    << >> begin
+    /d2 exch def
+    /c2 exch def
+    /b2 exch def
+    /a2 exch def
+    /d1 exch def
+    /c1 exch def
+    /b1 exch def
+    /a1 exch def
+    
+    a1 a2 mul b1 c2 mul add 1000 pmod
+    a1 b2 mul b1 d2 mul add 1000 pmod
+    c1 a2 mul d1 c2 mul add 1000 pmod
+    c1 b2 mul d1 d2 mul add 1000 pmod
+    
+    end
+} def
 
 /compute
 {
@@ -46,26 +68,7 @@
     b 0 -4 put
     c 0 1 put
     d 0 0 put
-
-    /matmul %a1 b1 c1 d1 a2 b2 c2 d2
-    {
-	<< >> begin
-	/d2 exch def
-	/c2 exch def
-	/b2 exch def
-	/a2 exch def
-	/d1 exch def
-	/c1 exch def
-	/b1 exch def
-	/a1 exch def
-
-	a1 a2 mul b1 c2 mul add 1000 pmod
-	a1 b2 mul b1 d2 mul add 1000 pmod
-	c1 a2 mul d1 c2 mul add 1000 pmod
-	c1 b2 mul d1 d2 mul add 1000 pmod
-	
-	end
-    } def
+    
     
     1 1 m
     {
