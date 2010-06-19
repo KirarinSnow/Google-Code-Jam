@@ -4,7 +4,8 @@
 # Language: Python
 # Author: KirarinSnow
 # Usage: python thisfile.py < input.in > output.out
-# Comments: Fails on large set. Extremely slow on small set:  6m5.911s.
+# Comments: Fails on large set.
+
 
 import sys
 from math import *
