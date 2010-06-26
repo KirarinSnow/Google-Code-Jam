@@ -1,0 +1,52 @@
+%!PS
+%
+% Problem: Mousetrap
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Comments: Translation of C++ reference solution. Too slow for large set.
+
+
+/rd {(%stdin) (r) file token pop} def
+
+1 1 rd
+{
+    (Case #) print 5 string cvs print (: ) print flush
+
+    /k rd def
+    /n rd def
+
+    /queries [ n {rd} repeat ] def
+    /answers n array def
+
+    /pos 0 def
+    1 1 k
+    {
+	/i exch def
+	/pos pos i add 1 sub k i sub 1 add mod def
+	0 1 n 1 sub
+	{
+	    /j exch def
+	    answers j get null eq
+	    {
+		queries j get pos 1 add eq
+		{
+		    answers j i put
+		}
+		{
+		    queries j get pos 1 add gt
+		    {
+			queries j queries j get 1 sub put
+		    } if
+		} ifelse
+	    } if
+	} for
+    } for
+
+    0 1 answers length 1 sub
+    {
+	answers exch get 10 string cvs print ( ) print
+    } for
+    / =
+    
+} bind for
