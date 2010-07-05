@@ -5,13 +5,14 @@
 # Author: KirarinSnow
 # Usage: perl thisfile.pl <input.in >output.out
 
+
 use POSIX qw(ceil floor);
 
 $" = ' ';
 
 $max = <>;
 
-for ($n = 1; $n <= $max; $n+=1)
+for ($n = 1; $n <= $max; $n++)
 {
     print "Case #$n: ";
     $line = <>;
@@ -27,7 +28,7 @@ for ($n = 1; $n <= $max; $n+=1)
     $outbase = length($outset);
 
     $num = 0;
-    for ($o = 0; $o <= $#input; $o+=1)
+    for ($o = 0; $o <= $#input; $o++)
     {
 	$num += index($inset, $input[$o])*($inbase**($#input - $o));
     }

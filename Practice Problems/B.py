@@ -5,16 +5,9 @@
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
 
-import sys
 
-f = sys.stdin
-
-n = f.readline()
-
-syy = ""
-
-for i in range(int(n)):
-    s = f.readline()
+for i in range(input()):
+    s = raw_input()
     c = 0
     r = 0
     fc = 0
@@ -40,7 +33,6 @@ for i in range(int(n)):
             else:
                 hoff +=1
         else:
-        
             if ch == 'W':
                 if dir == 0:
                     r += 1
@@ -83,15 +75,13 @@ for i in range(int(n)):
             mm[iii].append(0)
             mmm[iii].append(0)
 
-
     c = sc
     r = sr -1
     dir = 0
     t = 0
     oc = 'W'
     for ch in s:
-
-        if r >= 0 and r < height and c >= 0 and c < width :
+        if 0 <= r < height and 0 <= c < width :
             if ch == 'W':
                 m[r][c][dir%4] = 'o'
                 if oc == 'R' or oc == 'W':
@@ -106,15 +96,15 @@ for i in range(int(n)):
             if dir == 0:
                 r += 1
             if dir == 1:
-                c+=1
+                c += 1
             if dir == 2:
                 r -= 1
             if dir == 3:
                 c -= 1
         if ch == 'R':
-            dir = (dir + 1)%4
+            dir = (dir+1)%4
         if ch == 'L':
-            dir = (dir - 1)%4
+            dir = (dir-1)%4
         if ch == ' ':
             t = 1
             dir = (dir+2)%4
@@ -135,11 +125,7 @@ for i in range(int(n)):
             else:
                 mmm[iiii][jjjj] = chr(mm[iiii][jjjj]-10+ord('a'))
     
-    syy += "Case #" + str(i+1) + ":"
+    print "Case #%d:" % (i+1)
+    
     for xx in range(height):
-        syy += "\n"
-        for yy in range(width):
-            syy += mmm[xx][width-yy-1]
-    syy += "\n"
-
-print syy,
+        print ''.join([mmm[xx][width-yy-1] for yy in range(width)])

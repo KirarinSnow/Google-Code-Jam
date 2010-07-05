@@ -6,12 +6,11 @@
 # Usage: python thisfile.py <input.in >output.out
 # Comments: Fails on large set.
 
-import sys
 
 t = []
-
 s = 100
 bs = 100
+
 for i in range(s+1):
     t.append([])
     for j in range(bs+1):
@@ -31,8 +30,7 @@ def compf(d,b):
     return t[d][b]
 
 def compd(f,b):
-    d = 1
-            
+    d = 1    
     while 1:
         bb = 1
         while bb <= b:
@@ -47,23 +45,11 @@ def compb(f,d):
         b+=1
     return b
 
-f = sys.stdin
-
-n = f.readline()
-
-syy = ""
-
-for i in range(int(n)):
-    s = f.readline()
-    v = s.split();
-    q,d,b = int(v[0]), int(v[1]), int(v[2])
+for i in range(input()):
+    q, d, b = map(int, raw_input().split())
     
     ff = t[d][b]
     if ff > 2**32:
         ff = -1
     
-    syy += "Case #" + str(i+1) +": "
-    syy += str(ff) + " " + str(compd(q,b)) + " " + str(compb(q,d)) + "\n"
-
-print syy,
-
+    print "Case #%d: %d %d %d" % (i+1, ff, compd(q,b), compb(q,d))

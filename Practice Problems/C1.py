@@ -5,12 +5,11 @@
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
 
-import sys
 
 t = []
-
 s = 575
 bs = s
+
 for i in range(s+1):
     t.append([])
     for j in range(bs+1):
@@ -51,7 +50,7 @@ def cc3(d):
 
 def cc4(d):
     d2 = d
-    return int((d2-1)**4/24. + (d2-1)**3/12. + (11/24.)*(d2-1)**2 + (17/12.)*(d2-1) + 1)
+    return int((d2-1)**4/24.+(d2-1)**3/12.+(11/24.)*(d2-1)**2+(17/12.)*(d2-1)+1)
 
 def cc(b,d):
     if b == 2:
@@ -110,23 +109,12 @@ def reduc(x):
 	return x
 
 
-file = sys.stdin
-
-n = file.readline()
-
-syy = ""
-
-for i in range(int(n)):
-    sp = file.readline()
-    v = sp.split();
-    f,d,b = int(v[0]), int(v[1]), int(v[2])
+for i in range(input()):
+    f,d,b = map(int, raw_input().split())
     
     ff = compf(d,b)
     dd = compd(f,b)
     bb = compb(f,d)
     fff, ddd, bbb = map(reduc, [ff,dd,bb])
     
-    syy += "Case #" + str(i+1) +": "
-    syy += str(fff) + " " + str(ddd) + " " + str(bbb) + "\n"
-
-print syy,
+    print "Case #%d: %d %d %d" % (i+1, fff, ddd, bbb)

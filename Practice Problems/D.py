@@ -6,42 +6,19 @@
 # Usage: python thisfile.py <input.in >output.out
 # Comments: Fails on large set.
 
-import sys
+
 from math import *
-from string import *
 
 MAX = 100000000000
 
 
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
-
-def table(height, width):
-    t = []
-    for i in range(height):
-	t.append([])
-	for j in range(width):
-	    t[i].append(0)
-    return t
-
 def compute():
-
     # Note: all item lists are represented as integers, where the i-th
     # bit indicates membership of the i-th item in the list if 1, 0 otherwise
 
-    
-
-
-    ni, ns, pg = grabs()
-    items = file.readline().split()
+    ni, ns, pg = map(int, raw_input().split())
+    items = raw_input().split()
     perish = 0
-    
     
     for i in range(ni):
 	if '!' in items[i]:
@@ -61,7 +38,7 @@ def compute():
     sth.extend([0]*ns)
 
     for i in xrange(ns):
-	shop = file.readline().split()
+	shop = raw_input().split()
 	sc[i+1] = map(int,shop[0:2])
 	st[i+1] = shop[2:]
 	for j in range(len(st[i+1])):
@@ -84,12 +61,8 @@ def compute():
 	    gg[i].append(gss(i,j))
 
 
-
     def gas(s1,s2):
 	return gg[s1][s2]
-
-
-
 
 
     # remaining items
@@ -100,12 +73,10 @@ def compute():
     opt = [(0,0,remain,0)]
     visited = {}
 
-    
 
     minc = MAX
 
     while len(opt) > 0:
-
 	cur = opt.pop()
 
 	if (cur[1],cur[2]) in visited:
@@ -139,7 +110,8 @@ def compute():
 		if (1<<it[0]) & cur[2] != 0:
 		    next = (cur[2])^(1<<it[0])
 		    if (1<<it[0])&perish != 0 or cur[3] == 1:
-			# if perishable item purchased, cannot go to another store
+			# if perishable item purchased, 
+                        # cannot go to another store
 			opt.append(((cur[0]+it[1]+gas(0,cur[1])),0,next,1))
 			if (sth[cur[1]]&next != 0):
 			    opt.append(((cur[0]+it[1],cur[1],next,1)))
@@ -148,15 +120,8 @@ def compute():
 			    ccc = cur[0]+it[1]+gas(ss,cur[1])
 			    if ccc < minc:
 				opt.append((ccc,ss,next,0))
-		    
-    return '%(#)0.7f' % {'#' : minc}
 
+    return minc
 
-file = sys.stdin
-
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %0.7f" % (i+1, compute())

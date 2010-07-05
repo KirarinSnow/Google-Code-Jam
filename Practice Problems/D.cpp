@@ -16,14 +16,9 @@
 #include <string>
 #include <sstream>
 
-
 using namespace std;
 
-
-
-typedef pair<int, double> pid;
 typedef pair<double, int> pdi;
-
 
 
 class State
@@ -80,7 +75,7 @@ double solve()
 	string f;
 	cin >> f;
 	perish[i] = false;
-	if (f[f.size()-1]=='!')
+	if (f[f.size()-1] == '!')
 	{
 	    f = f.substr(0, f.length()-1);
 	    perish[i] = true;
