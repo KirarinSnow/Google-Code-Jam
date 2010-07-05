@@ -5,29 +5,6 @@
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
 
-import sys
-from math import *
-from string import *
-
-MAX = 100000000000
-
-
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
-
-def table(height, width):
-    t = []
-    for i in range(height):
-	t.append([])
-	for j in range(width):
-	    t[i].append(0)
-    return t
 
 def compute():
 
@@ -75,11 +52,10 @@ def compute():
 
         return candidates
 
+
     ret = []
-
-    prods = file.readline().split()
-
-    vals = grabs()
+    prods = raw_input().split()
+    vals = map(int, raw_input().split())
 
     assoc = []
     for i in range(len(vals)):
@@ -109,12 +85,5 @@ def compute():
     ret.sort()
     return ret[0]
             
-
-file = sys.stdin
-
-n = int(file.readline())
-
-for i in range(n):
-
-    print "Case #" + str(i+1) + ":",
-    print compute()
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())

@@ -5,30 +5,11 @@
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
 
-import sys
+
 import heapq
-from math import *
-from string import *
 
 MAX = 100000000000
 
-
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
-
-def table(height, width):
-    t = []
-    for i in range(height):
-	t.append([])
-	for j in range(width):
-	    t[i].append(0)
-    return t
 
 def compute():
 
@@ -61,15 +42,19 @@ def compute():
                 num += scounts[i][v]
             scounts[x][v] = num
 
-    nr = int(buffer.pop(0))
-    source = buffer.pop(0)
+    line = raw_input().split()
+    nr = int(line[0])
+    source = line[1]
+
     edges = []
     vertices = dict()
     pred = dict()
     succ = dict()
 
     for i in xrange(nr):
-        a,b,c = buffer.pop(0),buffer.pop(0),int(buffer.pop(0))
+        a, b, c = raw_input().split()
+        c = int(c)
+
         edges.append((a,b,c,i))
         if a not in vertices: #[d, inedge->{v->num}, outedges, v->total]
             vertices[a] = [MAX,dict(),[],dict()]
@@ -147,17 +132,10 @@ def compute():
             i = e[3]
             u = e[0]
             if v in counts[e] and v in scounts[e]:
-                edgecounts[i] = edgecounts[i] + (0.0 + counts[e][v]*scounts[e][v]) / totals[v] / (nv)
+                edgecounts[i]+=(0.0+counts[e][v]*scounts[e][v])/totals[v]/nv
     
-    return ' '.join(map(lambda x: '%(#)0.7f' % {'#' : x}, edgecounts))
+    return ' '.join(map(lambda x: '%0.7f' % x, edgecounts))
 
 
-file = sys.stdin
-
-n = int(file.readline())
-buffer = file.read().split()
-
-for i in range(n):
-
-    print "Case #" + str(i+1) + ":",
-    print compute()
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())
