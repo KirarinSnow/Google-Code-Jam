@@ -5,30 +5,17 @@
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
 
-import sys
 
-MAX = 1000000000
-
-file = sys.stdin
-
-def switches():
-    ns = int(file.readline())
-
-    ses = []
-    for j in range(ns):
-	ses.append(file.readline()[:-1])
+def compute():    
+    ns = input()
+    ses = [raw_input() for j in range(ns)]
+    nq = input()
+    qus = [raw_input() for j in range(nq)]
 
     d = dict()
     d.update(((x,0) for x in ses))
 
     tot = 0
-
-    nq = int(file.readline())
-
-    qus = []
-    for k in range(nq):
-	qus.append(file.readline()[:-1])
-
     cns = 0
 
     for jj in range(nq):
@@ -44,11 +31,8 @@ def switches():
 		d.update(((qus[jj],1),))
 		cns = 1
     
-    return str(tot)
+    return tot
 
-n = int(file.readline())
 
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s += switches()
-    print s
+for i in range(input()):
+    print "Case #%d: %d" % (i+1, compute())

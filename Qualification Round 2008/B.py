@@ -5,27 +5,20 @@
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
 
-import sys
-from math import *
 
-MAX = 1000000000
-
-file = sys.stdin
-
-def train():
-    t = int(file.readline())
-    na, nb = map(int, file.readline().split())
+def compute():
+    t = input()
+    na, nb = map(int, raw_input().split())
 
     trips = []
     for i in range(na+nb):
-	tt1, tt2 = file.readline().split()
+	tt1, tt2 = raw_input().split()
 	t1 = 60*int(tt1[0:2]) + int(tt1[3:5])
 	t2 = 60*int(tt2[0:2]) + int(tt2[3:5])
 	if i < na:
 	    stat = 0
 	else:
 	    stat = 1
-
 	trips.append([t1,t2,stat])
     trips.sort()
 
@@ -48,12 +41,8 @@ def train():
 	    else:
 		bct +=1
     
-    return str(act) + " " + str(bct)
+    return "%d %d" % (act, bct)
 
 
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s += train()	
-    print s
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())

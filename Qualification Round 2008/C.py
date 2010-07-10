@@ -6,11 +6,7 @@
 # Usage: python thisfile.py <input.in >output.out
 
 
-
 import math
-
-MAX = 1000000000
-
 
 def ar(x1,x2,y,r):
     def integ(x):
@@ -19,7 +15,7 @@ def ar(x1,x2,y,r):
 
     return r*r * (integ((x2+0.0)/r) - integ((x1+0.0)/r)) - y * (x2-x1)
 
-def prob():
+def compute():
     f, rr, t, r, g = map(float, raw_input().split())
 
     if 2*f > g:
@@ -70,6 +66,5 @@ def prob():
     return (total-count)/total
 
 
-
 for i in range(input()):
-    print "Case #%d: %0.7f" % (i+1, prob())
+    print "Case #%d: %0.7f" % (i+1, compute())
