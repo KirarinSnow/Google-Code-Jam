@@ -3,23 +3,7 @@
 # Problem: Milkshakes
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
-
-import sys
-from math import *
-from string import *
-
-MAX = 100000000000
-
-
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
+# Usage: python thisfile.py <input.in >output.out
 
 
 def compute():
@@ -45,15 +29,15 @@ def compute():
 		return i
 	return -1
 
-    n = grab()
-    m = grab()
+    n = input()
+    m = input()
 
     table = []
     r = [0] * n
-
+    
     for i in range(m):
 	table.append([])
-	g = grabs()
+	g = map(int, raw_input().split())
 	t = g[0]
 	for j in range(t):
 	    table[i].append([g[2*j+1],g[2*j+2]])
@@ -84,13 +68,7 @@ def compute():
     if q < -1:
 	return "IMPOSSIBLE"
     else:
-	return removechars(str(r),',[]')
+	return ' '.join(map(str, r))
 
-file = sys.stdin
-
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())

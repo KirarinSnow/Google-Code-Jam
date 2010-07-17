@@ -3,8 +3,9 @@
 % Problem: Minimum Scalar Product
 % Language: PostScript
 % Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
 % Comments: May fail on large set due to large integers. 
+
 
 /sort % quicksort
 {
@@ -90,7 +91,6 @@
 } bind def
 
 
-
 /compute
 {
     count -1 roll   % get array size
@@ -153,8 +153,7 @@ count -1 roll % moves first arg to front
     (: ) print
 
     % computes result for current case and prints
-    compute =
-    
+    compute =    
 } repeat
 
 quit % exit
