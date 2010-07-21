@@ -3,24 +3,9 @@
 # Problem: Endless Knight
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
-# Comments: Dynamic programming. Fails on large set.
+# Usage: python thisfile.py <input.in >output.out
+# Comments: OK for small, but times out on large.
 
-import sys
-from math import *
-from string import *
-
-MAX = 100000000000
-
-
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
 
 def table(height, width):
     t = []
@@ -31,13 +16,13 @@ def table(height, width):
     return t
 
 def compute():
-    h,w,r = grabs()
+    h, w, r = map(int, raw_input().split())
 
-    rocks = table(h,w)
-    board = table(h,w)
+    rocks = table(h, w)
+    board = table(h, w)
     
     for i in range(r):
-	rr,cc = grabs()
+	rr, cc = map(int, raw_input().split())
 	rocks[rr-1][cc-1] = 1
     
     board[0][0] = 1
@@ -51,13 +36,8 @@ def compute():
 		    board[i][j] += (board[i-1][j-2])
 		    board[i][j] %= 10007
 
-    return str(board[h-1][w-1])
+    return board[h-1][w-1]
 
-file = sys.stdin
 
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %d" % (i+1, compute())
