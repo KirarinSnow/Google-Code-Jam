@@ -3,29 +3,13 @@
 # Problem: Mousetrap
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
+# Usage: python thisfile.py <input.in >output.out
 # Comments: Fails on large set.
 
 
-import sys
-from math import *
-from string import *
-
-MAX = 100000000000
-
-
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
-
 def compute():
-    k = grab()
-    r = grabs()
+    k = input()
+    r = map(int, raw_input().split())
     n = r.pop(0)
     sn = range(k)
     a = [0]*k
@@ -33,8 +17,8 @@ def compute():
     i = 1
     cc = 0
     p=0
-    d3ex = range(k)
-    dex = sorted(d3ex)
+    dexp = range(k)
+    dex = sorted(dexp)
     while i <=k:
 	rd = k-i+1
 	
@@ -44,16 +28,8 @@ def compute():
 	del dex[v]
 	i = i+1
 
-    s = ""
-    for j in r:
-	s += str(a[j-1]) + " "
-    return s
+    return ' '.join(map(str, [a[j-1] for j in r]))
 
-file = sys.stdin
 
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())

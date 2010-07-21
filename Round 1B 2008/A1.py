@@ -3,26 +3,11 @@
 # Problem: Crop Triangles
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
+# Usage: python thisfile.py <input.in >output.out
 
-import sys
-from math import *
-from string import *
-
-MAX = 100000000000
-
-
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
 
 def compute():
-    n, a, b, c, d, x0, y0, m = map(int,file.readline().split())
+    n, a, b, c, d, x0, y0, m = map(int, raw_input().split())
     pts = []
     x = x0
     y = y0
@@ -31,8 +16,8 @@ def compute():
 	x = (a*x+b)%m
 	y = (c*y+d)%m
 	pts.append([x,y])
-    c = 0
 
+    c = 0
     v = []
     for q in range(3):
 	v.append([])
@@ -58,13 +43,8 @@ def compute():
     for i in range(3):
 	c += v[i%3][0] * v[(i-1)%3][1] * v[(i-2)%3][2]
 
-    return str(c)
+    return c
 
-file = sys.stdin
 
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %d" % (i+1, compute())

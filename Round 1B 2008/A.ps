@@ -3,13 +3,12 @@
 % Problem: Crop Triangles
 % Language: PostScript
 % Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
 % Comments: May fail if integer limit is not high enough.
 
 
 /compute
 {
-        
     count -8 roll   % n, a, b, c, d, x0, y0, m
     /m exch def
     /y0 exch def
@@ -89,9 +88,7 @@
     } for
 
     sum
-
 } def
-
 
 
 
@@ -111,7 +108,6 @@ count -1 roll % moves first arg to front
 
     % computes result for current case and prints
     compute =
-    
 } repeat
 
 quit % exit

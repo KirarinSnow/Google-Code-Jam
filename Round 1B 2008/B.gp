@@ -1,18 +1,14 @@
 \\ Problem: Number Sets
 \\ Language: PARI/GP
 \\ Author: KirarinSnow
-\\ Usage: gp -f -q thisfile.gp < input.in > output.out
+\\ Usage: gp -f -q thisfile.gp <input.in >output.out
 \\ Comments: PARI/GP: http://pari.math.u-bordeaux.fr/
 \\           Fails on large set.
-
-
-
 
 
 \\ convert input file to PARI/GP-readable format...
 
 a = extern("sed -e 's/^/[/g;s/$/],/g;s/ /,/g;' /dev/stdin | tr -d '\n' | sed -e '1 s/^/[/; $ s/,$/]/'");
- 
 
 
 for(c=1, a[1][1],\
@@ -48,7 +44,5 @@ for(c=1, a[1][1],\
     print1(": "); \
     print1(s); \
     print1("\n"));
-
-
 
 quit();

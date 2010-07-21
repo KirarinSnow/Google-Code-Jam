@@ -3,7 +3,7 @@
 # Problem: Number Sets
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
+# Usage: python thisfile.py <input.in >output.out
 
 
 from math import *
@@ -22,7 +22,6 @@ size = [0]*(MAX+1)
 def compute():
     a, b, p = map(int, raw_input().split())
     
-
     # reset pointers
     for i in xrange(b-a+1):
         parent[i] = i
@@ -59,9 +58,7 @@ def compute():
         n += 1
             
     return count
-            
-    
-    
+ 
 
 for i in range(input()):
     print "Case #%d: %d" % (i+1, compute())

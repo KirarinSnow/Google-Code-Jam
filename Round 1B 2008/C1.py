@@ -3,9 +3,7 @@
 # Problem: Mousetrap
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
-
-
+# Usage: python thisfile.py <input.in >output.out
 
 
 def compute():
@@ -27,7 +25,6 @@ def compute():
                         
 
     return ' '.join(map(str, answers))
-    
     
 
 for i in xrange(input()):
