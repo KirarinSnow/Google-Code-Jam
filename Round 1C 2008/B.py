@@ -3,7 +3,7 @@
 # Problem: Ugly Numbers
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
+# Usage: python thisfile.py <input.in >output.out
 
 
 def compute():

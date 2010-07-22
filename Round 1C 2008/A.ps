@@ -3,7 +3,7 @@
 % Problem: Text Messaging Outrage
 % Language: PostScript
 % Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
 % Comments: May fail on large input due to large integer conversion.
 
 
@@ -94,7 +94,6 @@
 
 /compute
 {
-        
     count -3 roll   % p,k,l
     /size exch def
     /k exch def
@@ -106,8 +105,6 @@
 
     /a exch store % store to a
     
-    
-
     %initialize sum
     /sum 0 def
 
@@ -126,8 +123,7 @@
 	
 	sum add % add to sum
 
-	/sum exch store % store in sum
-	
+	/sum exch store % store in sum	
     } for
 
     sum
