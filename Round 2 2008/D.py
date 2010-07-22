@@ -3,33 +3,12 @@
 # Problem: PermRLE
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out 
+# Usage: python thisfile.py <input.in >output.out 
 # Comments: Fails on large set.
 
-import sys
-from math import *
-from string import *
 
-MAX = 100000000000
+from itertools import *
 
-
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
-
-# from http://snippets.dzone.com/posts/show/753
-def all_perms(str):
-    if len(str) <=1:
-        yield str
-    else:
-        for perm in all_perms(str[1:]):
-            for i in range(len(perm)+1):
-                yield perm[:i] + str[0:1] + perm[i:]
 
 def compute():
 
@@ -41,12 +20,12 @@ def compute():
 		ctt+=1
 	return ctt
 
-    k = grab()
-    ss = removechars(file.readline(),'\n')
+    k = input()
+    ss = raw_input()
     ll = len(ss)
     nn = ll/k
     ps = []
-    for j in all_perms(range(k)):
+    for j in permutations(range(k)):
 	ps.append(j)
 
     tabl = []
@@ -62,16 +41,10 @@ def compute():
 
     x = len(ps)
     for i in range(x):
-	cc = min(cc,ct(i))
+	cc = min(cc, ct(i))
 
-    return str(cc)
+    return cc
 
 
-file = sys.stdin
-
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %d" % (i+1, compute())

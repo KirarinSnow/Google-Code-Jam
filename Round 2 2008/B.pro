@@ -1,7 +1,8 @@
 % Problem: Triangle Areas
 % Language: Prolog
 % Author: KirarinSnow
-% Usage: swipl -s thisfile.pro < input.in > output.out
+% Usage: swipl -s thisfile.pro <input.in >output.out
+
 
 loop(I, Cases) :-
     I>Cases.

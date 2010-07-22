@@ -3,23 +3,10 @@
 # Problem: Cheating a Boolean Tree
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
-
-import sys
-from math import *
-from string import *
-
-MAX = 100000000000
+# Usage: python thisfile.py <input.in >output.out
 
 
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
+MAX = 10000000000
 
 def compute():
 
@@ -90,17 +77,17 @@ def compute():
 	    xtree[i] = mm
 	return xtree[0]
 	    
-    m,v = grabs()
+    m, v = map(int, raw_input().split())
     itree = []
     tree = []
     xtree = []
     for i in range((m-1)/2):
-	g,c = grabs()
+	g, c = map(int, raw_input().split())
 	itree.append([g,c])
 	tree.append(0)
 	xtree.append(MAX)
     for i in range((m+1)/2):
-	leaf = grab()
+	leaf = input()
 	leaf = (leaf == 1)
 	tree.append(leaf)
 	xtree.append(MAX)
@@ -114,11 +101,5 @@ def compute():
 	else:
 	    return str(zz)
 
-file = sys.stdin
-
-n = int(file.readline())
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())

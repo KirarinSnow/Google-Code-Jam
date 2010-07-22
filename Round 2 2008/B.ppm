@@ -3,7 +3,7 @@ P3
 # Problem: Triangle Areas
 # Language: Piet
 # Author: KirarinSnow
-# Usage: npiet -q thisfile.ppm < input.in > output.out
+# Usage: npiet -q thisfile.ppm <input.in >output.out
 # Comments: Piet language specification located at
 #             http://www.dangermouse.net/esoteric/piet.html
 #           This program executed successfully using the npiet interpreter:

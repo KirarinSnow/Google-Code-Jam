@@ -1,7 +1,7 @@
 \\ Problem: Triangle Areas
 \\ Language: PARI/GP
 \\ Author: KirarinSnow
-\\ Usage: gp -f -q thisfile.gp < input.in > output.out
+\\ Usage: gp -f -q thisfile.gp <input.in >output.out
 \\ Comments: PARI/GP: http://pari.math.u-bordeaux.fr/
 
 

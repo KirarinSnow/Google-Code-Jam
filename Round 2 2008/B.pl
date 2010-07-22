@@ -3,16 +3,13 @@
 # Problem: Triangle Areas
 # Language: Perl
 # Author: KirarinSnow
-# Usage: perl thisfile.pl < input.in > output.out
+# Usage: perl thisfile.pl <input.in >output.out
 
 
 sub compute()
 {
-    
-   
     ($n, $m, $a) = split(/ /, <>);
-    
-    
+       
     if ($a > $n * $m)
     {
 	return "IMPOSSIBLE";
@@ -21,7 +18,7 @@ sub compute()
     {
 	$x = ($a - 1)%$n + 1;
 	$y = ($a - 1)/$n + 1;
-	return sprintf("0 1 $n 0 $x %d",$y);
+	return sprintf("0 1 $n 0 $x %d", $y);
     }
 }
 
@@ -32,6 +29,3 @@ for ($i = 1; $i <= $cases; $i++)
     $o = compute();
     print "Case #$i: $o\n";
 }
-
-
-

@@ -2,8 +2,7 @@
  *  Problem: Triangle Areas
  *  Language: Pascal
  *  Author: KirarinSnow
- *  Usage: gpc thisfile.p -o executable
- *         ./executable < input.in > output.out
+ *  Usage: gpc thisfile.p -o executable && ./executable <input.in >output.out
  *)
 
 program GCJ;
