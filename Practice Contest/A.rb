@@ -7,21 +7,10 @@
 
 
 def compute()
-	$w, $b = $file.readline.split
-	if $b.to_i % 2 == 0
-		return 'WHITE'
-	else
-		return 'BLACK'
-	end
+  $w, $b = readline.split
+  return $b.to_i % 2 == 0 ? 'WHITE' : 'BLACK'
 end
 
-$file = open('/dev/stdin')
-$cases =  $file.readline.to_i
-
-for $i in 1 .. $cases:
-	print "Case \##$i: "
-	print compute()
-	print "\n"
+for $i in 1 .. gets.to_i:
+  print "Case \##$i: %s\n" % compute()
 end
-
-

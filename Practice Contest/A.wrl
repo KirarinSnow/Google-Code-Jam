@@ -7,7 +7,6 @@ Comments: Using the Ruby interpreter:
 
 
 
-
       FORMAT:
       OPVAL | MATHVAL | MEMORY (asterisk denotes current memory location)
 
@@ -749,7 +748,7 @@ STORE 'BLACK\n':
 1110100 1111100  -NOP, NOP
 
 
-           I | _ | _ 2 -2 7 I _ W H I T E \n _*
+           I | _ | _ 2 -2 7 I _ W H I T E \n -I2 B L A C K \n _*
 
 STORE -I9:
 11111100 00 -ZERO, NOP

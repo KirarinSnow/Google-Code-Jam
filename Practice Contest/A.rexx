@@ -1,9 +1,9 @@
 /*
-  Problem: Old Magician
-  Language: REXX
-  Author: KirarinSnow
-  Usage: regina thisfile.rexx <input.in >output.out
-*/
+ * Problem: Old Magician
+ * Language: REXX
+ * Author: KirarinSnow
+ * Usage: regina thisfile.rexx <input.in >output.out
+ */
 
 
 do i=1 to linein()

@@ -9,7 +9,7 @@
 compute()
 {
     read w b
-   
+    
     if [ $(($b % 2)) -eq 1 ]
     then
 	echo BLACK

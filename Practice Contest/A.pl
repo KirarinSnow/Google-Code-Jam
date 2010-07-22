@@ -8,10 +8,7 @@
 
 sub compute()
 {
-    
-   
     ($w, $b) = split(/ /, <>);
-    
     
     if ($b % 2 == 1)
     {
@@ -30,6 +27,3 @@ for ($i = 1; $i <= $cases; $i++)
     $o = compute();
     print "Case #$i: $o\n";
 }
-
-
-

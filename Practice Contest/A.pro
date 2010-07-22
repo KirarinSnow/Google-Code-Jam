@@ -3,6 +3,7 @@
 % Author: KirarinSnow
 % Usage: swipl -c thisfile.pro <input.in >output.out
 
+
 loop(I, Cases) :-
     I>Cases.
 

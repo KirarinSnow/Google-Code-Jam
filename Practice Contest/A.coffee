@@ -6,12 +6,9 @@
 #             coffee thisfile.coffee <input.in >output.out
 
 
-
-
 compute: (i, line, p) ->
     out = if (line.split(' ')[1] % 2 == 0) then 'WHITE' else 'BLACK'
     p 'Case #' + i + ': ' + out
-
 
 
 # USE THIS FOR SMALLER INPUTS, BUFFER GETS CUT OFF

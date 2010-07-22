@@ -1,3 +1,7 @@
+000000 IDENTIFICATION DIVISION.
+000010 PROGRAM-ID. GCJ.
+000020 AUTHOR. KirarinSnow.
+000030
 000100 * Problem: Old Magician
 000110 * Language: COBOL
 000120 * Author: KirarinSnow
@@ -6,9 +10,6 @@
 000150 *           Some bizarre weirdness going on here. No idea.
 000160
 000170
-000200 IDENTIFICATION DIVISION.
-000210 PROGRAM-ID. GCJ.
-000220 AUTHOR. KirarinSnow.
 000400 DATA DIVISION.
 000410 WORKING-STORAGE SECTION.
 000415 01  total            PIC 9(4).
@@ -23,6 +24,7 @@
 000550 01  quot             PIC 9(9).
 000560 01  rem              PIC 9(9).
 000590 01  result           PIC X(5).
+000595
 000600 PROCEDURE DIVISION.
 000602     MOVE 0 TO total.
 000605     ACCEPT total.

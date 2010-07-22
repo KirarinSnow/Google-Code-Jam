@@ -28,4 +28,4 @@ colon =. (0*i.cases){>': ';''
 rj =. (|.~ i.&' ')"1
 lj =. (|.~ i.&'C')"1
 
-stdout lj '_ ' charsub (rj prefix,.casenumber),.colon,.answer
+exit stdout lj '_ ' charsub (rj prefix,.casenumber),.colon,.answer

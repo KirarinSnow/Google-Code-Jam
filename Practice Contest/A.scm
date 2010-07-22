@@ -1,63 +1,17 @@
-;; Problem: Old Magician
-;; Language: Scheme
-;; Author: KirarinSnow
-;; Usage: mzscheme -qr thisfile.scm <input.in >output.out
+; Problem: Old Magician
+; Language: Scheme
+; Author: KirarinSnow
+; Usage: guile thisfile.scm <input.in >output.out
 
 
-
-(require (lib "list.ss") (lib "string.ss") (lib "pregexp.ss"))
-
+(use-modules (srfi srfi-1) (ice-9 format))
 
 
-;; Compute solution for each case.
 (define (compute)
-  
-  (let ((wb (gets)))
+  (let ((wb (list (read) (read))))
     (if (= (remainder (second wb) 2) 0) "WHITE" "BLACK")))
 
-
-
-
-;; Split a string.
-(define (split str)
-  (regexp-split #rx" " str))
-
-;; Convert a string to a number.
-(define sn string->number)
-
-;; Convert a string of numbers to a list of numbers.
-(define (isplit str)
-  (map sn (split str)))
-
-;; Grab a line from input file; convert to number.
-(define (get)
-  (sn (read-line)))
-
-;; Grab a line from input file; convert to a list of numbers.
-(define (gets)
-  (isplit (read-line)))
-
-
-;;;;; Main program.
-
-;; Get # of cases in input set.
-(define n (get))
-
-;; Main loop; iterates over all cases.
-(let loop ((i 1))
-     (if (<= i n)
-	 (begin
-	  
-	  ;; Display case number.
-	  (display "Case #")
-	  (display i)
-	  (display ": ")
-	  
-	  ;; Compute output and return
-	  (display (compute))
-
-	  (newline)
-
-	  ;; Advance to next case.
-	  (loop (+ i 1)))
-       'done))
+(map
+ (lambda (i)
+   (format #t "Case #~a: ~a\n" i (compute)))
+ (iota (read) 1))

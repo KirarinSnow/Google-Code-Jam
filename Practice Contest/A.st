@@ -5,6 +5,7 @@
   Usage: gst thisfile.st <input.in >output.out
 "
 
+
 compute := [
     :line |
     bw := (line tokenize: ' ').

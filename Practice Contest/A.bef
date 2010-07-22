@@ -1,7 +1,8 @@
 v  Problem: Old Magician
 v  Language: Befunge
 v  Author: KirarinSnow
-&  Usage: befunge thisfile.bef <input.in >output.out
+v  Usage: befunge thisfile.bef <input.in >output.out
+&
 0   
 >\:!#@_1-\1+          v
   v     ,,,,,,"Case #"< (Print case number)

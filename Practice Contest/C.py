@@ -6,35 +6,10 @@
 # Usage: python thisfile.py <input.in >output.out
 
 
-import sys
-from math import *
-from string import *
 
 MAX = 100000000000
 RMOD = 9901
 
-def grab():
-    return int(file.readline())
-
-def grabs():
-    return map(int,file.readline().split())
-
-def removechars(str, chars):
-    return str.translate(maketrans('',''),chars)
-
-def table(height, width):
-    t = []
-    for i in range(height):
-	t.append([])
-	for j in range(width):
-	    t[i].append(0)
-    return t
-
-def next():
-    return buffer.pop(0)
-
-def nint():
-    return int(next())
 
 fact = range(305)
 fact[0] = 1
@@ -45,10 +20,10 @@ for i in range(3,len(fact)):
 
 
 def compute():
-    n, k = nint(), nint()
+    n, k = map(int, raw_input().split())
     le = []
     for i in range(k):
-        le.append((nint(),nint()))
+        le.append(tuple(map(int, raw_input().split())))
     
     t = 0
     for s in range(1<<k):
@@ -157,13 +132,5 @@ def compute():
         t %= RMOD
     return t
 
-file = sys.stdin
-
-case = int(file.readline())
-buffer = file.read().split()
-
-cn = 0
-for i in range(case):
-    cn = i
-    print "Case #" + str(i+1) + ":",
-    print compute()
+for i in range(input()):
+    print "Case #%d: %d" % (i+1, compute())

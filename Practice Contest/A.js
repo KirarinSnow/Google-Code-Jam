@@ -3,6 +3,7 @@
 // Author: KirarinSnow
 // Usage: smjs thisfile.js <input.in >output.out
 
+
 function compute(i)
 {
     var wb = readline().split(' ');

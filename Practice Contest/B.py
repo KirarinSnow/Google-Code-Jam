@@ -6,10 +6,10 @@
 # Usage: python thisfile.py <input.in >output.out
 # Comments: Takes a long time on large.
 
+
 from math import *
 
 MAX = 64000
-
 
 def compute():
     def isclique(s, n, k, p):

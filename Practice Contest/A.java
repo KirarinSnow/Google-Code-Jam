@@ -1,8 +1,8 @@
 // Problem: Old Magician
 // Language: Java
 // Author: KirarinSnow
-// Usage: javac thisfile.java
-//        java thisfile <input.in >output.out
+// Usage: javac thisfile.java && java thisfile <input.in >output.out
+
 
 import java.io.*;
 
@@ -27,7 +27,8 @@ public class A {
 	InputStream in = null;
 	try {
 	    in = System.in;
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+	    BufferedReader reader =
+		new BufferedReader(new InputStreamReader(in));
 	    
 	    int cases = Integer.valueOf(reader.readLine());
 	    for (int i = 1; i <= cases; i++) {   

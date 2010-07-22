@@ -3,7 +3,8 @@
 # Problem: Old Magician
 # Language: PHP
 # Author: KirarinSnow
-# Usage: php thisfile.php <input.in >output.out 
+# Usage: php thisfile.php <input.in >output.out
+
 
 function compute()
 {
