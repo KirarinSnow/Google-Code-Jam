@@ -12,6 +12,6 @@
   (quit:for i 1 (read)
     (pr "Case #" i ": ")
     (read)
-    (prn:if (is 1 (mod (read) 2)) "BLACK" "WHITE")))
+    (prn:if (odd:read) "BLACK" "WHITE")))
 
 (main)

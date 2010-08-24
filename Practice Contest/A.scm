@@ -8,8 +8,9 @@
 
 
 (define (compute)
-  (let ((wb (list (read) (read))))
-    (if (= (remainder (second wb) 2) 0) "WHITE" "BLACK")))
+  (let ((w (read))
+	(b (read)))
+    (if (even? b) "WHITE" "BLACK")))
 
 (map
  (lambda (i)
