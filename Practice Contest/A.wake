@@ -1,0 +1,31 @@
+# Problem: Old Magician
+# Language: wake
+# Author: KirarinSnow
+# Usage: wake thisfile.wake <input.in >output.out 
+# Comments: http://shinh.skr.jp/wake/
+#
+#
+# Read input
+all: $<
+
+# Initialize case counter
+(\d+)\n(.*): case@1,$2
+
+# Format case
+case@(\d+),(\d+) (\d+)\n(.*): "Case #$1: " solve@$3 "\n" case@$(inc@$1),$4
+
+# Done
+case@.*:
+
+
+# Solve case
+solve@(\d*)[13579]: "BLACK"
+solve@(\d*): "WHITE"
+
+
+# Increment case counter (taken from example FizzBuzz program)
+inc1@(\d);.*?\1(\d)\d*: "$2"
+
+inc@: "1"
+inc@(\d*)9: inc@$1 "0"
+inc@(\d*)(\d): "$1" inc1@$2;0123456789
