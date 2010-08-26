@@ -7,19 +7,18 @@
 
 
 def compute():
-    def s(m,r):
+    def s(m, r):
         if m in r:
             return r[m]
         
         if len(a[m]) == 0:
             r[m] = 1
         else:
-            b = map(lambda x: s(x,r),a[m])
+            b = map(lambda x: s(x, r), a[m])
             b.sort()
             b = b[::-1]
             
-            r[m] =0
-            r[m] = max(len(b)+1,max(map(lambda x: x+b[x],range(len(b)))))
+            r[m] = max(len(b)+1, max(map(lambda x: x+b[x], range(len(b)))))
             
         return r[m]
         
@@ -32,7 +31,7 @@ def compute():
             q = v[0]
         a[v[0]] = filter(lambda x: 'A' <= x <= 'Z', v[2:])
 
-    return s(q,r)
+    return s(q, r)
 
 
 for i in range(input()):

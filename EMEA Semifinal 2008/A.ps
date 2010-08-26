@@ -6,8 +6,8 @@
 % Usage: gs -q -dNODISPLAY -dNOPROMPT -dBATCH thisfile.ps <input.in >output.out
 
 
-% This program uses PostScript's built-in two-dimensional affine transformation matrix
-% capabilities to compute the solution.
+% This program uses PostScript's built-in two-dimensional affine
+% transformation matrix capabilities to compute the solution.
 
 % For reference, a PS matrix is an array [a b c d tx ty]
 % representing the 2-d affine transformation matrix
@@ -37,7 +37,8 @@
     % This equation holds (n = 1,2,3):
     %      ( a b   * ( x_n   + ( e   = ( z_n
     %        c d )     y_n )     f )     w_n )
-    % Each x_n is mapped to a corresponding z_n, and each y_n is mapped to a corresponding w_n.
+    % Each x_n is mapped to a corresponding z_n, and each y_n is mapped to a
+    % corresponding w_n.
 
     % We are solving for the coefficients a through f.
     % We can turn this system of 6 variables into 2 systems of 3 variables:
@@ -66,8 +67,9 @@
          x2 x3 sub      y2 y3 sub
 	 x3             y3         ] def
 
-    % We can also represent the right-hand-side column vector B as a matrix in which only
-    % the first column is relevant; we can fill the second column with 0's.
+    % We can also represent the right-hand-side column vector B as a matrix
+    % in which only the first column is relevant; we can fill the second
+    % column with 0's.
     %         ( (z1-z3)
     %           (z2-z3)
     %            z3     )
@@ -143,8 +145,8 @@
     /y0 result 2 get def
 
     % HACK: To avoid printing inaccurate results due to numerical error blowup,
-    %       Compute the midpoint of the bounding box if the two points are sufficiently similar.
-    %       This affects one test case in each data set.
+    %       Compute the midpoint of the bounding box if the two points are
+    %       sufficiently similar. This affects one test case in each data set.
     x1 z1 sub abs 0.0005 z1 mul abs lt
     x2 z2 sub abs 0.0005 z2 mul abs lt and
     x3 z3 sub abs 0.0005 z3 mul abs lt and
@@ -163,7 +165,5 @@
     } if
     
     % Print solution
-    x0 ==only
-    ( ) print
-    y0 ==
+    x0 ==only ( ) print y0 ==
 } for

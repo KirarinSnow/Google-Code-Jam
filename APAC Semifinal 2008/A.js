@@ -3,6 +3,7 @@
 // Author: KirarinSnow
 // Usage: smjs thisfile.js <input.in >output.out
 
+
 function compute()
 {
     var n = readline();
@@ -15,7 +16,7 @@ function compute()
     for (var nl = 0; nl < n; nl++ )
     {
 	var a = readline().split(' ');
-	if (a[2] == "NOT")
+	if (a[2] == 'NOT')
 	{
 	    nbx.push(a[0]);
 	    nby.push(a[1]);
@@ -40,7 +41,7 @@ function compute()
 	var points = [];
 	for (var i = 0; i < nbx.length; i++)
 	{
-	    points[" "+nbx[i][0]+" "+nbx[i][1]] = true;
+	    points[' ' + nbx[i][0] + ' ' + nbx[i][1]] = true;
 	}
 	var m = readline();
 	for (var i = 0; i < m; i++)
@@ -73,8 +74,6 @@ function compute()
 		    yq = Math.min(yq, nby[i]);
 		else if (nby[i] < ymin)
 		    yp = Math.max(yp, nby[i]);
-		else
-		    ;
 	    }
 	    if (nby[i] <= ymax && nby[i] >= ymin)
 	    {
@@ -82,8 +81,6 @@ function compute()
 		    xq = Math.min(xq, nbx[i]);
 		else if (nbx[i] < xmin)
 		    xp = Math.max(xp, nbx[i]);
-		else
-		    ;
 	    }
 	}
 	

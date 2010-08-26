@@ -1,7 +1,7 @@
-;; Problem: Old Magician
-;; Language: Common Lisp
-;; Author: KirarinSnow
-;; Usage: clisp thisfile.lsp <input.in >output.out
+; Problem: Old Magician
+; Language: Common Lisp
+; Author: KirarinSnow
+; Usage: clisp thisfile.lsp <input.in >output.out
 
 
 (defun compute ()
