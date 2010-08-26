@@ -4,6 +4,8 @@
 % Language: PostScript
 % Author: KirarinSnow
 % Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+% Comments: Prototype for Piet solution.
+
 
 /in
 {
@@ -12,7 +14,7 @@
 
 /out
 {
-    (888888888) cvs print
+    9 string cvs print
 } def
 
 /inc
@@ -27,25 +29,8 @@
 
 /infile (%stdin) (r) file def
 
-/pq
-{
-    (STACK: ) = pstack quit
-} def
-
-/pqc 0 def
-
-/pqi
-{
-    /pqc pqc 1 add def
-    (PQI=) = pqc = 
-    pqc exch gt
-    {
-	(STACK: ) = pstack quit
-    } if
-} def
 
 in 1
-
 {
     dup 3 2 roll dup 4 1 roll gt
     {

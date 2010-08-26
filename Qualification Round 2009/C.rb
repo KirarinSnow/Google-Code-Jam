@@ -7,10 +7,9 @@
 
 
 def compute()
-
     $chars = readline.to_a[0]
 
-    $ct = [0]*($wc.length + 1)
+    $ct = [0] * ($wc.length + 1)
     $ct[0] = 1
     
     for $j in 0 ... $chars.length
@@ -28,8 +27,6 @@ end
 
 $wc = 'welcome to code jam'.to_a[0]
 
-$cases = readline.to_i
-
-for $i in 1 .. $cases
+for $i in 1 .. readline.to_i
     print "Case \##$i: %04d\n" % compute()
 end

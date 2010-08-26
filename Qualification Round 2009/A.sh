@@ -5,6 +5,7 @@
 # Author: KirarinSnow
 # Usage: sh -f thisfile.sh <input.in >output.out
 
+
 read length words cases
 
 wd=1

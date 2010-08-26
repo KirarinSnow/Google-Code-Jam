@@ -18,7 +18,7 @@ compute <- function()
     
     width <- nchar(chars)
     
-    ct <- array(0,nchar(wc)+1)
+    ct <- array(0, nchar(wc)+1)
     ct[1] <- 1
     
     for (j in 1:width)
@@ -33,7 +33,7 @@ compute <- function()
         }
     }
 
-    sprintf('%04d',ct[nchar(wc)+1])
+    sprintf('%04d', ct[nchar(wc)+1])
 }
 
 wc <- 'welcome to code jam'

@@ -3,54 +3,10 @@
 % Problem: Watersheds
 % Language: PostScript
 % Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
 
-/getint
-{
-    infile token
-    {
-	
-    }
-    {
-	(I/O Error.) = quit
-    } ifelse
-} def
 
-/getstring
-{
-    infile token
-    {
-	200 string cvs
-    }
-    {
-	(I/O Error.) = quit
-    } ifelse
-} def
-
-/pmod
-{
-    2 copy
-    exch abs exch
-    mul
-    3 -1 roll
-    add
-    exch mod
-} bind def
-
-/clog % correct base-2 log
-{
-    0 1
-    {
-	3 copy exch pop
-	lt
-	{
-	    pop exch pop 1 sub
-	    exit
-	} if
-
-	2 mul exch 1 add exch
-    } loop
-} bind def
+/rd {(%stdin) (r) file token pop} def
 
 /ind % r c -> index
 {
@@ -168,11 +124,11 @@
 
 /compute 
 {
-    /h getint def
-    /w getint def
+    /h rd def
+    /w rd def
     /out [ h w mul { 0 } repeat ] def
 
-    /mp [ h w mul { getint } repeat ] def
+    /mp [ h w mul { rd } repeat ] def
 
     /letter 97 def
 
@@ -233,27 +189,13 @@
     } for
 
     end
-
 } def
 
 
-
-%%% Main case loop
-
-/case 0 def % case counter
-/infile (%stdin) (r) file def
-
-getint % number of cases
+1 1 rd
 {
-    % prints "Case #n: "
-    /case case 1 add store
-    (Case #) print
-    case 5 string cvs print 
-    (: ) print
+    (Case #) print 5 string cvs print (: ) print
+    compute
+} for
 
-    % computes result for current case
-    compute 
-
-} repeat
-
-quit % exit
+quit

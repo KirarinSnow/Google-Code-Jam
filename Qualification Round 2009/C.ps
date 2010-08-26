@@ -5,27 +5,10 @@
 % Author: KirarinSnow
 % Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
 
-/getint
-{
-    infile token
-    {
-	
-    }
-    {
-	(I/O Error.) = quit
-    } ifelse
-} def
 
-/getline
-{
-    infile 500 string readline
-    {
-	
-    }
-    {
-	(I/O Error.) = quit
-    } ifelse
-} def
+/rd {(%stdin) (r) file token pop} def
+
+/getline {(%stdin) (r) file 500 string readline pop} def
 
 
 /wc [ (welcome to code jam) { } forall ] def
@@ -69,27 +52,13 @@
     {
 	(0) print
     } if
-
 } def
 
 
-
-%%% Main case loop
-
-/case 0 def % case counter
-/infile (%stdin) (r) file def
-
-getint % number of cases
+1 1 rd
 {
-    % prints "Case #n: "
-    /case case 1 add store
-    (Case #) print
-    case 5 string cvs print 
-    (: ) print
-
-    % computes result for current case
+    (Case #) print 5 string cvs print (: ) print
     compute =
+} for
 
-} repeat
-
-quit % exit
+quit

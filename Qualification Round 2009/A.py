@@ -5,35 +5,14 @@
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
 
-import sys
-from math import *
-from string import *
+
 import re
 
+lth, wds, case = map(int, raw_input().split())
 
-def next():
-    return buffer.pop(0)
+words = [raw_input() for i in range(wds)]
 
-def nint():
-    return int(next())
-    
-
-file = sys.stdin
-
-buffer = file.read().split()
-
-lth, wds, case = nint(), nint(), nint()
-words = []
-for i in range(wds):
-    words.append(next())
-
-test = []
 for i in range(case):
-    print "Case #" + str(i+1) + ":",
-    test.append(next().replace(')',']').replace('(','['))
-    c = 0
-    for j in range(wds):
-        if re.match(test[i],words[j]):
-            c+=1
-    print c
-
+    test = raw_input().replace(')', ']').replace('(', '[')
+    c = len(filter(lambda j: re.match(test, words[j]), range(wds)))
+    print "Case #%d: %d" % (i+1, c)

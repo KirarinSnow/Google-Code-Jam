@@ -8,7 +8,8 @@ P3
 #             http://www.dangermouse.net/esoteric/piet.html
 #           This program executed successfully using the npiet interpreter:
 #             http://www.bertnase.de/npiet/
-#           Fails on large set due to size of integers.
+#
+#
 32 32
 255
 192 192 255    0 192   0  192   0   0    0 255   0  192   0 192  255 192 255 
