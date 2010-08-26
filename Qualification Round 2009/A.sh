@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Problem: Alien Language
-# Language: sh
+# Language: bash
 # Author: KirarinSnow
-# Usage: sh -f thisfile.sh <input.in >output.out
+# Usage: bash -f thisfile.sh <input.in >output.out
 
 
 read length words cases
@@ -13,7 +13,7 @@ ws=''
 while [ $wd -le $words ]
 do
     read word
-    ws=$ws\\n$word
+    ws="$ws $word"
     wd=$(($wd + 1))
 done
 
@@ -22,6 +22,6 @@ while [ $num -le $cases ]
 do
     echo -n Case \#$num:\ 
     read line
-    echo $ws | grep `echo $line | tr '()' '[]'` | wc -l
+    echo $ws | tr ' ' '\n' | grep `echo $line | tr '()' '[]'` | wc -l
     num=$(($num + 1))
 done

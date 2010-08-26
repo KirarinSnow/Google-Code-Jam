@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Problem: Old Magician
-# Language: sh
+# Language: bash
 # Author: KirarinSnow
-# Usage: sh -f thisfile.sh <input.in >output.out
+# Usage: bash -f thisfile.sh <input.in >output.out
 
 
 compute()
