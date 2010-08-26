@@ -3,9 +3,7 @@
 % Problem: Center of Mass
 % Language: PostScript
 % Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in |
-%            sed '/Case/ {N; s/\n/ /}' > output.out
-% Comments: Output is piped through sed to produce each case on one line.
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
 
 
 (%stdin) (r) file
@@ -76,6 +74,6 @@
     } if
 
     % Print d, t
-    == pop pop pop pop pop pop ==
+    ==only ( ) print pop pop pop pop pop pop ==
     
 } for closefile quit
