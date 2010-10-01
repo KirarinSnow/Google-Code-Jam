@@ -7,6 +7,7 @@
 # Comments: Uses a randomized approach. Probably works on small set; probably
 #           doesn't work on large set.
 
+
 from random import *
 
 
@@ -16,14 +17,9 @@ def cp(a,b):
 
 def compute():
     n, k = map(int, raw_input().split())
-
     pr = [map(int, raw_input().split()) for i in range(n)]
 
-    g = []
-    for i in range(n):
-        g.append([])
-        for j in range(n):
-            g[i].append(False)
+    g = [[False] * n for i in range(n)]
 
     for i in range(n):
         for j in range(i+1, n):
