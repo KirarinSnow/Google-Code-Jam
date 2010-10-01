@@ -3,13 +3,13 @@
 % Problem: All Your Base
 % Language: PostScript
 % Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+% Comments: May fail on large due to integer overflow.
 
 
 /infile (%stdin) (r) file def
 
 
-%% Solve case
 /compute
 {
     /d << >> def
@@ -32,25 +32,21 @@
 	    dup 2 lt { 1 exch sub } if
 	} forall
     ]
+    
     /sum 0 def
     {
-	/sum sum d length dup 1 eq { 1 add } if  mul store
+	/sum sum d length dup 1 eq { 1 add } if mul store
 	/sum exch sum add store
     } forall
     sum =
 } def
 
 
-% Get number of cases
 1 1 infile token pop
 {
-    % Print "Case #n: "
     (Case #) print
     5 string cvs print 
     (: ) print
 
-    % Compute result for current case
     compute
 } for
-
-quit

@@ -1,7 +1,7 @@
 # Problem: Center of Mass
 # Language: R
 # Author: KirarinSnow
-# Usage: R -q --slave -f thisfile.R < input.in > output.out
+# Usage: R -q --slave -f thisfile.R <input.in >output.out
 
 
 infile <- file('/dev/stdin')
@@ -34,7 +34,7 @@ compute <- function()
 	t <- 0
     }
 
-    d <- sqrt(((x+v*t)%*%(x+v*t))[1])
+    d <- sqrt(((x+v*t) %*% (x+v*t))[1])
 
     cat(sprintf('%.8f %.8f', d, t))
 }

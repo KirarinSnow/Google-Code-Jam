@@ -3,20 +3,15 @@
 # Problem: All Your Base
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py < input.in > output.out
-
-
-import sys
-from math import *
-from string import *
+# Usage: python thisfile.py <input.in >output.out
 
 
 def compute():
     d = dict()
-    s = file.readline()[:-1]
+    s = raw_input()
 
     st = set(list(s))
-    base = max(2,len(st))
+    base = max(2, len(st))
     
     sum = 0
     for k in s:
@@ -31,14 +26,7 @@ def compute():
         sum += value
 
     return sum
-        
 
 
-
-file = sys.stdin
-
-case = int(file.readline())
-
-for i in range(case):
-    print "Case #" + str(i+1) + ":",
-    print compute()
+for i in range(input()):
+    print "Case #%d: %d" % (i+1, compute())
