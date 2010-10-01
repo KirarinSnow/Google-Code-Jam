@@ -1,8 +1,0 @@
-%!PS
-%
-% Problem: Decision Tree
-% Language: PostScript
-% Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
-
-1 1[/:{repeat}/"{token pop}/D{exch dup()ne{" _ exch known not{" pop}if " " 3 index mul D}if}/^{(%stdin)(r)file "}>>begin ^{(^_^)cvs(Case #)2{print}:(:)= ^/- ^ def ^{^/_[^{^/}:>>def - " D = =}:}for

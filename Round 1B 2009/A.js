@@ -1,15 +1,16 @@
 // Problem: Decision Tree
 // Language: JavaScript
 // Author: KirarinSnow
-// Usage: rhino thisfile.js <input.in >output.out
+// Usage: smjs thisfile.js <input.in >output.out
+
 
 function compute()
 {
-    var nd = lines.shift();
+    var nd = readline();
     var dt = '';
     for ( var i = 0; i < nd; i++ )
     {
-	dt += lines.shift();
+	dt += readline();
     }
     
     dt = dt.replace(/\)/g,'))');
@@ -18,10 +19,10 @@ function compute()
     dt = dt.replace(/\) *\(/g,':(');
     dt = dt.replace(/\)$/,'');
     
-    var na = lines.shift();
+    var na = readline();
     for ( var i = 0; i < na; i++ )
     {
-	var v = lines.shift().split(' ').slice(2);
+	var v = readline().split(' ').slice(2);
 
 	var animal = new Object();
 
@@ -34,9 +35,7 @@ function compute()
     }
 }
 
-var infile = readFile('/dev/stdin');
-var lines = infile.split('\n');
-var cases = lines.shift();
+var cases = readline();
 
 for ( var i = 1; i <= cases; i++ )
 {

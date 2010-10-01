@@ -3,7 +3,7 @@
 # Problem: Decision Tree
 # Language: sed
 # Author: KirarinSnow
-# Usage: sed -f thisfile.sed < input.in > output.out
+# Usage: sed -f thisfile.sed <input.in >output.out
 
 
 
