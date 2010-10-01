@@ -1,134 +1,36 @@
 %!PS
-%
 % Problem: Decision Tree
 % Language: PostScript
 % Author: KirarinSnow
-% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps < input.in > output.out
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+% Comments: No variables.
 
 
-% Convert input file into PostScript notation; produces nested array
-% representation of decision trees
+(%stdin) (r) file (temp.ps) (w) file {
+    1 index read not { exit } if
+    dup 40 eq { pop 123 } if
+    dup 41 eq { pop 125 } if
+    1 index exch write
+} loop closefile closefile
 
-% Create buffer of filtered file characters
-/infile (%stdin) (r) file def
-/buffer
-[
-    {
-	infile read not
-	{ exit } if
-	
-	dup 40 eq % ( -> {
-	{
-	    pop 123
-	} if
-	dup 41 eq % ) -> }
-	{
-	    pop 125
-	} if
-    } loop
-] def
-
-% Convert into string
-/stringbuffer buffer length string def
-0 1 buffer length 1 sub
-{
-    << >> begin
-    /i exch def
-    stringbuffer i
-	buffer i get put
-    end
-} for
-
-% Read a token
-/readtoken
-{
-    stringbuffer token pop exch /stringbuffer exch def
-} def
-
-
-
-%% Solve case
-/compute
-{
-    % Ignore number of lines; read decision tree
-    readtoken pop readtoken
-
-    % Array of dictionaries of features of each animal
+(temp.ps) (r) file
+dup token pop 1 exch 1 exch {
+    (Case #) print 5 string cvs print (: ) =
+    dup token pop pop dup token pop
     [
-	% For number of animals
-	readtoken
-	{
-	    << >>  % Create feature dictionary
-	    
-	    % Ignore animal name; read features
-	    readtoken pop readtoken
-	    {
-		% Add each feature to dictionary
-		dup readtoken 0 put
-	    } repeat
-	} repeat
-    ]
-    
-    {
-	% Copy decision tree; compute and print probability of cuteness
-	1 index exch 1.0 probability
-	==
-
-	% Pop copy of decision tree and feature dictionary
-	pop pop
-    } forall % For all animals
-
-    % Pop decision tree
-    pop
-} def
-
-
-%% Finds probability of cuteness, given features
-%% decision_tree feature_dictionary initial_probability
-%% -> decision_tree feature_dictionary final_probability
-/probability
-{
-    {
-	% Update probability
-	2 index 0 get mul
-	
-	2 index length 1 eq
-	{
-	    % Leaf - pop dictionary, return final prob
-	    exit
-	}
-	{
-	    % Not leaf
-	    1 index 3 index 1 get known
-	    {
-		% Feature in dictionary
-		3 2 roll 2 get
-		3 1 roll
-		
-	    }
-	    {
-		% Feature not in dictionary
-		3 2 roll 3 get
-		3 1 roll
-	    } ifelse
-	} ifelse
-    } loop
-} def
-
-/case 0 def
-
-% Get number of cases
-readtoken
-{
-    % Print "Case #n: "
-    /case case 1 add store
-    (Case #) print
-    case 5 string cvs print 
-    (: ) print
-
-    % Compute result for current case
-    () =
-    compute
-} repeat
-
-quit
+        2 index token pop {
+            << >>
+            count 1 sub index dup token pop pop token pop {
+                dup count 1 sub index token pop 0 put
+            } repeat
+        } repeat
+    ] {
+        1 index exch 1.0 {
+            2 index 0 get mul
+            2 index length 1 eq { exit } {
+                3 2 roll 2 index 1 index 1 get known
+                3 exch { 1 sub } if get 3 1 roll
+            } ifelse
+        } loop == pop pop
+    } forall pop
+} for closefile quit
