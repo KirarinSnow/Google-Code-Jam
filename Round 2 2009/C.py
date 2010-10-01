@@ -7,38 +7,17 @@
 # Comments: Uses a randomized approach. Probably works on small set; probably
 #           doesn't work on large set.
 
-import sys
-from math import *
-from string import *
 from random import *
 
-
-def table(height, width):
-    t = []
-    for i in range(height):
-	t.append([])
-	for j in range(width):
-	    t[i].append(0)
-    return t
-
-def next():
-    return buffer.pop(0)
-
-def nint():
-    return int(next())
 
 def cp(a,b):
     return (len(a)*[True] == map(lambda x,y: x>y, a,b)) \
         or (len(a)*[True] == map(lambda x,y: x<y, a,b))
 
 def compute():
-    n, k = nint(), nint()
+    n, k = map(int, raw_input().split())
 
-    pr = []
-    for i in range(n):
-        pr.append([])
-        for j in range(k):
-            pr[i].append(nint())
+    pr = [map(int, raw_input().split()) for i in range(n)]
 
     g = []
     for i in range(n):
@@ -47,8 +26,8 @@ def compute():
             g[i].append(False)
 
     for i in range(n):
-        for j in range(i+1,n):
-            if cp(pr[i],pr[j]):
+        for j in range(i+1, n):
+            if cp(pr[i], pr[j]):
                 g[i][j] = True
                 g[j][i] = True
 
@@ -79,11 +58,5 @@ def compute():
 
     return cc
 
-file = sys.stdin
-
-case = int(file.readline())
-buffer = file.read().split()
-
-for i in range(case):
-    print "Case #" + str(i+1) + ":",
-    print compute()
+for i in range(input()):
+    print "Case #%d: %d" % (i+1, compute())
