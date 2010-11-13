@@ -1,0 +1,19 @@
+# Problem: Old Magician
+# Language: Icon
+# Author: KirarinSnow
+# Usage: icont -o exec thisfile.icn && ./exec <input.in >output.out 
+
+
+procedure compute()
+    k := read()
+    b := k[(1 + find(" ", k)):0]
+    if b % 2 = 1 then
+	return "BLACK"
+    else
+	return "WHITE"
+end
+
+procedure main()
+    every i := 1 to read() do
+	write("Case #", i, ": ", compute())
+end
