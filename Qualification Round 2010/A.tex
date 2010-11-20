@@ -1,0 +1,45 @@
+% Problem: Snapper Chain
+% Language: TeX
+% Author: KirarinSnow
+% Usage: tex thisfile.tex <input.in; cat output.tex >output.out
+
+
+\openin0 = {/dev/stdin}
+\openout1 = output
+
+\let\ex = \expandafter
+\escapechar = 256
+\def\case{Case \#}
+\def\colon{: }
+
+\read0 to \LINE
+\count1 = \LINE
+\count0 = 0
+
+\toks1 = {ON}
+\toks0 = {OFF}
+
+\def\divideloop{
+  \ifnum \count2 > 0
+    \advance \count2 by -1
+    \count5 = \count3
+    \divide \count5 by 2
+    \multiply \count5 by 2
+    \advance \count5 by -\count3
+    \multiply \count4 by -\count5
+    \divide \count3 by 2
+    \divideloop
+  \fi
+}
+
+\loop
+  \ifnum \count0 < \count1
+    \advance \count0 by 1
+    \read0 to \LINE
+    \count2 = \LINE
+    \count3 = \ex\ifnum -1 < \LINE \fi
+    \count4 = 1
+    \divideloop   
+    \ex\write1 \ex{\ex\case \the\ex\count0\ex\colon \the\toks\the\count4}
+    \repeat
+\bye
