@@ -1,0 +1,120 @@
+/*(     FOUR THOUSAND CHARACTERS IN SEARCH OF AN INTERPRETER     )/q;#/#{}def%*/
+/*(     A Trilingual Tripartite Tragicomedy of Epic Proportions         )/q;#%*/
+/*(     by KirarinSnow, Self-Declared Delegate from Bouvet Island       )/q;#%*/
+
+
+
+/*/q;#%     PREFACE
+     #%     
+     #%     Behold, a dramatic script for the modern age!
+     #%     
+     #%     Four thousand characters (far more than Shakespeare ever managed!
+     #%     how times change...), stumble upon a mysterious script claiming
+     #%     to unlock the secrets of a certain "Google Code Jam Africa 2010
+     #%     Qualification Round" --- provided that, for each round, they locate
+     #%     the correct interpreter to decipher the cryptic markings strewn
+     #%     across the script. But which interpreters will help them pass
+     #%     the three stages of their epic quest? One wrong choice, and our
+     #%     heroes may find themselves facing the terrors of out-of-range
+     #%     exceptions, infinite loops, and even the mythical but deadly
+     #%     segmentation fault. Will our characters ever succeed? Only time
+     #%     will tell.
+     #%     
+     #%     At the start of their journey, our heroes discover three lines
+     #%     that may lead them in the right direction:
+     #%     
+     #%       $ swipl -q -c script < A-input.in
+     #%       $ sed -f script < B-input.in
+     #%       $ gs -q -dNOPROMPT -dNODISPLAY -dBATCH script < C-input.in
+   #%*/
+
+
+
+/*/q;#%     TABLE OF CONTENTS
+     #%     
+     #%     Act A. "Store Credit"
+     #%            The Introductory Prologue, in Prolog          45
+     #%     Act B. "Reverse Words"
+     #%            Some Lines to Be Said, in sed                 71
+     #%     Act C. "T9 Spelling"
+     #%            A Final Postscript, in PostScript             97
+   #%*/
+
+
+
+/*/q;#(*/%  ACT A. "Store Credit"
+/*/q;#*/%%         The Introductory Prologue, in Prolog
+/*/q;#*/    
+/*/q;#*/    compute(Case, Total) :-
+/*/q;#*/        readln([Credit]),
+/*/q;#*/        readln(_),
+/*/q;#*/        readln(List),
+/*/q;#*/        member(Item, List),
+/*/q;#*/        Match is Credit - Item,
+/*/q;#*/        member(Match, List),
+/*/q;#*/        nth1(Index1, List, Item),
+/*/q;#*/        nth1(Index2, List, Match),
+/*/q;#*/        Index1 < Index2,
+/*/q;#*/        format('Case #~d: ~d ~d~n', [Case, Index1, Index2]),
+/*/q;#*/        !,
+/*/q;#*/        Case >= Total.
+/*/q;#*/    
+/*/q;#*/    :-
+/*/q;#*/        prompt1(''),
+/*/q;#*/        readln([Total]),
+/*/q;#*/        between(1, Total, Case),
+/*/q;#*/        compute(Case, Total).
+/*/q;#)%*/
+
+
+
+/*/q;#(     ACT B. "Reverse Words"
+#######            Some Lines to Be Said, in sed
+            
+            1 s:.*:0<>0123456789:
+            1 h
+            1 d
+            
+            s/$/0/
+            :rev
+            s/^\([^0 ]*\) \(.*0\)/\2 \1/
+            t rev
+            s/0//
+            
+            x
+            :inc
+            s/9</<0/
+            t inc
+            s/^</0</
+            s/\(.\)<\(.*\)>\(.*\1\(.\)\)/\4\2<>\3/
+            x
+            G
+            s|\(.*\)\n\(.*\)<.*|Case #\2: \1|
+#)%*/
+
+
+
+/*/q;#%     ACT C. "T9 Spelling"
+#%%%%%%            A Final Postscript, in PostScript
+#           
+#           1 1 (%stdin) (r) file token pop {
+#               (Case #) print 5 string cvs print (:) print
+#               (%stdin) (r) file 1000 string readline pop
+#               [ exch {
+#                   dup ( ) 0 get eq {pop (0)} {
+#                       [ exch (a) 0 get sub dup 
+#                       [ 6 {1 2 3} repeat 4 2 {1 2 3} repeat 4 ] exch get {
+#                           dup (22233344455566677778889999) exch get exch
+#                       } repeat pop ]
+#                   } ifelse
+#               } forall ] [ exch ( ) exch {
+#                   2 copy 0 get exch 0 get eq {( ) exch} if
+#               } forall ] {
+#                   {(%stdout) (w) file exch write} forall
+#               } forall () =
+#           } for
+#%*/
+
+
+
+/*/q;#%     FINIS     %#;p\*/
