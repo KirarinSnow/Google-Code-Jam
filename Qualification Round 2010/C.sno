@@ -1,10 +1,9 @@
 * Problem: Theme Park
 * Language: SNOBOL
 * Author: KirarinSnow
-* Usage: snobol4 k.sno <input.in >output.out
+* Usage: snobol4 thisfile.sno <input.in >output.out
 
 * Comments: Using the CSNOBOL4 interpreter: http://www.snobol4.org/csnobol4/
-*           I've always wanted to submit a program named after myself. ^_^
 
 
 	DEFINE('CASE()')

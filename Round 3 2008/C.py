@@ -16,8 +16,8 @@ def compute():
                 for j in [y-1, y+1]: # adjacent cols
                     if 0<=i<m and 0<=j<n and board[i][j] == '.': # in range
                         if match[i][j] == None or dfs(match[i][j]):
-                            match[x][y] = (i,j)
-                            match[i][j] = (x,y)
+                            match[x][y] = (i, j)
+                            match[i][j] = (x, y)
                             return True
         return False
 
@@ -37,7 +37,7 @@ def compute():
             if board[i][j] == '.':
                 vcount += 1
                 if j%2 == 1: # odd columns
-                    if dfs((i,j)):
+                    if dfs((i, j)):
                         matching += 1
                     label += 1
 
