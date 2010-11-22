@@ -15,7 +15,6 @@
     (let loop
 	((q (read))
 	 (top (list 1)))
-;	 (top (trunc (sort (list (read) (read) (read) (read)) >) m)))
       (if (zero? q)
 	  (reduce + 0 top)
 	  (loop (1- q)
@@ -23,7 +22,7 @@
 		 (sort 
 		  (concatenate
 			 (map (lambda (x) (map (lambda (y) (* x y)) top))
-			      (list (read) (read) (read) (read))))
+			      (map-in-order (lambda (x) (read)) (iota 4))))
 		  >) m))))))
 
 (for-each
