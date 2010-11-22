@@ -14,8 +14,9 @@
   (let ((m (read)))
     (let loop
 	((q (read))
-	 (top (trunc (sort (list (read) (read) (read) (read)) >) m)))
-      (if (= q 1)
+	 (top (list 1)))
+;	 (top (trunc (sort (list (read) (read) (read) (read)) >) m)))
+      (if (zero? q)
 	  (reduce + 0 top)
 	  (loop (1- q)
 		(trunc

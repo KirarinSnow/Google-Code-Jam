@@ -39,9 +39,9 @@ to compute
   make "m item 1 :line
   make "q item 2 :line
   
-  make "top truncate mergesort readlist :m
+  make "top [1]
  
-  repeat :q - 1 [
+  repeat :q [
     make "top truncate mergesort
       apply "sentence map [make "x ? map [? * x] :top] readlist :m
   ]
