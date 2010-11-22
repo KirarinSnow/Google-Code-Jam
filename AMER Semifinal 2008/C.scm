@@ -16,11 +16,11 @@
 	((q (read))
 	 (top (truncate (sort (list (read) (read) (read) (read)) >) m)))
       (if (= q 1)
-	  (fold + 0 top)
+	  (reduce + 0 top)
 	  (loop (1- q)
 		(truncate
 		 (sort 
-		  (apply append
+		  (concatenate
 			 (map (lambda (x) (map (lambda (y) (* x y)) top))
 			      (list (read) (read) (read) (read))))
 		  >) m))))))
