@@ -26,10 +26,9 @@ to verify :d
 end
 
 to compute
-  make "n readword
+  ignore readword
   make "s readlist
-  make "d map [modulo difference ? item # :s :mod] butfirst :s
-  output verify :d
+  output verify map [modulo difference ? item # :s :mod] butfirst :s
 end
 
 for [case 1 readword] [print word "|Case #| word :case word "|: | compute]
