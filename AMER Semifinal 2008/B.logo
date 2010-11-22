@@ -1,0 +1,37 @@
+#!/usr/bin/env ucblogo
+
+; Problem: Code Sequence
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+
+
+make "mod 10007
+
+to unique :l
+  output emptyp filter [notequalp ? first :l] :l
+end
+
+to verify :d
+  localmake "d1 filter [equalp 1 modulo # 2] :d
+  localmake "d2 filter [equalp 0 modulo # 2] :d
+  output ifelse and [unique :d1] [unique :d2] ["UNKNOWN] ~
+  [ifelse unique :d2 ~
+    [ifelse equalp 1 modulo count :d 2 ~
+      [modulo sum last :s first :d2 mod] ~
+      [verify :d1]] ~
+    [ifelse equalp 1 modulo count :d 2 ~
+      [verify :d2] ~
+      [modulo sum last :s first :d1 mod]]]
+end
+
+to compute
+  make "n readword
+  make "s readlist
+  make "d map [modulo difference ? item # :s mod] butfirst :s
+  output verify :d
+end
+
+for [case 1 readword] [print word "|Case #| word :case word "|: | compute]
+
+bye
