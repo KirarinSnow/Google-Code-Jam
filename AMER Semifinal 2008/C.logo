@@ -1,0 +1,53 @@
+#!/usr/bin/env ucblogo
+
+; Problem: Test Passing Probability
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+; Comments: May be too slow.
+
+
+to merge :left :right
+  if emptyp :left [output :right]
+  if emptyp :right [output :left]
+  ifelse greaterequalp first :left first :right ~
+    [output fput first :left merge butfirst :left :right] ~
+    [output fput first :right merge :left butfirst :right]
+end
+
+to mergesort :l
+  if or [emptyp :l] [emptyp butfirst :l] [output :l]
+  output merge ~
+    mergesort filter [# <= (count :l) / 2] :l ~
+    mergesort filter [# > (count :l) / 2] :l
+end
+
+; Quicksort -- takes too long
+to qsort :l
+  if or [emptyp :l] [emptyp butfirst :l] [output :l]
+  output (sentence qsort filter [? > first :l] butfirst :l
+         	    	 filter [? = first :l] :l
+	           qsort filter [? < first :l] butfirst :l)
+end
+
+to truncate :l :len
+  output filter [# <= :len] :l
+end
+
+to compute
+  make "line readlist
+  make "m item 1 :line
+  make "q item 2 :line
+  
+  make "top truncate mergesort readlist :m
+ 
+  repeat :q - 1 [
+    make "top truncate mergesort
+      apply "sentence map [make "x ? map [? * x] :top] readlist :m
+  ]
+  output reduce "sum :top
+end
+
+for [case 1 readword] [print (word "|Case #| :case "|: | compute)]
+
+bye
