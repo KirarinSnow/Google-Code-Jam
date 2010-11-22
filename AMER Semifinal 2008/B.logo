@@ -18,17 +18,17 @@ to verify :d
   output ifelse and [unique :d1] [unique :d2] ["UNKNOWN] ~
   [ifelse unique :d2 ~
     [ifelse equalp 1 modulo count :d 2 ~
-      [modulo sum last :s first :d2 mod] ~
+      [modulo sum last :s first :d2 :mod] ~
       [verify :d1]] ~
     [ifelse equalp 1 modulo count :d 2 ~
       [verify :d2] ~
-      [modulo sum last :s first :d1 mod]]]
+      [modulo sum last :s first :d1 :mod]]]
 end
 
 to compute
   make "n readword
   make "s readlist
-  make "d map [modulo difference ? item # :s mod] butfirst :s
+  make "d map [modulo difference ? item # :s :mod] butfirst :s
   output verify :d
 end
 
