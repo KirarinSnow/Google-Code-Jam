@@ -43,7 +43,7 @@ to compute
  
   repeat :q [
     make "top truncate mergesort
-      apply "sentence map [make "x ? map [? * x] :top] readlist :m
+      apply "sentence map [make "x ? map [? * :x] :top] readlist :m
   ]
   output reduce "sum :top
 end
