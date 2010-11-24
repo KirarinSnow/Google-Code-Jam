@@ -45,7 +45,7 @@ if left(m.x.y.b, 1) = 'M' then m.x.y.b = -1
 
 if m.x.y.b \= -1 then return m.x.y.b
 
-bb = bitand(0||b, copies(1, c+1), 0)
+bb = strip(bitand(0||b, copies(1, c+1), 0), 't', '0')
 
 if a.y.x \= '.' then do
   m.x.y.b = solve(x+1, y, bb)
