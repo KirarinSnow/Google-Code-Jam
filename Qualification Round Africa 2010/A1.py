@@ -6,7 +6,6 @@
 # Usage: python thisfile.py <input.in >output.out 
 
 
-
 def compute():
     credit = input()
     items = input()
@@ -26,4 +25,3 @@ def compute():
 
 for i in range(input()):
     print "Case #%d: %s" % (i+1, compute())
-

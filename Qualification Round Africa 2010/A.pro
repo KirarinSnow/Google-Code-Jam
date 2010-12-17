@@ -15,10 +15,11 @@ compute(Case, Cases) :-
     nth1(Index2, Line, Match),
     Index1 < Index2,
     format('Case #~d: ~d ~d~n', [Case, Index1, Index2]),
-    Case < Cases.
+    !,
+    Case >= Cases.
 
 :-
     prompt1(''),
     readln([Cases]),
     between(1, Cases, Case),
-    \+compute(Case, Cases).
+    compute(Case, Cases).

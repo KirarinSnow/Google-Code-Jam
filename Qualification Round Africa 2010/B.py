@@ -6,15 +6,8 @@
 # Usage: python thisfile.py <input.in >output.out 
 
 
-
 def compute():
-    line = raw_input().split()
-    return ' '.join(line[::-1])
+    return ' '.join(raw_input().split()[::-1])
 
-
-n = input()
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())

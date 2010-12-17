@@ -6,11 +6,10 @@
 # Usage: python thisfile.py <input.in >output.out 
 
 
-
 def compute():
     c = input()
     i = input()
-    prices = map(int,raw_input().split())
+    prices = map(int, raw_input().split())
 
     results = []
 
@@ -25,12 +24,7 @@ def compute():
                 results2.append(results[k])
         results = results2
 
-    return ' '.join(map(str,results))
+    return ' '.join(map(str, results))
 
-
-n = input()
-
-for i in range(n):
-    s = "Case #" + str(i+1) + ": "
-    s+= compute()
-    print s
+for i in range(input()):
+    print "Case #%d: %s" % (i+1, compute())
