@@ -35,11 +35,11 @@ def compute():
         cB = 0
         for j in range(n):
             if c[i][j] == 'R':
-                cR+=1
-                cB=0
+                cR += 1
+                cB = 0
             elif c[i][j] == 'B':
-                cB+=1
-                cR=0
+                cB += 1
+                cR = 0
             else:
                 cB = 0
                 cR = 0
@@ -54,11 +54,11 @@ def compute():
         cB = 0
         for j in range(n):
             if c[j][i] == 'R':
-                cR+=1
-                cB=0
+                cR += 1
+                cB = 0
             elif c[j][i] == 'B':
-                cB+=1
-                cR=0
+                cB += 1
+                cR = 0
             else:
                 cB = 0
                 cR = 0
@@ -68,7 +68,7 @@ def compute():
                 bwin = True
     
     # count maxR, maxB per diag
-    for i in range(-n+1,n):
+    for i in range(-n+1, n):
         cR = 0
         cB = 0
         for j in range(n):
@@ -76,11 +76,11 @@ def compute():
             if ii < 0 or ii >= n:
                 continue
             if c[ii][j] == 'R':
-                cR+=1
-                cB=0
+                cR += 1
+                cB = 0
             elif c[ii][j] == 'B':
-                cB+=1
-                cR=0
+                cB += 1
+                cR = 0
             else:
                 cB = 0
                 cR = 0
@@ -98,11 +98,11 @@ def compute():
             if ii < 0 or ii >= n:
                 continue
             if c[ii][j] == 'R':
-                cR+=1
-                cB=0
+                cR += 1
+                cB = 0
             elif c[ii][j] == 'B':
-                cB+=1
-                cR=0
+                cB += 1
+                cR = 0 
             else:
                 cB = 0
                 cR = 0
