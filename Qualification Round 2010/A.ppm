@@ -26,6 +26,7 @@ P3
 #           product is 0, then there is no connected chain providing power
 #           to the light bulb; therefore, print "OFF"; else, print "ON".
 #
+#
 42 34
 255
 255

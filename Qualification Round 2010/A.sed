@@ -6,17 +6,17 @@
 # Usage: sed -f thisfile.sed <input.in >output.out
 
 
-# Initialize case counter to 0 and store to pattern space
-# Include digits for incrementing the case counter
+# Initialize case counter to 0 and store to hold space.
+# Include digits for incrementing the case counter.
 1 s/.*/0<>0123456789/
 1 h
 1 d
 
-# Include digits for decrementing N
+# Include digits for decrementing N.
 s/^/9876543210,/
 s/ /< /
 
-# Loop: Decrement number (decr subloop handles numbers ending in 0)
+# Loop: Decrement number (decr subloop handles numbers ending in 0).
 :loop
 :decr
 s/0</<9/
@@ -24,12 +24,12 @@ t decr
 s/\(\(.\)\(.\).*,.*\)\2<\(.*\) /\1\3\4< /
 
 # If 0, we are done; since the process finished, it is a success.
-# Bypass the part that adds 'OFF', so the answer will be 'ON'.
+#   Bypass the part that adds 'OFF', so the answer will be 'ON'.
 /,</b finish
 
 # Division by 2. Make one pass through the number from the left,
-# operating on two digits at a time. The first digit is a temporary
-# digit holding the modulus (by 2) of the previous division.
+#   operating on two digits at a time. The first digit is a temporary
+#   digit holding the modulus (by 2) of the previous division.
 
 # Let the first temp digit be 0.
 s/ / >0/
@@ -59,19 +59,19 @@ s/>00/0>0/
 t divide
 
 # If it is impossible to move any further, we have reached the end of
-# the division process. If the temp digit is 1, then we simply remove it
-# to clean up the space. If this occurs, then the loop is repeated. 
+#   the division process. If the temp digit is 1, then we simply remove it
+#   to clean up the space. If this occurs, then the loop is repeated.
 # Otherwise, execution passes to the next line.
 s/>1$//
 t loop
 
 # If execution gets here, then there was a 0 bit somewhere in the last
-# n bits of k. Therefore, the answer should be OFF.
+#   n bits of k. Therefore, the answer should be OFF.
 s/$/OFF/
 
 # Finish: Remove everything before the 'O' in 'OFF', if there is one.
 # Otherwise, there should be a space still in the pattern space, so
-# change everything to 'ON'.
+#   change everything to 'ON'.
 :finish
 s/.*O/O/
 s/.* .*/ON/
@@ -85,6 +85,6 @@ s/^</0</
 s/\(.\?\)<\(.*\)\(>.*\1\(.\)\)/\4\2<\3/
 x
 
-# Copy case number from hold space and reorganize into output format
+# Copy case number from hold space and reorganize into output format.
 G
 s/\(.*\)\n\(.*\)<.*/Case #\2: \1/

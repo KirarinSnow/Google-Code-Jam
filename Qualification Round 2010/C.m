@@ -2,8 +2,6 @@
 # Language: Octave
 # Author: KirarinSnow
 # Usage: octave -q thisfile.m <input.in >output.out
-
-
 # Comments: This was originally going to be a GolfScript solution,
 #           since I suppose this theme park offers attractions other
 #           than its perennially popular roller coaster. The miniature

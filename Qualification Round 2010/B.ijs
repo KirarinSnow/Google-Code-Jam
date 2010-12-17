@@ -2,7 +2,6 @@ NB. Problem: Fair Warning
 NB. Language: J
 NB. Author: KirarinSnow
 NB. Usage: jc thisfile.ijs <input.in >output.out
-
 NB. Comments: J can be downloaded for free at http://jsoftware.com/
 NB.           The solutions to all cases are computed on the second line
 NB.           (using no intermediate variables and no alphabetic characters).
