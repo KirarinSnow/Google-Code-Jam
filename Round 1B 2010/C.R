@@ -13,7 +13,7 @@ for (x in 1:maxsize)
 {
   for (y in 1:maxsize)
   {
-     B[x,y] = choose(x-1,y-1)
+     B[x,y] = choose(x-1, y-1)
   }
 }
 
@@ -21,7 +21,7 @@ rchoose <- function(a, b) {
   if (a < 0 || b < 0)
      0
   else
-     B[a+1,b+1]
+     B[a+1, b+1]
 }
 
 A <- matrix(0, maxsize, maxsize)
@@ -33,18 +33,18 @@ for (x in 2:maxsize)
   {
      if (y == 1)
      {
-        A[x,y] <- 1
+        A[x, y] <- 1
      }
      else
      {
         z = 0
         for (i in 1:y)
 	{
-	   d <-  A[y,i] * rchoose(x-y-1, y-i-1)
+	   d <-  A[y, i] * rchoose(x-y-1, y-i-1)
 	   z = (z+d) %% 100003
 	}
 	  
-	A[x,y] <- z
+	A[x, y] <- z
      }
   }
 }

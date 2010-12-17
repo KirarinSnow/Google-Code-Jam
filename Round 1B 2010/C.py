@@ -6,7 +6,6 @@
 # Usage: python thisfile.py <input.in >output.out
 
 
-
 MAX = 502
 
 def choose(n, k):

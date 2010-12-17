@@ -6,7 +6,6 @@
 # Usage: bash thisfile.sh <input.in >output.out
 
 
-
 compute()
 {
     rm -r /tmp/tmp

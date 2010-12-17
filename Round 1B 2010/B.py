@@ -6,8 +6,6 @@
 # Usage: python thisfile.py <input.in >output.out
 
 
-
-
 def compute():
     n, k, b, t = map(int, raw_input().split())
     x = map(int, raw_input().split())
