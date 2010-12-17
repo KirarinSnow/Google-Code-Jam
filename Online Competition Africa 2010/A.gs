@@ -3,4 +3,5 @@
 # Author: KirarinSnow
 # Usage: golfscript.rb thisfile.gs <input.in >output.out
 
-n%(~,{'Case #'\)@': '\(;([~]0\{^}/n@}/
+
+n%(~,{'Case #'\)@': '\(;([~]{^}*n@}/

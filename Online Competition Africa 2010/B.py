@@ -6,16 +6,12 @@
 # Usage: python thisfile.py <input.in >output.out 
 
 
-
 def compute():
     n,t = map(int, raw_input().split())
     e = input()
     d = [map(int, raw_input().split()) for i in range(e)]
 
-    part = [[]]*n
-    
-    for i in range(n):
-        part[i] = filter(lambda x: x[0] == i+1, d)
+    part = [filter(lambda x: x[0] == i+1, d) for i in range(n)]
 
     out = [-1]*n
     for i in range(len(part)):
