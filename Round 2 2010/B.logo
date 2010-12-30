@@ -1,0 +1,36 @@
+#!/usr/bin/env ucblogo
+
+; Problem: World Cup 2010
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+
+
+make "inf 999999999999
+
+to min :a :b
+  output ifelse (:a < :b) [:a] [:b]
+end
+
+to compute
+  make "p readword
+  make "m readlist
+  make "t map [readlist] iseq 1 :p
+
+  output first first cascade :p [
+    localmake "y #
+    (map [
+      localmake "l ?1
+      localmake "r ?2
+      localmake "z #
+      map [
+        min (sum item # :l item # :r) ~
+        (sum item ? :l item ? :r item :z item :y :t)
+      ] iseq 2 count :r
+    ] filter [equalp modulo # 2 1] ? filter [equalp modulo # 2 0] ?)
+  ] map [localmake "x ? map [ifelse (# > (:p - :x)) [0] [:inf]] iseq 0 :p] :m
+end
+
+for [case 1 readword] [print (word "|Case #| :case "|: | compute)]
+
+bye
