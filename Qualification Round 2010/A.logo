@@ -1,14 +1,14 @@
 #!/usr/bin/env ucblogo
 
-; Problem: Old Magician
+; Problem: Snapper Chain
 ; Language: Logo
 ; Author: KirarinSnow
 ; Usage: ucblogo thisfile.logo <input.in >output.out
 
 
 to compute
-  make "b item 2 readlist
-  output ifelse (equalp modulo :b 2 1) ["BLACK] ["WHITE]
+  make "line readlist
+  output ifelse (modulo (1 + last :line) power 2 first :line) > 0 ["OFF] ["ON]
 end
 
 for [case 1 readword] [print (word "|Case #| :case "|: | compute)]
