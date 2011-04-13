@@ -1,0 +1,25 @@
+%!PS
+%
+% Problem: Closing the Loop
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT -dBATCH thisfile.ps <input.in >output.out
+
+
+/rd {(%stdin) (r) file token pop} def
+
+1 1 rd
+{
+    (Case #) print =only (: ) print
+
+    << >> << >>
+    [rd {rd} repeat]
+    {
+	10 string cvs dup dup length 1 sub 0 exch getinterval cvi 1 sub
+	exch dup length 1 sub get 5 mod index dup length 3 2 roll put
+    } forall
+    2 {[ exch {exch pop} forall ] {gt} .sort exch} repeat
+    2 copy length exch length min dup
+    2 {3 1 roll 0 exch getinterval} repeat
+    0 2 {exch {add} forall} repeat =
+} for

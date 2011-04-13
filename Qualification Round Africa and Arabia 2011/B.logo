@@ -1,0 +1,44 @@
+#!/usr/bin/env ucblogo
+
+; Problem: Investing at the Market
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+
+
+to max :a :b
+  output ifelse :a<:b [:b] [:a]
+end
+
+for [case 1 rw] [
+  make "m rw
+  make "v rl
+  make "w bl map [
+    localmake "i #
+    localmake "p ?
+    localmake "x int (:m/?)
+    map [:x*?-:x*:p] filter [#>:i] :v
+  ] :v
+
+  make "o (
+    cascade [empty? ?1]
+      [bf ?1] map [reduce "max ?] :w
+      [max first ?1 ?2] 0
+      [ifelse (and [?2<=first ?1] [(item ?3 :v)>item # :v] [0<first ?1]) ~
+              [#] [?3]] 1
+      [list ?2 ?3])
+
+  if 0<>first :o [
+    make "k (
+      cascade [empty? ?1]
+        [bf ?1] item item 2 :o :w
+        [max first ?1 ?2] 0
+        [ifelse [?2<=first ?1] [#] [?3]] 0
+        [?3])
+    ]
+
+  type (word "|Case #| :case "|: |)
+  ifelse 0=first :o [pr "IMPOSSIBLE] [(pr item 2 :o :k+item 2 :o first :o)]
+]
+
+bye
