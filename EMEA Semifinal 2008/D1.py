@@ -40,9 +40,7 @@ def compute():
     n, k, p = map(int, raw_input().split())
     c = list(combinations(range(p-1), k-1))
     d = len(c)
-    q = {}
-    for j in range(d):
-        q[c[j]] = j
+
     s = [[0] for j in range(d-1)] + [[1]]
     m = [[0]*d for j in range(d)]
     for j in range(d):
