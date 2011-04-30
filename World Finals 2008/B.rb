@@ -62,7 +62,7 @@ def compute()
 
     j += 1
     while true
-      while not inbounds(j, l)
+      until inbounds(j, l)
         l += 1
         if l > u
           return c
@@ -70,12 +70,11 @@ def compute()
       end
 
       if inbounds(j, u) then
-        while inbounds(j, u)
+        while inbounds(j, u+1)
           u += 1
         end
-        u -= 1
       else
-        while not inbounds(j, u)
+        until inbounds(j, u)
           u -= 1
         end
       end
@@ -86,6 +85,6 @@ def compute()
   end
 end
 
-for $i in 1 .. gets.to_i:
-    print "Case \##$i: %s\n" % compute()
+(1 .. gets.to_i).each do |i|
+  puts "Case \##{i}: #{compute}"
 end
