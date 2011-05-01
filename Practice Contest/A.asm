@@ -4,6 +4,7 @@
 ;;; Usage: nasm -f elf -o program.o thisfile.asm && ld -o program program.o &&
 ;;;          ./program <input.in >output.out
 
+
 section	.data
 _char:
 	db	0, 0, 0, 0
