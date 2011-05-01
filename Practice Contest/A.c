@@ -11,9 +11,9 @@
 char* solve()
 {
     int b, w;
-    scanf("%d %d", &b, &w);
+    scanf("%d %d", &w, &b);
     
-    return w % 2 == 0 ? "WHITE" : "BLACK";
+    return b % 2 == 0 ? "WHITE" : "BLACK";
 }
 
 int main()

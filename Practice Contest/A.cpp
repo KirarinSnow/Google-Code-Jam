@@ -12,9 +12,9 @@ using namespace std;
 string compute()
 {
     int b, w;
-    cin >> b >> w;
+    cin >> w >> b;
     
-    return w % 2 == 0 ? "WHITE" : "BLACK";
+    return b % 2 == 0 ? "WHITE" : "BLACK";
 }
 
 int main()
