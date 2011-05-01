@@ -4,7 +4,6 @@
 // Usage: g++ thisfile.cpp -o executable && ./executable <input.in >output.out
 
 
-#include <stdio.h>
 #include <iostream>
 #include <string>
 
