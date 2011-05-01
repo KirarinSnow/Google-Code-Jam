@@ -10,7 +10,7 @@
 
 using namespace std;
 
-string solve()
+string compute()
 {
     int b, w;
     cin >> b >> w;
@@ -25,7 +25,7 @@ int main()
 
     for (int i = 1; i <= cases; i++)
     {
-	printf("Case #%d: %s\n", i, solve().c_str());
+	cout << "Case #" << i << ": " << compute() << endl;
     }
     
     return 0;
