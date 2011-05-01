@@ -1,0 +1,16 @@
+#
+  Problem: Old Magician
+  Language: ALGOL 68
+  Author: KirarinSnow
+  Usage: a68g thisfile.a68 <input.in >output.out 
+  Comments: Using Algol 68 Genie: http://www.xs4all.nl/~jmvdveer/algol.html
+#
+
+main : (
+  PROC compute = STRING:
+    (read int * 0 + read int %* 2 = 1 | "BLACK" | "WHITE");
+
+  FOR i TO read int DO
+    print(("Case #", whole(i, 0), ": ", compute, new line))
+  OD
+)
