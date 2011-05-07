@@ -27,7 +27,7 @@ def compute():
             best.append(1)
             prev.append([i])
 
-        for i in xrange(1,n):
+        for i in xrange(1, n):
             for j in range(i):
                 if a[i] > a[j] and best[i] <= best[j] + 1:
                     if best[i] < best[j] + 1:
@@ -58,14 +58,14 @@ def compute():
     vals = map(int, raw_input().split())
 
     assoc = []
-    for i in range(len(vals)):
-        assoc.append([vals[i],i])
+    for i, x in enumerate(vals):
+        assoc.append([x, i])
 
     assoc.sort()
 
-    assoc2 = map(lambda x: [x[1],x[0],0], assoc)
-    for i in range(len(assoc2)):
-        assoc2[i][2] = i
+    assoc2 = map(lambda x: [x[1], x[0], 0], assoc)
+    for i, x in enumerate(assoc2):
+        x[2] = i
     
     assoc2.sort()
         
@@ -73,10 +73,10 @@ def compute():
 
     lc = lcs(lt, len(lt), prods)
 
-    for k in range(len(lc)):
+    for k, x in enumerate(lc):
         ret.append([])
         for i in xrange(len(lt)):
-            if i not in lc[k]:
+            if i not in x:
                 ret[k].append(prods[i])
 
         ret[k].sort()

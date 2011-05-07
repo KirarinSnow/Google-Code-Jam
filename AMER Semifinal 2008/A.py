@@ -18,7 +18,7 @@ def compute():
             b.sort()
             b = b[::-1]
             
-            r[m] = max(len(b)+1, max(map(lambda x: x+b[x], range(len(b)))))
+            r[m] = max(len(b)+1, max([i+x for i, x in enumerate(b)]))
             
         return r[m]
         

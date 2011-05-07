@@ -28,11 +28,11 @@ def exp(m, x):
         x >>= 1
     
     c = [[0]*len(m) for j in range(len(m))]
-    for k in range(len(c)):
-        c[k][k] = 1
+    for i, k in enumerate(c):
+        k[i] = 1
 
-    for i in range(len(v)):
-        if v[i] == 1:
+    for i, k in enumerate(v):
+        if k == 1:
             c = mult(c, z[i])
     return c
 
@@ -49,7 +49,7 @@ def compute():
             post = c[jj]
             for b in pre:
                 if tuple(map(lambda x: x-1,
-                             filter(lambda x: x!=b, pre)) + [p-2]) == post:
+                             filter(lambda x: x != b, pre)) + [p-2]) == post:
                     m[j][jj] = 1
                 if tuple(map(lambda x: x-1, pre)) == post:
                     m[j][jj] = 1

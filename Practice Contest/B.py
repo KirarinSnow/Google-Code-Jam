@@ -33,23 +33,23 @@ def compute():
                 return False
         return True
 
-    def det(s,n,k,p):
+    def det(s, n, k, p):
         subs = [0]
         numdigs = int(log(s)/log(2))+1
         for i in range(numdigs):
-            if (s>>(numdigs-i-1))%2 == 1:
+            if (s >> (numdigs-i-1))%2 == 1:
                 subs2 = list(subs)
-                for j in range(len(subs)):
-                    subs[j]<<=1
-                for j in range(len(subs2)):
-                    subs2[j]<<=1
-                    subs2[j]+=1
+                for j in subs:
+                    j <<= 1
+                for j in subs2:
+                    j <<= 1
+                    j += 1
                 subs.extend(subs2)
             else:
-                for j in range(len(subs)):
-                    subs[j]<<=1
+                for j in subs:
+                    j <<= 1
     
-        if isclique(s,n,k,p):
+        if isclique(s, n, k, p):
             cp[s] = 1
 
         minp = MAX
@@ -57,9 +57,9 @@ def compute():
             stx = s^st
             if st != s and stx != s:
                 if cp[st] >= MAX: # not in table
-                    det(st,n,k,p)
+                    det(st, n, k, p)
                 if cp[stx] >= MAX:
-                    det(stx,n,k,p)
+                    det(stx, n, k, p)
             minp = min(minp, cp[st]+cp[stx])
     
         cp[s] = min(cp[s], minp)
@@ -69,7 +69,7 @@ def compute():
     p = []
     for i in range(n):
         v=map(int, raw_input().split())
-        p.append((v[0],v[1]))
+        p.append((v[0], v[1]))
     
     xmax = 0
     ymax = 0
@@ -90,9 +90,9 @@ def compute():
 
     while l < u:
         k = (l+u)/2        
-        cp = [MAX]*(1<<n)
-        det((1<<n)-1, n, k, p)
-        if cp[(1<<n)-1] <= bound:
+        cp = [MAX]*(1 << n)
+        det((1 << n)-1, n, k, p)
+        if cp[(1 << n)-1] <= bound:
             u = k
         else:
             l = k+1
