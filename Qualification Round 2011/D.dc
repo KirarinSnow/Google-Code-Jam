@@ -1,0 +1,10 @@
+#!/usr/bin/dc
+#
+# Problem: GoroSort
+# Language: dc
+# Author: KirarinSnow
+# Usage: dc thisfile.dc <input.in >output.out 
+
+
+# 68 bytes.
+?sT1[[Case #]Pdn[: ]P?sN?lNd[sKr0rlK-^-lK1-d0<C]dsCx+p0^+dlT!<F]dsFx

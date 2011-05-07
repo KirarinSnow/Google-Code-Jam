@@ -1,0 +1,19 @@
+#!/usr/bin/env ucblogo
+
+; Problem: Candy Splitting
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+
+
+repeat rw [
+  (pr "Case (word "# # ":)
+    (cascade rw
+      [bf ?1] rl
+      [bitxor ?2 first ?1] 0
+      [sum ?3 first ?1] 0
+      [ifelse ?4 < first ?1 [?4] [first ?1]] 1e6
+      [ifelse 0 = ?2 [?3 - ?4] ["NO]]
+    )
+  )
+] bye

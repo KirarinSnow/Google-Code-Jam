@@ -1,0 +1,10 @@
+#!/usr/bin/env ucblogo
+
+; Problem: GoroSort
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+
+
+# 60 bytes.
+repeat rw[(pr "Case(word "# # ":)rw-count filter[#=?]rl)]bye
