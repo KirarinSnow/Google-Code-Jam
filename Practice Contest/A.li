@@ -1,0 +1,24 @@
+// Problem: Old Magician
+// Language: Lisaac
+// Author: KirarinSnow
+// Usage: cp thisfile.li gcj.li && lisaac gcj && ./gcj <input.in >output.out
+
+
+Section Header  
+  + name         := GCJ;
+  
+Section Public
+  - main <- (
+    IO.read_integer;
+    1.to (IO.last_integer) do { i : INTEGER;
+      ("Case #" + i.to_string + ": ").print;
+      
+      IO.read_integer;
+      IO.read_integer;
+      (IO.last_integer % 2 = 0).if {
+        "WHITE".println;
+      } else {
+        "BLACK".println;
+      };
+    };
+  );

@@ -1,0 +1,25 @@
+% Problem: Old Magician
+% Language: Metafont
+% Author: KirarinSnow
+% Usage: mf thisfile.mf <input.in | grep Case >output.out
+
+
+vardef compute =
+  string line;
+  line := readstring;
+  b := ASCII substring(length line - 1, length line) of line;
+  string out;
+  out := if b mod 2 = 0:
+    "WHITE" else: "BLACK" fi;
+  out
+enddef;
+
+t := scantokens readstring;
+message "...";
+message "";
+for i=1 upto t:
+  message "Case #" & decimal i & ": " & compute;
+  message "";
+endfor
+
+end
