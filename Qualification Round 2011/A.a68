@@ -15,8 +15,6 @@ main : (
     INT orange pos := 1;
     INT blue time := 0;
     INT orange time := 0;
-    BOOL blue pressed := FALSE;
-    BOOL orange pressed := FALSE;
 
     INT advance;
     CHAR robot;
