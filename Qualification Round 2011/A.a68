@@ -1,0 +1,52 @@
+#
+  Problem: Bot Trust
+  Language: ALGOL 68
+  Author: KirarinSnow
+  Usage: a68g thisfile.a68 <input.in >output.out 
+  Comments: Using Algol 68 Genie: http://www.xs4all.nl/~jmvdveer/algol.html
+#
+
+
+main : (
+  PROC compute = INT: (
+    INT n := read int,
+    INT count := 0,
+    INT blue pos := 1,
+    INT orange pos := 1;
+    INT blue time := 0;
+    INT orange time := 0;
+    BOOL blue pressed := FALSE;
+    BOOL orange pressed := FALSE;
+
+    INT advance;
+    CHAR robot;
+    INT button;
+	
+    FOR j TO n DO (
+      read char;
+      robot := read char;
+      button := read int;
+
+      IF robot EQ "B" THEN
+        advance := ABS(blue pos - button) - blue time;
+	IF advance LT 0 THEN advance := 0 FI;
+	count +:= advance + 1;
+	blue time := 0;
+	blue pos := button;
+	orange time +:= advance + 1
+      ELSE
+        advance := ABS(orange pos - button) - orange time;
+	IF advance LT 0 THEN advance := 0 FI;
+	count +:= advance + 1;
+	orange time := 0;
+	orange pos := button;
+	blue time +:= advance + 1
+      FI
+    ) OD;
+    count
+  );
+
+  FOR i TO read int DO
+    print(("Case #", whole(i, 0), ": ", whole(compute, 0), new line))
+  OD
+)
