@@ -1,0 +1,30 @@
+-- Problem: Old Magician
+-- Language: occam
+-- Author: KirarinSnow
+-- Usage: kroc -lcourse thisfile.occ -o exe && ./exe <input.in >output.out 
+-- Comments: Using KRoC: http://www.cs.kent.ac.uk/projects/ofa/kroc/
+
+
+#USE "course.lib"
+
+PROC gcj (CHAN BYTE kyb?, CHAN BYTE scr!, CHAN BYTE err!)
+  SEQ
+    INT c:
+    SEQ
+      in.int (c, 20, kyb, err)
+      SEQ i = 1 FOR c
+        SEQ
+          out.string ("Case #", 0, scr)
+          out.int (i, 0, scr)
+          out.string (": ", 0, scr)
+          INT b, w:
+          SEQ
+            in.int (w, 20, kyb, err)
+            in.int (b, 20, kyb, err)
+            IF
+              (b \ 2) AFTER 0
+                out.string ("BLACK", 0, scr)
+              TRUE
+                out.string ("WHITE", 0, scr)
+            scr ! '*n'
+:
