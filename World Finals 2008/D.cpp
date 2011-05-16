@@ -59,9 +59,10 @@ int solve()
 		    {
 			int x = (z/2) + (z%2) - 1 + u/m;
 			int y = (z/2) - (z%2) + u%m;
-			if (x >= 0 && x < n && y >= 0 && y < m && grid[x][y] != '.')
+			if (x >= 0 && x < n && y >= 0 && y < m &&
+			    grid[x][y] != '.')
 			{
-				q.push_back(make_pair(x*m+y, d+1));
+			    q.push_back(make_pair(x*m+y, d+1));
 			}
 		    }
 		    seen[u] = true;
