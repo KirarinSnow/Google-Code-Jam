@@ -1,0 +1,44 @@
+#
+  Problem: FreeCell Statistics
+  Language: ALGOL 68
+  Author: KirarinSnow
+  Usage: a68g thisfile.a68 <input.in >output.out 
+  Comments: Using Algol 68 Genie: http://www.xs4all.nl/~jmvdveer/algol.html
+            Fails on large set due to size of integers.
+#
+
+
+main : (
+  PROC compute = STRING: (
+    INT n := read int;
+    INT pd := read int;
+    INT pg := read int;
+
+    IF (pg EQ 100 AND pd LT 100) OR (pg EQ 0 AND pd GT 0) THEN
+      "Broken"
+    ELIF pd EQ 0 THEN
+      "Possible"
+    ELSE (
+      INT r := 100;
+      WHILE pd %* 5 EQ 0 OR pd %* 2 EQ 0 DO (
+        IF pd %* 5 EQ 0 THEN (
+          pd %:= 5;
+          IF r %* 5 EQ 0 THEN
+            r %:= 5
+          FI
+        ) FI;
+        IF pd %* 2 EQ 0 THEN (
+          pd %:= 2;
+          IF r %* 2 EQ 0 THEN
+            r %:= 2
+          FI
+        ) FI
+      ) OD;
+      (r GT n | "Broken" | "Possible")
+    ) FI
+  );  
+
+  FOR i TO read int DO
+    print(("Case #", whole(i, 0), ": ", compute, new line))
+  OD
+)
