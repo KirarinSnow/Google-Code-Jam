@@ -9,9 +9,8 @@
 file = extern("sed -e 's/^/[/g;s/$/],/g;s/ /,/g;' /dev/stdin | tr -d '\n' | sed -e '1 s/^/[/; $ s/,$/]/'")
 
 for(i = 1, file[1][1], \
-  ii = 2*i; line = file[ii]; \
-  n = line[1]; l = line[2]; h = line[3]; \
-  ii = 2*i+1; f = vecsort(file[ii]); \
+  line = file[2*i]; n = line[1]; l = line[2]; h = line[3]; \
+  f = vecsort(file[2*i+1]); \
   gcds = listcreate(n+1); listput(gcds, 0); \
   lcms = listcreate(n+1); listput(lcms, 1); \
   for(k = 1, n, \
