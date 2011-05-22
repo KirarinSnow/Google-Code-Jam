@@ -12,8 +12,8 @@ for(i = ii = 1, file[1], \
   n = file[ii+1]; l = file[ii+2]; h = file[ii+3]; \
   f = concat([1], vecsort(vecextract(file, vector(n, j, j+ii+3)))); \
   ii = ii+n+3; \
-  gcds = listcreate(n+1); listput(gcds, 0); \
-  for(k = 1, n, listput(gcds, gcd(gcds[#gcds], f[n-k+2]))); \
+  gcds = vector(n+1, j, 0); \
+  for(k = 1, n, gcds[k+1] = gcd(gcds[k], f[n-k+2])); \
   for(x = m = 1, n+1, \
     m = lcm(m, f[x]); g = gcds[n+2-x]; \
     if(x == n+1, \
