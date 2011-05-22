@@ -5,12 +5,13 @@
 \\ Comments: PARI/GP: http://pari.math.u-bordeaux.fr/
 
 
-\\ convert input file to PARI/GP-readable format...
-file = extern("sed -e 's/^/[/g;s/$/],/g;s/ /,/g;' /dev/stdin | tr -d '\n' | sed -e '1 s/^/[/; $ s/,$/]/'")
+extern("tr ' ' '\n' < /dev/stdin > temp")
+file = readvec("temp")
 
-for(i = 1, file[1][1], \
-  line = file[2*i]; n = line[1]; l = line[2]; h = line[3]; \
-  f = concat([1], vecsort(file[2*i+1])); \
+for(i = ii = 1, file[1], \
+  n = file[ii+1]; l = file[ii+2]; h = file[ii+3]; \
+  f = concat([1], vecsort(vecextract(file, vector(n, j, j+ii+3)))); \
+  ii = ii+n+3; \
   gcds = listcreate(n+1); listput(gcds, 0); \
   for(k = 1, n, listput(gcds, gcd(gcds[#gcds], f[n-k+2]))); \
   for(x = m = 1, n+1, \
