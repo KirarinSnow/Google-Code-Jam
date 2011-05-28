@@ -1,8 +1,8 @@
-v            Problem: Magicka
-v            Language: Befunge
-v            Author: KirarinSnow
-v            Usage: befunge -q thisfile.bef <input.in >output.out
-&
+v  Problem: Magicka
+v  Language: Befunge
+v  Author: KirarinSnow
+v  Usage: befunge -q thisfile.bef <input.in >output.out
+&  Comments: Only for small.
 0
 >\:!#@_1-\1+        >>v > 0p30p20p10p070p   >>>>>>>>>>>>>>>>>>>>>   ~:52*-#v_v 
 ^ v<<   ,,,,,,"Case #"< ^ 4p05p06 < v                                      < $

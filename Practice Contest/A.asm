@@ -1,5 +1,5 @@
 ;;; Problem: Old Magician
-;;; Language: x86
+;;; Language: x86 assembly
 ;;; Author: KirarinSnow
 ;;; Usage: nasm -f elf -o program.o thisfile.asm && ld -o program program.o &&
 ;;;          ./program <input.in >output.out
