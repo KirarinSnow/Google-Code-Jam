@@ -1,0 +1,46 @@
+%!PS
+%
+% Problem: Twibet
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+
+
+1 1 (%lineedit) run
+{
+    (Case #) print =only (: ) =
+    << >>
+    1 1 (%lineedit) run
+    {
+	1 index exch << >> put
+    } for
+    0
+    [(%lineedit) run]
+    {
+	exch 1 add exch
+	2 index exch get 1 index / put
+    } forall
+    1 exch 1 exch
+    {
+	<< >> exch
+	[ exch [] exch ]
+	{
+	    dup length 0 eq { exit } if
+	    aload pop
+	    3 copy exch pop known
+	    {
+		pop
+	    }
+	    {
+		3 copy exch pop / put
+		3 index exch get
+		{
+		    pop
+		    [ 3 1 roll ]
+		} forall
+	    } ifelse
+	} loop
+	pop length =
+    } for
+    pop
+} for

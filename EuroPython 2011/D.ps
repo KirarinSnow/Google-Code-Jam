@@ -1,0 +1,44 @@
+%!PS
+%
+% Problem: Twibet
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+% Comments: Recursive solution, execstackoverflow on large.
+
+
+1 1 (%lineedit) run
+{
+    (Case #) print =only (: ) =
+    {
+	pop
+	2 copy known
+	{
+	    pop
+	}
+	{
+	    2 copy / put
+	    2 index exch get
+	    3 index forall	    
+	} ifelse 
+    } bind
+    << >>
+    1 1 (%lineedit) run
+    {
+	1 index exch << >> put
+    } for
+    0
+    [(%lineedit) run]
+    {
+	exch 1 add exch
+	2 index exch get 1 index / put
+    } forall
+    1 exch 1 exch
+    {
+	<< >> exch
+	/
+	4 index exec
+	length =
+    } for
+    pop pop
+} for
