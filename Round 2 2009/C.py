@@ -11,9 +11,9 @@
 from random import *
 
 
-def cp(a,b):
-    return (len(a)*[True] == map(lambda x,y: x>y, a,b)) \
-        or (len(a)*[True] == map(lambda x,y: x<y, a,b))
+def cp(a, b):
+    return (len(a)*[True] == map(lambda x, y: x>y, a, b)) \
+        or (len(a)*[True] == map(lambda x, y: x<y, a, b))
 
 def compute():
     n, k = map(int, raw_input().split())
