@@ -1,0 +1,79 @@
+* 問題: 遊園地
+* 言語: SNOBOL
+* 著者: KirarinSnow
+* 使い方: snobol4 thisfile.sno <input.in >output.out
+* コメント: Qualification Round 2010の「Theme Park」という問題の解答と同じ。
+*       CSNOBOL4インタプリタを使う。http://www.snobol4.org/csnobol4/
+
+
+	DEFINE('CASE()')
+	DIGITS = '0123456789'
+	INPUT('READLINE', 1, 10000, '/dev/stdin')
+
+	CASES = READLINE
+	C = 1
+
+MAIN	OUTPUT = 'Case #' C ': ' CASE()
+	C = LT(C, CASES) C + 1 :S(MAIN)F(END)
+
+CASE	READLINE SPAN(DIGITS) . R ' ' SPAN(DIGITS) . K ' ' SPAN(DIGITS) . N
+	LINE = READLINE ' '
+	QUEUE = ARRAY(N)
+	P = 1
+PARSE	LINE SPAN(DIGITS) . QUEUE[P] ' ' REM . LINE
+	P = LT(P, N) P + 1 :S(PARSE)
+
+	SEEN = ARRAY(N, 0)
+	TOTAL = 0
+	INDEX = 0
+	RIDES = 0
+	RC = ARRAY(N, 0)
+
+I1	EQ(SEEN[INDEX + 1], 0) :F(O1)
+	LT(RIDES, R) :F(O1)
+	SEEN[INDEX + 1] = 1
+	F = 0
+	START = INDEX
+I2	LE(F + QUEUE[INDEX + 1], K) :F(O2)
+	F = F + QUEUE[INDEX + 1]
+	INDEX = REMDR(INDEX + 1, N)
+	EQ(INDEX, START) :S(O2)F(I2)
+O2	TOTAL = TOTAL + F
+	RC[RIDES + 1] = F
+	RIDES = RIDES + 1 :(I1)
+
+O1	LT(RIDES, R) :F(RET)
+
+	SEEN = ARRAY(N, 0)
+	RPC = 0
+	COST = 0
+
+I3	EQ(SEEN[INDEX + 1], 1) :S(O3)
+	SEEN[INDEX + 1] = 1
+	F = 0
+	START = INDEX
+I4	LE(F + QUEUE[INDEX + 1], K) :F(O4)
+	F = F + QUEUE[INDEX + 1]
+	INDEX = REMDR(INDEX + 1, N)
+	EQ(INDEX, START) :S(O4)F(I4)
+O4	RPC = RPC + 1
+	COST = COST + F :(I3)
+O3	REPS = (R - RIDES) / RPC
+	TOTAL = TOTAL + (COST * REPS)
+	RIDES = RIDES + RPC * REPS
+
+I5	LT(RIDES, R) :F(RET)
+	F = 0
+	START = INDEX
+I6	LE(F + QUEUE[INDEX + 1], K) :F(O6)
+	F = F + QUEUE[INDEX + 1]
+	INDEX = REMDR(INDEX + 1, N)
+	EQ(INDEX, START) :S(O6)F(I6)
+O6	TOTAL = TOTAL + F
+	RIDES = RIDES + 1 :(I5)
+
+RET	CASE = TOTAL
+	:(RETURN)
+
+END
+

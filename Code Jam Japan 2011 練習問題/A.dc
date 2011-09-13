@@ -1,0 +1,11 @@
+#!/usr/bin/dc
+#
+# 問題: 数珠繋ぎ
+# 言語: dc
+# 著者: KirarinSnow
+# 使い方: dc thisfile.dc <input.in >output.out 
+# コメント: Qualification Round 2010の「Snapper Chain」という問題の解答と同じ。
+
+
+[r]sf?st1[[Case #]Pdn[: ]P[ON][OFF]?1+r2r^%0=fPr10P1+dlt!<F]dsFx
+
