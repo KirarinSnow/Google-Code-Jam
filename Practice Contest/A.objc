@@ -1,0 +1,18 @@
+// Problem: Old Magician
+// Language: Objective-C
+// Author: KirarinSnow
+// Usage: gcc -x objective-c thisfile.objc -o exe && ./exe <input.in >output.out
+// Comments: Not a .m file because Octave is already using the extension.
+
+
+#import <stdio.h>
+ 
+void main() {
+  int i, t;
+  scanf("%d", &t);
+  for(i=1; i<=t; i++) {
+    int b, w;
+    scanf("%d %d", &w, &b);
+    printf("Case #%d: %s\n", i, (b%2 == 1) ? "BLACK" : "WHITE");
+  }
+}
