@@ -23,28 +23,28 @@ def test(a, b, c, o):
         fp = ''.join(map(lambda z: ['#', '?'][z == '?'], [a[i], b[i], c[i]]))
         for cr in (0, 1):
             for pcr in (0, 1):
-                if fp == '###':
-                    x = eval(a[i] + o + b[i] + o + str(pcr))
-                    if cr == [1, 0][0 <= x <= 9] and pc[pcr]:
-                        if x%10 == int(c[i]):
-                            cs[cr][pcr] = [a[i], b[i], c[i]]
-                elif fp == '?##':
-                    x = eval(c[i] + io + b[i] + io + str(pcr))
-                    if cr == [1, 0][0 <= x <= 9] and pc[pcr]:
-                        cs[cr][pcr] = [str(x%10), b[i], c[i]]
-                elif fp == '#?#':
-                    if o == '+':
-                        x = int(c[i]) - int(a[i]) - pcr
-                    else:
-                        x = int(a[i]) - int(c[i]) - pcr
-                    if cr == [1, 0][0 <= x <= 9] and pc[pcr]:
-                        cs[cr][pcr] = [a[i], str(x%10), c[i]]
-                elif fp == '##?':
-                    x = eval(a[i] + o + b[i] + o + str(pcr))
-                    if cr == [1, 0][0 <= x <= 9] and pc[pcr]:
-                        cs[cr][pcr] = [a[i], b[i], str(x%10)]
-                elif fp == '??#':
-                    if pc[pcr]:
+                if pc[pcr]:
+                    if fp == '###':
+                        x = eval(a[i] + o + b[i] + o + str(pcr))
+                        if cr == [1, 0][0 <= x <= 9]:
+                            if x%10 == int(c[i]):
+                                cs[cr][pcr] = [a[i], b[i], c[i]]
+                    elif fp == '?##':
+                        x = eval(c[i] + io + b[i] + io + str(pcr))
+                        if cr == [1, 0][0 <= x <= 9]:
+                            cs[cr][pcr] = [str(x%10), b[i], c[i]]
+                    elif fp == '#?#':
+                        if o == '+':
+                            x = int(c[i]) - int(a[i]) - pcr
+                        else:
+                            x = int(a[i]) - int(c[i]) - pcr
+                        if cr == [1, 0][0 <= x <= 9]:
+                            cs[cr][pcr] = [a[i], str(x%10), c[i]]
+                    elif fp == '##?':
+                        x = eval(a[i] + o + b[i] + o + str(pcr))
+                        if cr == [1, 0][0 <= x <= 9]:
+                            cs[cr][pcr] = [a[i], b[i], str(x%10)]
+                    elif fp == '??#':
                         if cr == 0:
                             if o == '+' and int(c[i]) >= pcr:
                                 cs[cr][pcr] = ['0', str(int(c[i])-pcr), c[i]]
@@ -55,8 +55,7 @@ def test(a, b, c, o):
                                 cs[cr][pcr] = [str(int(c[i])-pcr+1), '9', c[i]]
                             if o == '-' and int(c[i]) >= 1-pcr:
                                 cs[cr][pcr] = ['0', str(10-pcr-int(c[i])), c[i]]
-                elif fp == '#??':
-                    if pc[pcr]:
+                    elif fp == '#??':
                         if cr == 0:
                             if o == '+' and int(a[i]) <= 9-pcr:
                                 cs[cr][pcr] = [a[i], '0', str(int(a[i])+pcr)]
@@ -67,8 +66,7 @@ def test(a, b, c, o):
                                 cs[cr][pcr] = [a[i], str(10-pcr-int(a[i])), '0']
                             if o == '-' and int(a[i]) <= 8+pcr:
                                 cs[cr][pcr] = [a[i], str(int(a[i])+1-pcr), '9']
-                elif fp == '?#?':
-                    if pc[pcr]:
+                    elif fp == '?#?':
                         if cr == 0:
                             if o == '+' and int(b[i]) <= 9-pcr:
                                 cs[cr][pcr] = ['0', b[i], str(int(b[i])+pcr)]
@@ -79,8 +77,7 @@ def test(a, b, c, o):
                                 cs[cr][pcr] = [str(10-pcr-int(b[i])), b[i], '0']
                             if o == '-' and int(b[i]) >= 1-pcr:
                                 cs[cr][pcr] = ['0', b[i], str(10-pcr-int(b[i]))]
-                else:
-                    if pc[pcr]:
+                    else:
                         if cr == 0:
                             if o == '+':
                                 cs[cr][pcr] = ['0', '0', str(pcr)]
