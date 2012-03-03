@@ -39,15 +39,15 @@ def compute():
         for i in range(numdigs):
             if (s >> (numdigs-i-1))%2 == 1:
                 subs2 = list(subs)
-                for j in subs:
-                    j <<= 1
-                for j in subs2:
-                    j <<= 1
-                    j += 1
+                for j in range(len(subs)):
+                    subs[j] <<= 1
+                for j in range(len(subs2)):
+                    subs2[j] <<= 1
+                    subs2[j] += 1
                 subs.extend(subs2)
             else:
-                for j in subs:
-                    j <<= 1
+                for j in range(len(subs)):
+                    subs[j] <<= 1
     
         if isclique(s, n, k, p):
             cp[s] = 1
@@ -90,9 +90,9 @@ def compute():
 
     while l < u:
         k = (l+u)/2        
-        cp = [MAX]*(1 << n)
-        det((1 << n)-1, n, k, p)
-        if cp[(1 << n)-1] <= bound:
+        cp = [MAX]*(1<<n)
+        det((1<<n)-1, n, k, p)
+        if cp[(1<<n)-1] <= bound:
             u = k
         else:
             l = k+1
