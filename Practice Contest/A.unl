@@ -1,0 +1,135 @@
+# Problem: Old Magician
+# Language: Unlambda
+# Author: KirarinSnow
+# Usage: unlambda thisfile.unl <input.in >output.out 
+# Comments: Using Emil Jerabek's C interpreter:
+#           http://www.math.cas.cz/~jerabek/unlambda/unl.c
+
+
+# Main loop calls continuation with ( LAST_CHAR ( CASE_NUMBER . CONTINUATION ))
+
+```s`` ``s`ksk ``si`k`ki ``si`k`ki  i  # call cddr
+ `@ ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse read-char
+  i`k`?
+  ``s``s``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse newline
+   i`k``s`kk``s`kr``s``s`k``si`kk # car
+   i``s``s`k`si``s`kk ``s`k.#``s`k. ``s`k.e``s`k.s``s`k.a``s`k.C  # "Case #"
+   i``s`kk``s``s`kk``s``s`k``s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+    ``s`k``si`kk # car
+   i``s``s`k``s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+    ``s`k``s``s`k`s``sii``s`kki`k``s`k`s``s # increment loop
+     ``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k`ki # 0
+      `k````s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+       ``s``s`kski # 2
+        ````s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+         `kiv # end
+      ``s`k`s``s`k``s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+       ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+        ``s``s`k``s``s`ks``s`kk``s``si`k
+            ``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+         ``s`k``si`kk # car
+         i`k``i``s``s`kski``s``s`ksk``s``s`kski # 9
+        ``s`k`s``s`ksk # inc
+         ``s`k``si`kk # car
+        i`ki # 1
+       ``s``s`ks``s`k`s`k``sii``s`k`s # loop
+        ``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+         ``s``s`k``s``s`ks``s`kk``s``si`k
+             ``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+          ``s`k``si`kk # car
+          i`k``i``s``s`kski``s``s`ksk``s``s`kski # 9
+        `ki``s`kki`k``s`k``si`k`ki # cdr
+      i``s`k``si`kk # car
+       ``s`k``si`k`ki # cdr
+      i``s`k``si`k`ki # cdr
+       ``s`k``si`k`ki # cdr
+   i``s`k. ``s`k.:  # ": "
+    ``s`k``s``s`k`s``sii``s`kki`k``s`k`s``s``s # write case number loop
+     ``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k`ki # 0
+      `ki
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`ki # 1
+      `k.0
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k``s``s`kski # 2
+      `k.1
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k``s``s`ksk``s``s`kski # 3
+      `k.2
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k``i``s``s`kski``s``s`kski # 4
+      `k.3
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k``s``s`ksk``i``s``s`kski``s``s`kski # 5
+      `k.4
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k````s`ksk``s``s`kski``s``s`ksk``s``s`kski # 6
+      `k.5
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k``s``s`ksk````s`ksk``s``s`kski``s``s`ksk``s``s`kski # 7
+      `k.6
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k``i``s``s`ksk``s``s`kski``s``s`kski # 8
+      `k.7
+     ``s``s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+      ``s``s`k``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv # leq
+       ``s`k``si`kk # car
+       i`k``i``s``s`kski``s``s`ksk``s``s`kski # 9
+      `k.8
+      `k.9
+     ``s``s`ks``s`k`s`k``sii``s``s`ks``s`k`s # loop
+      ``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+       ``s`k``s`kc``s`k`sv``ss`k`ki # nonzero
+        ``s`k``si`kk # car
+      i``s`kki`k`ki`k``s`k``si`k`ki # cdr
+    i``s`k``si`kk # car
+     ``s`k``si`k`ki # cdr
+    i`k``s`k`si``s`kk``s`k``si`k`ki # cdr
+  i`k`c # continuation
+   ``s`k``sii``s # read loop
+    `k@``s`kk``s`k?
+      ``s``s`ks``s`k`s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse (nl)
+     i``s`kk``s`kk``s`k```s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+      |``s`k```s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+       ````s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+        ``s``s`kski # 2
+         ````s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+          `kiv # end
+       i`k`k`ci # continuation
+   `k``s`k```s``s`ks``s`kk``s`ks``s`k`sik`kk # cons
+    ```s`k?1
+     ``s``s`ks``s`k`s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+    i``s`kki``s`kk``s`k?3
+     ``s``s`ks``s`k`s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+    i``s`kki``s`kk``s`k?5
+     ``s``s`ks``s`k`s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+    i``s`kki``s`kk``s`k?7
+     ``s``s`ks``s`k`s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+    i``s`kki``s`kk``s`k?9
+     ``s``s`ks``s`k`s``s`k``s`kc``s`k`s`k`k`ki``ss`k`kk # ifthenelse
+    i``s`kki`k`k
+     ````s`ksk ````s`ksk ````s`ksk ````s`ksk .E.T.I.H.W  # "WHITE"
+     ````s`ksk ````s`ksk ````s`ksk ````s`ksk .K.C.A.L.B  # "BLACK"
+  i`ke # end?
