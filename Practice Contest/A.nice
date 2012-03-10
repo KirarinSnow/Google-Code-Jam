@@ -1,0 +1,22 @@
+// Problem: Old Magician
+// Language: Nice
+// Author: KirarinSnow
+// Usage: mkdir temp && cp thisfile.nice temp &&
+//        nicec temp -o exec && ./exec <input.in >output.out
+
+
+import java.io.*;
+
+void main(String[] args)
+{
+  let reader = new BufferedReader(new InputStreamReader(System.in));
+  let t = Integer.parseInt(reader.readLine());
+  for(int i : 1..t)
+    {
+      let s = reader.readLine();
+      if (s == null) return;
+      let b = Integer.parseInt(split(s, ' ')[1]);
+      let out = (b%2==1) ? "BLACK" : "WHITE";
+      System.out.println("Case #" i ": " out);
+    }
+}

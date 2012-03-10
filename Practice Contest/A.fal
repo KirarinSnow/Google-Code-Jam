@@ -1,0 +1,13 @@
+// Problem: Old Magician
+// Language: Falcon
+// Author: KirarinSnow
+// Usage: falcon thisfile.fal <input.in >output.out
+
+
+for i in [1:int(input())+1]
+    >> "Case #" + i + ": "
+    switch int(strSplit(input(), " ")[1])%2
+    case 0 : > "WHITE"
+    case 1 : > "BLACK"
+    end
+end
