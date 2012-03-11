@@ -1,0 +1,17 @@
+// Problem: Old Magician
+// Language: Nemerle
+// Author: KirarinSnow
+// Usage: ncc thisfile.n -o exec && ./exec.exe <input.in >output.out
+
+
+using System.Console;
+
+mutable q;
+_ = int.TryParse(ReadLine(), out q);
+
+for (mutable i = 1; i <= q; i++)
+{
+  mutable b;
+  _ = int.TryParse(ReadLine().Split()[1], out b);
+  WriteLine("Case #{0}: {1}", i, if (b%2==1) "BLACK" else "WHITE");
+}
