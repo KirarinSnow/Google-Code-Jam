@@ -1,0 +1,215 @@
+# Problem: Speaking in Tongues
+# Language: Unlambda
+# Author: KirarinSnow
+# Usage: unlambda thisfile.unl <input.in >output.out 
+# Comments: Using Emil Jerabek's C interpreter:
+#           http://www.math.cas.cz/~jerabek/unlambda/unl.c
+
+
+
+# note:
+# this language is impossible to understand
+# there's nothing but combinators
+# so it is okay if you want to just give up
+
+
+
+# main loop works by passing a continuation and calling it on an updated state;
+# state is of the form   (characters (case_counter . continuation))
+
+# the case counter is a list using Church numerals one higher than the digit
+# represented; the list terminates with Church numeral 0
+
+
+# MAIN LOOP
+```s `` ``s`ksk ``si`k`ki  ``si`k`ki i
+ `@ ``s``s``s`k    ``s`kc``s`k`s`k`k`ki``ss`k`kk  i`k`     ?
+                                                           # newline
+  # if newline, print
+  ``s``s``s``s``s`k
+     ``s`kc``s`k`s`k`k`ki``ss`k`kk 
+        i`k``s`kk``s`kr``s``s`k
+
+             # "Case #"
+     ``si`kk  i``s``s`k`si``s`kk``s`k.#``s`k  .    # space
+             ``s`k.e``s`k.s``s`k.a``s`k.C  i
+
+   ``s`kk``s``s`kk``s`k`     ``s``s`ks``s`kk``s`ks``s`k`sik`kk   i
+  ``s``s`k     ``s``s`ks``s`kk``s`ks``s`k`sik`kk 
+
+
+# INCREMENT CASE COUNTER
+``s`k``s``s`k`s``sii``s`kki`k``s`k`s``s``s`k
+     ``s`kc``s`k`s`k`k`ki``ss`k`kk 
+``s``s`k
+   ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv 
+``s`k   ``si`kk  i`k   `ki
+`k ``  ``s``s`ks``s`kk``s`ks``s`k`sik`kk   ``s``s`kski 
+   ``  ``s``s`ks``s`kk``s`ks``s`k`sik`kk   `ki  v
+
+
+ # construct new state
+``s`k`s``s`k     ``s``s`ks``s`kk``s`ks``s`k`sik`kk
+
+ # increment digit
+``s``s``s`k
+     ``s`kc``s`k`s`k`k`ki``ss`k`kk  ``s``s`k
+     ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv 
+     ``s`k    ``si`kk   
+           i`k     ``i``s``s`kski``s``s`ksk``s``s`kski 
+``s`k     `s``s`ksk  
+``s`k    ``si`kk   i`k    i  
+
+
+ # carrying for incrementing case counter
+``s``s`ks``s`k`s`k
+  ``sii``s`k`s``s``s`k
+  ``s`kc``s`k`s`k`k`ki``ss`k`kk
+  ``s``s`k
+    ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv 
+``s`k   ``si`kk  i`k
+     ``i``s``s`kski``s``s`ksk``s``s`kski 
+`ki``s`kki`k``s`k
+     ``si`k`ki  i``s`k
+     ``si`kk  ``s`k   ``si`k`ki 
+   i``s`k   ``si`k`ki  ``s`k   ``si`k`ki  i
+
+    ``s`k.  ``s`k.:           # ": "
+
+
+# OUTPUT CASE NUMBER
+``s`k``s``s`k
+   `s``sii ``s`kki`k``s`k`s  # loop through digits
+
+ # mappings: Church no. 1 -> "0"; 2 -> "1"; etc.
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k
+    `ki  # 0
+    `ki
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k
+    i
+    `k.0
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k  
+    ``s``s`kski
+    `k.1
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k  
+    ``s``s`ksk``s``s`kski
+    `k.2
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k  
+    ``i``s``s`kski``s``s`kski
+    `k.3
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k  
+    ``s``s`ksk``i``s``s`kski``s``s`kski
+    `k.4
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k  
+    ````s`ksk``s``s`kski``s``s`ksk``s``s`kski
+    `k.5
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k  
+    ``s``s`ksk````s`ksk``s``s`kski``s``s`ksk``s``s`kski
+    `k.6
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv
+``s`k ``si`kk  i`k
+    ``i``s``s`ksk``s``s`kski``s``s`kski
+    `k.7
+``s``s``s`k ``s`kc``s`k`s`k`k`ki``ss`k`kk 
+``s``s`k  ``s``s`ks``s`kk``s``si`k``s`k`sik`k`ki`k``s``si`k``s`k`sikv 
+``s`k ``si`kk  i`k
+    ``i``s``s`kski``s``s`ksk``s``s`kski
+    `k.8
+    `k.9
+
+   
+  ``s``s`ks``s`k`s`k
+      ``sii ``s``s`ks``s`k`s``s`k
+          ``s`kc``s`k`s`k`k`ki``ss`k`kk    # check for end of number (0)
+     ``s`k   
+     ``s`kc``s`k`sv``ss`k`ki   ``s`k  ``si`kk  i
+   ``s`kki`k`ki`k``s`k     ``si`k`ki  
+
+
+     i``s`k   ``si`kk    ``s`k   ``si`k`ki  
+
+
+# STATE UPDATE PER CHARACTER
+i`k``s``s`ks``s`k`s`k   ``s``s`ks``s`kk``s`ks``s`k`sik`kk   # (chars . stuff)
+   ``s``s`ks``s`k`s`k   ``s`ksk    # compose previous char buffer with current
+   ``s`k`s`k  ``si`kk  ``s`k`si``s`kki``s`kk  ``s`k   
+          ``si`kk   i``s`kk``s`k  ``si`k`ki  i`k  # stuff: (case . continuation)
+
+   `c``s`k    # main continuation
+
+
+
+# FIRST-LINE CONTINUATION
+
+# call first-line continuation until newline
+   ``sii ``s`k@ ``s`kk``s`k  ?
+   # newline char
+``s``s`ks``s`k`s``s`k
+  ``s`kc``s`k`s`k`k`ki``ss`k`kk   # if newline (first line)
+
+ # construct initial state
+  i``s`kk``s`kk``s`k` 
+   ``s``s`ks``s`kk``s`ks``s`k`sik`kk i  # initial char buffer (i)
+    ``s`k`  ``s``s`ks``s`kk``s`ks``s`k`sik`kk
+
+# initial case counter: (2 (0 . v))
+`` ``s``s`ks``s`kk``s`ks``s`k`sik`kk  ``s``s`kski
+`` ``s``s`ks``s`kk``s`ks``s`k`sik`kk  `ki  v
+
+ i`k`k   `ci # continuation for disregarding first line
+
+
+
+# CHARACTER TRANSFORMATION
+
+# for each character, update
+`k``s`k`  ``s``s`ks``s`kk``s`ks``s`k`sik`kk   # (outchar . stuff)
+
+  # character map conditionals
+  `?y ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.a
+`k`?n ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.b
+`k`?f ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.c
+`k`?i ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.d
+`k`?c ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.e
+`k`?w ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.f
+`k`?l ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.g
+`k`?b ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.h
+`k`?k ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.i
+`k`?u ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.j
+`k`?o ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.k
+`k`?m ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.l
+`k`?x ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.m
+`k`?s ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.n
+`k`?e ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.o
+`k`?v ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.p
+`k`?z ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.q
+`k`?p ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.r
+`k`?d ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.s
+`k`?r ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.t
+`k`?j ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.u
+`k`?g ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.v
+`k`?t ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.w
+`k`?h ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.x
+`k`?a ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.y
+`k`?q ``s``s``s`k  ``s`kc``s`k`s`k`k`ki``ss`k`kk   i`k.z
+                                                    `k.   # otherwise, space
+
+# termination
+i`ke

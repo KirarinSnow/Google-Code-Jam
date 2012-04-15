@@ -1,0 +1,26 @@
+# Problem: Recycled Numbers
+# Language: Icon
+# Author: KirarinSnow
+# Usage: iconc -o exec thisfile.icn && ./exec <input.in >output.out
+
+
+procedure compute()
+    k := read()
+    k ? while not pos(0) do {tab(many(' ')); a := b; b := tab(upto(' ') | 0)}
+    
+    c := 0
+    every x := a to b do {
+	y := x
+	repeat {
+	    y := y%10^(*a-1)*10 + y/10^(*a-1)
+	    c +:= if x < y & y <= b then 1 else 0;
+	    if x = y then break
+	}
+    }
+    
+    return c
+end
+
+procedure main()
+    every write("Case #", 1 to read(), ": ", compute())
+end
