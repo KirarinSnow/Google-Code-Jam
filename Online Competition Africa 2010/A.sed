@@ -1,4 +1,4 @@
-#!/bin/sed
+#!/bin/sed -f
 #
 # Problem: Odd Man Out
 # Language: sed

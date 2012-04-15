@@ -1,4 +1,4 @@
-#!/bin/sed
+#!/bin/sed -f
 #
 # Problem: Magicka
 # Language: sed

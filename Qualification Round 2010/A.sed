@@ -1,4 +1,4 @@
-#!/bin/sed
+#!/bin/sed -f
 #
 # Problem: Snapper Chain
 # Language: sed
