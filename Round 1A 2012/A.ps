@@ -1,0 +1,36 @@
+%!PS
+%
+% Problem: Password Problem
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+% Comments: Only works for small input.
+
+
+/rd {(%stdin) (r) file token pop} def
+
+/compute
+{
+    /a rd def
+    /b rd def
+    /m b 2 add def
+    /pg 1 def
+    
+    0 1 a 1 sub {
+	/j exch def
+	/pg pg rd mul store
+        /i a j sub 1 sub def
+	/exg b a sub 2 i mul add 1 add def
+	/exb 2 b mul 2 i mul add a sub 2 add def
+	/m m pg exg mul 1 pg sub exb mul add min store
+    } for
+    
+    m
+} def
+
+
+1 1 rd
+{
+    (Case #) print 5 string cvs print (: ) print
+    compute ==
+} for

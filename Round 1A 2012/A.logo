@@ -1,0 +1,34 @@
+#!/usr/bin/env ucblogo
+
+; Problem: Password Problem
+; Language: Logo
+; Author: KirarinSnow
+; Usage: ucblogo thisfile.logo <input.in >output.out
+
+
+to compute
+  make "l rl
+  make "a first :l
+  make "b last :l
+  make "p rl
+  
+  make "m :b+2
+
+  make "pg 1
+  
+  for [j 0 :a-1] [
+    make "pg product :pg first :p
+    make "p bf :p
+    make "i :a-:j-1
+    make "exg :b-:a+2*:i+1
+    make "exb 2*:b+2*:i-:a+2
+    make "mc :pg*:exg + (1-:pg)*:exb
+    if :mc<:m [make "m :mc]
+  ]
+
+  output :m
+end
+
+repeat rw [(pr "Case (word "# # ":) compute)]
+
+bye
