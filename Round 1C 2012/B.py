@@ -4,7 +4,8 @@
 # Language: Python
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
-# Comments: Uses http://mpmath.googlecode.com for arbitrary precision
+# Comments: Uses http://mpmath.googlecode.com for arbitrary precision.
+
 
 from mpmath import *
 
@@ -38,9 +39,12 @@ for case in range(int(raw_input())):
 
     accs = map(mpf, raw_input().split())
     
+    # for each point, compute the time delay necessary to reach that point
+    # if we wait at the top of the hill for the current delay and then
+    # accelerate without braking
     for acc in accs:
         delay = mpf(0)
         for i in range(1, nn):
             if x[i] < mpf('0.5')*acc*(t[i]-delay)**mpf(2):
-                delay += t[i]-(sqrt(mpf(2)*x[i]/acc)+delay)
+                delay = t[i]-sqrt(mpf(2)*x[i]/acc)
         print sqrt(d*mpf(2)/acc)+delay
