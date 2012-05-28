@@ -2,7 +2,7 @@
 // Language: Java
 // Author: KirarinSnow
 // Usage: javac thisfile.java && java thisfile <input.in >output.out
-// Comments: Works only on small input. Adapted from reference solution.
+// Comments: Adapted from reference solution.
 
 
 import java.io.*;
@@ -48,6 +48,7 @@ public class E {
 	    }
 	    res = Math.min(res, H2);
 	}
+	cache[a][h1] = res;
 	return res;
     }
 

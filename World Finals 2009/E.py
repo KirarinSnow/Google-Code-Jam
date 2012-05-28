@@ -4,7 +4,7 @@
 # Language: Python
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
-# Comments: Adapted from reference solution. Takes too long for large input.
+# Comments: Adapted from reference solution.
 
 
 MAX = 1<<20
@@ -49,6 +49,7 @@ def h2(a, b, h1):
                 else:
                     bot -= 1
         res = min(res, H2)
+    cache[a][h1] = res
     return res
 
 def events(startx):
