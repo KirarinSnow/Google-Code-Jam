@@ -31,21 +31,21 @@ for i in range(input()):
             if dir %2 == 0:
                 voff += 1
             else:
-                hoff +=1
+                hoff += 1
         else:
             if ch == 'W':
                 if dir == 0:
                     r += 1
                 if dir == 1:
-                    c+=1
+                    c += 1
                 if dir == 2:
                     r -= 1
                 if dir == 3:
                     c -= 1
             if ch == 'R':
-                dir = (dir + 1)%4
+                dir = (dir+1)%4
             if ch == 'L':
-                dir = (dir - 1)%4
+                dir = (dir-1)%4
 
             if nt == 'W' or nt == 'R' or nt == 'L':
                 if c > maxc:
@@ -57,7 +57,7 @@ for i in range(input()):
                 if r < minr:
                     minr = r
 
-    width = maxc - minc +1
+    width = maxc - minc + 1
     height = maxr - minr 
 
     sr = 0
@@ -71,17 +71,17 @@ for i in range(input()):
         mm.append([])
         mmm.append([])
         for jjj in range(width):
-            m[iii].append(['.','.','.','.'])
+            m[iii].append(['.', '.', '.', '.'])
             mm[iii].append(0)
             mmm[iii].append(0)
 
     c = sc
-    r = sr -1
+    r = sr - 1
     dir = 0
     t = 0
     oc = 'W'
     for ch in s:
-        if 0 <= r < height and 0 <= c < width :
+        if 0 <= r < height and 0 <= c < width:
             if ch == 'W':
                 m[r][c][dir%4] = 'o'
                 if oc == 'R' or oc == 'W':
@@ -113,13 +113,13 @@ for i in range(input()):
     for iiii in range(height):
         for jjjj in range(width):
             if m[iiii][jjjj][2] == 'o':
-                mm[iiii][jjjj]+=1
+                mm[iiii][jjjj] += 1
             if m[iiii][jjjj][0] == 'o':
-                mm[iiii][jjjj]+=2
+                mm[iiii][jjjj] += 2
             if m[iiii][jjjj][1] == 'o':
-                mm[iiii][jjjj]+=4
+                mm[iiii][jjjj] += 4
             if m[iiii][jjjj][3] == 'o':
-                mm[iiii][jjjj]+=8 
+                mm[iiii][jjjj] += 8 
             if mm[iiii][jjjj] <= 9:
                 mmm[iiii][jjjj] = str(mm[iiii][jjjj])
             else:

@@ -15,6 +15,7 @@ $max = <>;
 for ($n = 1; $n <= $max; $n++)
 {
     print "Case #$n: ";
+
     $line = <>;
     chomp($line);
     @stuff = split(/ /, $line);
@@ -33,10 +34,10 @@ for ($n = 1; $n <= $max; $n++)
 	$num += index($inset, $input[$o])*($inbase**($#input - $o));
     }
 
-    for ($j = floor(log($num)/log($outbase)); $j >=0; $j--)
+    for ($j = floor(log($num)/log($outbase)); $j >= 0; $j--)
     {
 	print $outchars[floor($num/($outbase**$j))%$outbase];
     }
 
-   print $/;
+    print $/;
 }

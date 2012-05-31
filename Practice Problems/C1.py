@@ -15,8 +15,8 @@ for i in range(s+1):
     for j in range(bs+1):
         t[i].append(0)
 
-for d in range(1,s+1):
-    for b in range(1,d+1):
+for d in range(1, s+1):
+    for b in range(1, d+1):
         if b == 1:
             t[d][b] = d
         else:
@@ -25,7 +25,7 @@ for d in range(1,s+1):
             else:
                 t[d][b] = 1 + t[d-1][b-1] + t[d-1][b]
 
-def compf(d,b):
+def compf(d, b):
     if b == 1:
 	return d
     elif b == 2:
@@ -52,7 +52,7 @@ def cc4(d):
     d2 = d
     return int((d2-1)**4/24.+(d2-1)**3/12.+(11/24.)*(d2-1)**2+(17/12.)*(d2-1)+1)
 
-def cc(b,d):
+def cc(b, d):
     if b == 2:
 	return cc2(d)
     if b == 3:
@@ -68,8 +68,8 @@ def factorial(n):
     else:
 	return n * factorial(n-1)
 
-def compd(f,b):
-    if b>4:
+def compd(f, b):
+    if b > 4:
 	d = 1            
 	while d < s:
 	    bb = 1
@@ -78,28 +78,28 @@ def compd(f,b):
 		    break
 		if t[d][bb] >= f:
 		    return d
-		bb +=1 
-	    d+=1
+		bb += 1
+	    d += 1
 	return -1
     else:
 	if b == 1:
 	    return f
 	else:
 	    dt = int((factorial(b)*(f+1))**(1.0/b)+10)
-	    while cc(b,dt) >= f:
+	    while cc(b, dt) >= f:
 		dt -= 1
 	    return dt+1
 
-def compb(f,d):
+def compb(f, d):
     if (d < s):
 	b = 0
 	while t[d][b] < f:
-	    b+=1
+	    b += 1
 	return b
     else:
 	b1 = 4
-	while b1 >= 1 and cc(b1,d) > f:
-	    b1 -=1
+	while b1 >= 1 and cc(b1, d) > f:
+	    b1 -= 1
 	return b1 + 1
 
 def reduc(x):
@@ -110,11 +110,11 @@ def reduc(x):
 
 
 for i in range(input()):
-    f,d,b = map(int, raw_input().split())
+    f, d, b = map(int, raw_input().split())
     
-    ff = compf(d,b)
-    dd = compd(f,b)
-    bb = compb(f,d)
-    fff, ddd, bbb = map(reduc, [ff,dd,bb])
+    ff = compf(d, b)
+    dd = compd(f, b)
+    bb = compb(f, d)
+    fff, ddd, bbb = map(reduc, [ff, dd, bb])
     
     print "Case #%d: %d %d %d" % (i+1, fff, ddd, bbb)
