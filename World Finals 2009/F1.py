@@ -351,7 +351,7 @@ def compute(case):
         print x
 
     fi.write('showpage\n')
-    fi.close()
+    fi.close() 
 
 
 for i in range(int(raw_input())):
