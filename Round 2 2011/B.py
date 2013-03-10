@@ -3,8 +3,8 @@
 # Problem: Spinning Blade
 # Language: Python
 # Author: KirarinSnow
-# Usage: python thisfile.py <input.in >output.out 
-# Comments: Times out on large.
+# Usage: pypy thisfile.py <input.in >output.out 
+# Comments: Runs in 7 minutes using pypy for the large input.
 
 
 mb = []
