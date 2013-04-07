@@ -14,6 +14,7 @@
 #           thus we have the following Octave solution in its place.
 #           Not too exciting as the others, perhaps, but still a pleasant
 #           note on which to conclude this qualification round.
+#           Times out on the large input.
 
 
 input = fscanf(0, "%d", Inf);
