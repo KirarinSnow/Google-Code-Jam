@@ -1,7 +1,7 @@
 # Problem: Old Magician
 # Language: GAP
 # Author: KirarinSnow
-# Usage: gap -b -q thisfile.py <input.in >output.out 
+# Usage: gap -b -q thisfile.gap <input.in >output.out 
 
 
 stdin := InputTextUser();
