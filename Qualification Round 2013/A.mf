@@ -1,0 +1,62 @@
+% Problem: Tic-Tac-Toe-Tomek
+% Language: Metafont
+% Author: KirarinSnow
+% Usage: mf thisfile.mf <input.in | grep Case >output.out
+% Comments: I wanted to make a nice Tic-Tac-Toe-Tomek font or something, but
+%           didn't have time. :(
+
+
+primarydef a _ b = substring(b-1, b) of a enddef;
+
+t := scantokens readstring;
+message "...";
+message "";
+
+for case=1 upto t:
+  string g[];
+  for i=1 upto 4:
+    g[i] := readstring;
+  endfor
+  readstring;
+
+  for i=1 upto 4:
+    g[4+i] := "";
+    for j=1 upto 4:
+      g[4+i] := g[4+i] & (g[j] _ i);
+    endfor
+  endfor
+
+  g[9] := "";
+  g[10] := "";
+  for i=1 upto 4:
+    g[9] := g[9] & (g[i] _ i);
+    g[10] := g[10] & (g[i] _ (5 - i));
+  endfor
+
+  string out;
+  out := "Draw";
+
+  for i=1 upto 4:
+    for j=1 upto 4:
+      if (g[i] _ j) = ".":
+	out := "Game has not completed";
+      fi
+    endfor
+  endfor
+  
+  for i=1 upto 10:
+    if (g[i] = "XXXX") or (g[i] = "XXXT") or (g[i] = "XXTX") or
+      (g[i] = "XTXX") or (g[i] = "TXXX"):
+	out := "X won";
+    fi
+    if (g[i] = "OOOO") or (g[i] = "OOOT") or (g[i] = "OOTO") or
+      (g[i] = "OTOO") or (g[i] = "TOOO"):
+	out := "O won";
+    fi
+  endfor
+  
+  message "Case #" & decimal case & ": " & out;
+  message "";
+endfor
+
+end

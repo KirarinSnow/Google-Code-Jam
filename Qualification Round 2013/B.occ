@@ -1,0 +1,68 @@
+-- Problem: Lawnmower
+-- Language: occam
+-- Author: KirarinSnow
+-- Usage: kroc -lcourse thisfile.occ -o exe && ./exe <input.in >output.out 
+-- Comments: Using KRoC: http://www.cs.kent.ac.uk/projects/ofa/kroc/
+--           Apparently doesn't work on the large.
+
+
+-- Why use a lawnmower to mow the lawn when you can use ... occam's razor?!!
+
+#USE "course.lib"
+
+PROC gcj (CHAN BYTE kyb?, CHAN BYTE scr!, CHAN BYTE err!)
+  SEQ
+    INT c:
+    SEQ
+      in.int (c, 20, kyb, err)
+      SEQ i = 1 FOR c
+        SEQ
+          out.string ("Case #", 0, scr)
+          out.int (i, 0, scr)
+          out.string (": ", 0, scr)
+          INT n, m, t, u:
+          [100][100]INT lawn:
+          BOOL p, h, v:
+          SEQ
+            p := TRUE
+            in.int (n, 20, kyb, err)
+            in.int (m, 20, kyb, err)
+            SEQ j = 1 FOR n
+              SEQ k = 1 FOR m
+                SEQ
+                  in.int (t, 20, kyb, err)
+                  lawn[j][k] := t
+            SEQ j = 1 FOR n
+              SEQ k = 1 FOR m
+                SEQ
+                  t := lawn[j][k]
+                  h := TRUE
+                  SEQ l = 1 FOR m
+                    SEQ
+                      u := lawn[j][l]
+                      IF
+                        u AFTER t
+                          h := FALSE
+                        TRUE
+                          SKIP
+                  v := TRUE
+                  SEQ l = 1 FOR n
+                    SEQ
+                      u := lawn[l][k]
+                      IF
+                        u AFTER t
+                          v := FALSE
+                        TRUE
+                          SKIP
+                  IF
+                    h OR v
+                      SKIP
+                    TRUE
+                      p := FALSE
+            IF
+              p
+                out.string ("YES", 0, scr)
+              TRUE
+                out.string ("NO", 0, scr)
+          scr ! '*n'
+:
