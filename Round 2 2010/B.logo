@@ -25,10 +25,11 @@ to compute
       localmake "z #
       map [
         min (sum item # :l item # :r) ~
-        (sum item ? :l item ? :r item :z item :y :t)
+          (sum item ? :l item ? :r item :z item :y :t)
       ] iseq 2 count :r
     ] filter [equalp modulo # 2 1] ? filter [equalp modulo # 2 0] ?)
   ] map [localmake "x ? map [ifelse (# > (:p - :x)) [0] [:inf]] iseq 0 :p] :m
+  
 end
 
 for [case 1 readword] [print (word "|Case #| :case "|: | compute)]
