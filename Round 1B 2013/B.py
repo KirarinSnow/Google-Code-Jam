@@ -4,63 +4,49 @@
 # Language: Python
 # Author: KirarinSnow
 # Usage: python thisfile.py <input.in >output.out
-# Comments: Works only for small input.
 
+
+import sys
+sys.setrecursionlimit(2000)
 
 from fractions import *
+from math import *
 
-r = 0
-l = 0
-t = []
-while r < 20: # only for small
-    # iterate over diamond-shaped probability tables
-    l += 2
+def row(n):
+    if n in d:
+        return d[n]
 
-    # top
-    p = [Fraction(1)]
-    r += 1
-    s = [0]*l
-    t.append((l, s, p))
+    o = int(floor(sqrt(9+8*(n-1))-3)/4.0)+1
+    l = o*2
+    r = 4*o+1
+    q = 2*o*(o-1)+o-1
+    i = n-q-1
+    
+    if i <= r/2: # top half
+        p = [Fraction(1)/(1<<i)]
+        for j in range(i):
+            p.append(p[-1]*(i-j)/(j+1))
+        s = map(lambda x: max(0, i-x), range(i))
+        
+        d[n] = l, s, p
+    else: # bottom half
+        l, ps, pp = row(n-1)
+        pp = map(float, pp)
+        p = []
+        for k in range(len(pp)-1):
+            p.append((pp[k]+pp[k+1])/2)
+        p[0] += pp[0]/2
+        p[-1] += pp[-1]/2
+        s = [r-i]*(l-r+i)+range(1, r-i+1)[::-1]
+        d[n] = l, s, p
+    return d[n]
 
-    # expansion
-    s = [1]+[0]*(l-1)
-    for j in range(l):
-        pp = []
-        for i in range(len(p)+1):
-            if i == 0 or i == len(p):
-                pp.append(p[0]/2)
-            else:
-                pp.append(p[i]/2+p[i-1]/2)
-        p = pp
-        r += 1
-        t.append((l, s, p))
-        s = ([s[0]+1]+s)[:l]
-
-    # contraction
-    ps = range(l)
-    for j in range(l-1):
-        pp = []
-        for i in range(len(p)-1):
-            if i == 0 or i == len(p)-2:
-                pp.append(p[0]+p[1]/2)
-            else:
-                pp.append(p[i]/2+p[i+1]/2)
-        p = pp
-        r += 1
-        s = map(lambda x: len(p)-x, ps)
-        t.append((l, s, p))
-        ps = ([0]+ps)[:l]
-
-    # bottom
-    p = [Fraction(1)]
-    r += 1
-    s = map(lambda x: len(p)-x, ps)
-    t.append((l, s, p))
-
+d = {}
 
 for case in range(int(raw_input())):
     n, x, y = map(int, raw_input().split())
-    l, s, p = t[n-1]
+
+    l, s, p = row(n)
     
     x = abs(x)
     if y < -x + l-1: # inside heap
