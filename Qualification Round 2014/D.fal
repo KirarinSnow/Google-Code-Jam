@@ -1,0 +1,36 @@
+// Problem: Deceitful War
+// Language: Falcon
+// Author: KirarinSnow
+// Usage: falcon thisfile.fal <input.in >output.out
+
+
+function pair( p )
+    return function( v )
+        return .[ v p ]
+    end
+end
+
+function count( z, p, n )
+    s = 0
+    m = 0
+    for j in [0:2 * n - 1]
+        switch z[j][1] ^^ p
+	    case 0: s -= 1
+	    case 1: s += 1
+	end
+	if s > m: m = s
+    end
+    return m
+end
+
+st = stdIn()
+for i in [1:int( input() ) + 1]
+    n = int( st.grabLine() )
+    x = map( pair( 0 ), strSplit( st.grabLine(), " " ) )
+    y = map( pair( 1 ), strSplit( st.grabLine(), " " ) )
+    z = x + y
+    arraySort( z )
+    w = count( z, 0, n )
+    d = n - count( z, 1, n )
+    > "Case #" + i + ": " + d + " " + w    
+end

@@ -1,0 +1,32 @@
+%!PS
+%
+% Problem: Magic Trick
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+
+
+/rl {(%lineedit) run} def
+
+1 1 rl
+{
+    (Case #) print 5 string cvs print (: ) print
+    << >>
+    [2 {rl [4 {[rl]} repeat] exch 1 sub get aload pop} repeat]
+    dup 3 1 roll
+    {
+	1 index exch / put
+    } forall
+    length dup 8 eq {
+	(Volunteer cheated!) =
+    } {
+	dup 7 eq {
+	    1 index {lt} .sort 0 exch {
+		dup 3 1 roll eq {dup =} if
+	    } forall pop
+	} {
+	    (Bad magician!) =
+	} ifelse
+    } ifelse
+    pop pop
+} for
