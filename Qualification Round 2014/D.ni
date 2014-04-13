@@ -5,9 +5,8 @@
   Language: Inform 7
   Author: KirarinSnow
   Usage:
-      cat input.in | tr '.' '@' > commands.txt
+      cat input.in | tr '.' '@' >commands.txt
       echo -e "quit\n\n" >>commands.txt
-      rm -r output.scr codejam.inform
       echo -e "s\ncodejam\ns\ng\nr\nq\n" | i7
       cp thisfile.ni codejam.inform/Source/story.ni
       i7 -r codejam
@@ -42,13 +41,13 @@ Naomi is a person.
 Ken is a person.
 A person has a number called current score.
 
-The box is a container.
+The box of blocks is a container.
 The incinerator is a container.
 The balance scale is a container.
 
 A block is a kind of thing. A block has a number called weight.
 
-The box contains 20 blocks.
+The box of blocks contains 20 blocks.
 The incinerator contains lots of flames.
 
 Now Naomi, Ken, the box of blocks, the balance scale, and the incinerator are in the room.
@@ -111,7 +110,7 @@ To decide which number is the weight in centigrams for (K - indexed text):
 	decide on P.
 
 To grab a block of weight (W - number):
-	let B be a random block in the box;
+	let B be a random block in the box of blocks;
 	now the weight of B is W;
 	move B to the current player;
 	let J be the weight of B.
@@ -137,8 +136,8 @@ To play war with (X - list of blocks) and (Y - list of blocks):
 		let K be Ken's optimal block in Y for N;
 		remove K from Y;
 		weigh N and K;
-		incinerate N;
-		incinerate K;
+		destroy N in a fire;
+		destroy K in a fire;
 	say "[line break]Score: [the current score of Naomi] - [the current score of Ken]".
 
 To decide which block is Ken's optimal block in (Y - list of blocks) for (N - block):
@@ -165,9 +164,8 @@ To weigh (N - block) and (K - block):
 	otherwise:
 		increment the current score of Ken.
 	
-To incinerate (B - block):
+To destroy (B - block) in a fire:
 	move B to the incinerator.
 
 To unburn (B - block):
-	move B to the box.
-
+	move B to the box of blocks.
