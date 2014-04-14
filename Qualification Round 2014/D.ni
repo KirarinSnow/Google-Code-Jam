@@ -1,4 +1,4 @@
-"Don't Play With Fire" by KirarinSnow
+"Destruction by Fire: The Epic War Saga of Naomi and Ken" by KirarinSnow
 
 [
   Problem: Deceitful War
