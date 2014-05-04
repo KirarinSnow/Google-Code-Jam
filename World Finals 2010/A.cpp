@@ -1,4 +1,4 @@
-// Problem: Different Sum
+// Problem: Letter Stamper
 // Language: C++
 // Author: KirarinSnow
 // Usage: g++ thisfile.cpp -o executable && ./executable <input.in >output.out
@@ -6,7 +6,6 @@
 
 #include <iostream>
 #include <string>
-#include <math.h>
 #include <string.h>
 
 using namespace std;
