@@ -1,0 +1,21 @@
+%!PS
+%
+% Problem: Candy Store
+% Language: PostScript
+% Author: KirarinSnow
+% Usage: gs -q -dNODISPLAY -dNOPROMPT thisfile.ps <input.in >output.out
+% Comments: Implementation of reference solution. Fails on large.
+
+
+1 1 (%lineedit) run
+{
+    (Case #) print 5 string cvs print (: ) print
+    (%lineedit) run
+    1 index mul	0 0
+    {
+	3 copy pop le {exit} if
+	1 add
+	exch dup 4 index idiv 1 add add exch
+    } loop
+    = pop pop pop
+} for
