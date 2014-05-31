@@ -2,9 +2,9 @@
 # Language: GolfScript
 # Author: KirarinSnow
 # Usage: golfscript.rb thisfile.gs <input.in >output.out
-# Comments: Large may take slightly too long.
+# Comments: Should run on time for large.
 
 
-# 57 bytes
+# 60 bytes
 
-n%(~,{"Case #"\)@": "\(;([~][.${[]+/.{,,}%~&\~+}/])*,n@}/
+n%(~,{"Case #"\)@": "\(;([~]0\.${.@:_?.,_,(@-,&,@+_@-}/;n@}/
