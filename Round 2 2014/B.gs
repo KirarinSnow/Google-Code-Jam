@@ -5,6 +5,6 @@
 # Comments: Large may take slightly too long.
 
 
-# 57 bytes
+# 56 bytes
 
-n%(~,{"Case #"\)@": "\(;([~][.${[]+/.{,,}%~&\~+}/])*,n@}/
+n%(~,{"Case #"\)@": "\(;([~][.${[]+/.~,,\,<\~+}/])*,n@}/
